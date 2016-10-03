@@ -1,0 +1,38 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "semi": [ 2, "never" ],
+    "no-console": 0,
+    "no-confusing-arrow": 0,
+    "no-use-before-define": 0,
+    "no-param-reassign": 0,
+    "no-return-assign": 0,
+    "babel/generator-star-spacing": 1,
+    "babel/object-shorthand": 1,
+    "babel/no-await-in-loop": 1,
+    "flowtype/space-after-type-colon": [1, "always"],
+    "flowtype/space-before-type-colon": [1, "never"],
+    "flowtype/type-id-match": [1, "^([A-Z][a-z0-9]+)+Type$"],
+    "react/sort-comp": 0
+  },
+  "plugins": [
+    "flowtype",
+    "babel",
+    "react"
+  ],
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
+  }
+}

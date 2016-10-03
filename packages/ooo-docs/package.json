@@ -1,0 +1,11 @@
+{
+  "name": "ooo-docs",
+  "version": "0.0.1",
+  "description": "Say hello",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^15.0.2"
+  }
+}

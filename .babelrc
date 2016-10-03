@@ -1,0 +1,57 @@
+{
+  "env": {
+    "development": {
+      "plugins": [
+        "transform-flow-strip-types",
+        "react-hot-loader/babel"
+      ],
+      "presets": [
+        "react",
+        [ "es2015", { "modules": false } ],
+        "stage-1"
+      ]
+    },
+    "production": {
+      "plugins": [
+        "transform-flow-strip-types",
+        "react-hot-loader/babel"
+      ],
+      "presets": [
+        "react",
+        [ "es2015", { "modules": false } ],
+        "stage-1"
+      ]
+    },
+    "test": {
+      "sourceMaps": "inline",
+      "plugins": [
+        "transform-flow-strip-types",
+        "react-hot-loader/babel",
+        "istanbul"
+      ],
+      "presets": [
+        "react",
+        "es2015",
+        "stage-1"
+      ]
+    },
+    "lib": {
+      "presets": [
+        "react",
+        "es2015",
+        "stage-1"
+      ],
+      "plugins": [
+        [
+          "transform-flow-strip-types",
+          "babel-plugin-webpack-loaders",
+          "react-hot-loader/babel",
+          {
+            "config": "./webpack.config.lib.js",
+            "verbose": false,
+          }
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "dropdown-box",
+  "version": "0.0.1",
+  "description": "a box with a callback that fires when clicked outside of",
+  "main": "lib/index.js",
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^15.0.2"
+  },
+  "scripts": {
+    "start": "node ../../dev-server.js",
+    "test": "cd ../.. && PACKAGE=$npm_package_config_package npm test",
+    "build:babel": "cd ../.. && PACKAGE=$npm_package_config_package npm run build:babel",
+    "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs"
+  },
+  "config": {
+    "package": "dropdown-box",
+    "port": 3000
+  }
+}

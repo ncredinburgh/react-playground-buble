@@ -1,0 +1,26 @@
+lerna(info)    Lerna v2.0.0-beta.28
+lerna(info)    Independent Versioning Mode
+lerna(debug)   Attempting running BootstrapCommand.initialize
+lerna(debug)   Successfully ran BootstrapCommand.initialize
+lerna(debug)   Attempting running BootstrapCommand.execute
+lerna(info)    Bootstrapping 3 packages
+lerna(info)    Installing external dependencies
+lerna(error)   Errored while running BootstrapCommand.execute
+    npm ERR! Darwin 14.5.0
+    npm ERR! argv "/Users/ph185068/.nvm/versions/node/v6.2.2/bin/node" "/Users/ph185068/.nvm/versions/node/v6.2.2/bin/npm" "install" "ooo-hello-world@^0.0.1"
+    npm ERR! node v6.2.2
+    npm ERR! npm  v3.9.5
+    npm ERR! path /Users/ph185068/projects/di/leapfrog/leapfrog-ui/packages/ooo-docs/node_modules/ooo-hello-world
+    npm ERR! code ENOENT
+    npm ERR! errno -2
+    npm ERR! syscall realpath
+    
+    npm ERR! enoent ENOENT: no such file or directory, realpath '/Users/ph185068/projects/di/leapfrog/leapfrog-ui/packages/ooo-docs/node_modules/ooo-hello-world'
+    npm ERR! enoent ENOENT: no such file or directory, realpath '/Users/ph185068/projects/di/leapfrog/leapfrog-ui/packages/ooo-docs/node_modules/ooo-hello-world'
+    npm ERR! enoent This is most likely not a problem with npm itself
+    npm ERR! enoent and is related to npm not being able to find a file.
+    npm ERR! enoent 
+    
+    npm ERR! Please include the following file with any support request:
+    npm ERR!     /Users/ph185068/projects/di/leapfrog/leapfrog-ui/packages/ooo-docs/npm-debug.log
+    

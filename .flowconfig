@@ -1,0 +1,8 @@
+[options]
+esproposal.class_instance_fields=enable
+esproposal.class_static_fields=enable
+module.name_mapper='.*\.\(svg\|png\|jpg\|gif\)$' -> '<PROJECT_ROOT>/flow/stub/url-loader.js'
+[ignore]
+.*/__tests__/.*
+<PROJECT_ROOT>/dist/.*
+<PROJECT_ROOT>/lib/.*
