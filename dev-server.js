@@ -3,6 +3,8 @@ const express = require('express')
 const compression = require('compression')
 const app = express()
 const server = require('http').createServer(app)
+const fs = require('fs')
+const path = require('path')
 
 const port = process.env.npm_package_config_port || 3000
 const packageName = process.env.npm_package_config_package
@@ -12,7 +14,16 @@ const webRoot = packageName ?
 
 if (packageName) {
   const webpack = require('webpack')
-  const config = require(webRoot + '/webpack.config')({ dev: true })
+  const configPath = path.resolve(webRoot, 'webpack.config.js')
+  let config
+  try {
+    fs.accessSync(configPath)
+    console.log('found local webpack.config.js')
+    config = require(webRoot + '/webpack.config')({ dev: true })
+  } catch (e) {
+    console.log('fallback to root webpack.config.js')
+    config = require('./webpack.config')({ dev: true })
+  }
   const compiler = webpack(config)
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
@@ -31,7 +42,7 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use('/', express.static('.'))
+app.use('/', express.static(webRoot))
 
 server.listen(port, '0.0.0.0', err => {
   if (err) {

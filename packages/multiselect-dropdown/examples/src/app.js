@@ -1,9 +1,11 @@
-// @flow
+import React, { Component } from 'react'
+import MultiselectDropdown from '../../src'
 
-import React from 'react'
+console.log(MultiselectDropdown)
+
 import {
-  ReactPlaygroundLite,
-} from '../../../src'
+   ReactPlaygroundLite,
+} from '@di/react-playground-lite'
 
 const defaultJsx = `<div className="Edit">
   <button>Hello</button>
@@ -39,6 +41,7 @@ const evalToJsx =
 const App = () => (
   <div>
     <h2>JSX</h2>
+
     If code evaluates to JSX then it will be mounted automatically:<p />
     <ReactPlaygroundLite defaultValue={defaultJsx} />
     <h2>Class Components</h2>

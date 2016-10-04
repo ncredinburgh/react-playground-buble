@@ -1,6 +1,6 @@
 {
-  "version": "0.0.3",
-  "name": "@di/react-playground-lite",
+  "version": "0.0.1",
+  "name": "@di/multiselect-dropdown",
   "description": "React playground using Buble",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
@@ -15,24 +15,18 @@
     "build:babel": "cd ../.. && PACKAGE=$npm_package_config_package npm run build:babel",
     "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/omysoul/omysoul.git"
-  },
-  "homepage": "https://github.com/omysoul/omysoul/packages/react-playground-lite",
   "dependencies": {
-    "buble": "^0.14.0",
-    "codemirror": "^5.19.0",
-    "react-codemirror": "^0.2.6",
-    "webfontloader": "^1.6.26"
+    "@di/dropdown-box": "^0.0.1"
+  },
+  "devDependencies": {
+    "@di/react-playground-lite": "^0.0.3"
   },
   "peerDependencies": {
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
-  "devDependencies": {},
   "config": {
-    "package": "react-playground-lite",
+    "package": "multiselect-dropdown",
     "port": 3000
   }
 }

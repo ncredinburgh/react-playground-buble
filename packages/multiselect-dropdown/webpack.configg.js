@@ -2,6 +2,11 @@ const path = require('path')
 const join = path.join
 const resolve = path.resolve
 const webpack = require('webpack')
+const packageName = process.env.npm_package_config_package
+
+const packageRoot = packageName ?
+  resolve('.', 'packages', packageName) :
+  resolve(__dirname)
 
 module.exports = env => {
   const ifProd = (...args) => env.prod ? args : []
@@ -15,7 +20,8 @@ module.exports = env => {
           'eventsource-polyfill',
           'webpack-hot-middleware/client'
         ),
-        '../examples/src/index',
+//        resolve(packageRoot, 'examples', 'src', 'index'),
+        './examples/src/index',
       ],
       // dist: [
       //   ...ifDev(
@@ -30,7 +36,7 @@ module.exports = env => {
     output: {
       filename: 'bundle-[name].js',
       sourceMapFilename: 'bundle-[name].js.map',
-      path: resolve(__dirname, 'dist'),
+      path: resolve(packageRoot, 'dist'),
       pathinfo: !env.prod,
       publicPath: '/static/',
     },
@@ -64,7 +70,13 @@ module.exports = env => {
         })
       ),
     ],
-    context: resolve(__dirname, 'src'),
+    resolve: {
+      alias: {
+        react: path.resolve('./node_modules/react'),
+        'react-dom': path.resolve('./node_modules/react-dom'),
+      },
+    },
+    context: __dirname,
     devtool: env.prod ? 'source-map' : 'module-eval-source-map',
     bail: env.prod,
     module: {

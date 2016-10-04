@@ -60,6 +60,7 @@ export  default class ReactPlaygroundLite extends React.Component {
 const styles = {
   wrapper: {
     display: 'flex',
+    lineHeight: 1.3,
   },
   viewerWrapper: {
     display: 'flex',

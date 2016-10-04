@@ -61,6 +61,12 @@ module.exports = env => {
         })
       ),
     ],
+    resolve: {
+      alias: {
+        react: path.resolve('../../node_modules/react'),
+        'react-dom': path.resolve('../../node_modules/react-dom'),
+      },
+    },
     context: resolve(__dirname, 'src'),
     devtool: env.prod ? 'source-map' : 'module-eval-source-map',
     bail: env.prod,

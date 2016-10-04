@@ -1,6 +1,6 @@
 import React from 'react'
 import { transform } from 'buble'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom'
 
 function evalInContext(js, context) {
   const scope = Object.keys(context)
@@ -19,9 +19,17 @@ export default class PlaygroundViewer extends React.Component {
     try {
       const trans = transform(source)
       const { code } = trans
-      const answer = evalInContext(code, { React })
+      const answer = evalInContext(code, {
+        React,
+        ReactDOM,
+        render: ReactDOM.render,
+        Component: React.Component,
+        mountNode: this.el,
+      })
       errorMessage = ''
-      render(answer, this.el)
+      if(React.isValidElement(answer)) {
+        ReactDOM.render(answer, this.el)
+      }
     } catch (e) {
       errorMessage = e.message
     }
