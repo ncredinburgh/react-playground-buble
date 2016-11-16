@@ -1,0 +1,39 @@
+{
+  "version": "0.0.1",
+  "name": "@di/leapfrog-icons",
+  "description": "React playground using Buble",
+  "main": "lib/index.js",
+  "jsnext:main": "src/index.js",
+  "author": "Phil Holden (http://github.com/philholden)",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "currentColor": "node ./node_modules/svgo/bin/svgo --pretty --indent=2 --enable=removeDoctype --disable=cleanupNumericValues,cleanupListOfValues -f input/svg/current-color/ -o output/current-color",
+    "fixedColor": "node ./node_modules/svgo/bin/svgo --pretty --indent=2 --enable=removeDoctype -f input/svg/fixed-color/ -o output/fixed-color",
+    "loaders": "node ./node_modules/svgo/bin/svgo --pretty --indent=2 --enable=removeDoctype -f input/svg/loaders/ -o output/loaders",
+    "all": "npm run currentColor && npm run fixedColor && npm run loaders && node convert-svg && npm run build:babel",
+    "start": "cd ../.. && PACKAGE=$npm_package_config_package node ./dev-server.js",
+    "test": "cd ../.. && PACKAGE=$npm_package_config_package npm test",
+    "build:babel": "cd ../.. && PACKAGE=$npm_package_config_package npm run build:babel",
+    "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omysoul/omysoul.git"
+  },
+  "homepage": "https://github.com/omysoul/omysoul/packages/leapfrog-icons",
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
+  },
+  "devDependencies": {
+    "svgo": "^0.7.1"
+  },
+  "config": {
+    "package": "leapfrog-icons",
+    "port": 3000
+  }
+}

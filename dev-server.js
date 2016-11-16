@@ -32,6 +32,16 @@ if (packageName) {
   app.use(require('webpack-hot-middleware')(compiler))
 }
 
+function forwards(req, res, next) {
+  const examples = /^\/examples\/.+$/
+  if (examples.test(req.url)) {
+    req.url = '/examples/'
+  }
+  next('route')
+}
+
+app.all('*', forwards)
+
 app.use(compression({
   threshold: 512,
 }))

@@ -85,6 +85,7 @@ export default class MultiselectDropdown extends Component {
     const wrapperClasses = `di dropdown open${onGray ? ' on-gray' : ''}`
     const button = (
       <button
+        style={styles.button}
         className="toggle"
         id="dLabel2"
         type="button"
@@ -129,7 +130,7 @@ export default class MultiselectDropdown extends Component {
           >
             <div className="form-group-sm" style={styles.searchWrapper}>
               <input
-                style={{ minWidth: 40 }}
+                style={styles.input}
                 className="form-control"
                 placeholder="Search"
                 value={filter}
@@ -188,14 +189,6 @@ export default class MultiselectDropdown extends Component {
 }
 
 const styles = {
-  dropdown: {
-//    position: 'absolute',
-//    right: 0,
-    textAlign: 'left',
-    boxShadow: '0 1px 3px 0 rgba(0,0,0,0.45)',
-    background: 'white',
-    zIndex: 1,
-  },
   searchWrapper: {
     padding: 14,
     borderBottom: '1px solid #ccc',
@@ -228,5 +221,28 @@ const styles = {
     listStyle: 'none',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
+  },
+  button: {
+    fontSize: 18,
+    backgroundColor: '#ededed',
+    height: 42,
+    textAlign: 'left',
+    border: 0,
+    paddingLeft: 20,
+    paddingRight: 20,
+    boxShadow: '1px 1px 1px 0 rgba(0,0,0,0.45)',
+  },
+  input: {
+    height: 35,
+    padding: '6px 10px',
+    fontSize: 14,
+    lineHeight: 1.5,
+    borderRadius: 0,
+    minWidth: 40,
+    color: '#333',
+    boxSizing: 'border-box',
+    backgroundColor: '#fff',
+    border: '1px solid #ccc',
+    boxShadow: 'inset 1px 1px 1px 0 rgba(0,0,0,0.45)',
   },
 }

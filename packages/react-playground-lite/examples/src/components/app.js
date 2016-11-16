@@ -48,6 +48,58 @@ const App = () => (
     <h2>Eval to Jsx</h2>
     Or they can be explicitly mounted like this:<p />
     <ReactPlaygroundLite defaultValue={defaultClass} />
+    <p>backgroundColor:</p>
+    <ReactPlaygroundLite
+      defaultValue={defaultJsx}
+      backgroundColor={'green'}
+    />
+    <p>top left:</p>
+    <ReactPlaygroundLite
+      defaultValue={defaultJsx}
+      backgroundColor={'hotpink'}
+      top left
+    />
+    <p>top:</p>
+    <ReactPlaygroundLite
+      defaultValue={defaultJsx}
+      backgroundColor={'hotpink'}
+      top
+    />
+    <p>top:</p>
+    <ReactPlaygroundLite
+      defaultValue={defaultJsx}
+      backgroundColor={'hotpink'}
+      bottom
+      right
+    />
+    <p>fontFamily:</p>
+    <ReactPlaygroundLite
+      defaultValue={defaultJsx}
+      backgroundColor={'green'}
+      fontFamily="cursive"
+    />
+    <p>padding:</p>
+    <ReactPlaygroundLite
+      defaultValue={defaultJsx}
+      backgroundColor={'green'}
+      padding={35}
+      top left
+      editorFlex={'1 0 0'}
+      viewerFlex={'1 0 0'}
+    />
+    <p>flex:</p>
+    <ReactPlaygroundLite
+      defaultValue={defaultJsx}
+      backgroundColor={'green'}
+      editorFlex={2}
+    />
+    <p>flex:</p>
+    <ReactPlaygroundLite
+      defaultValue={defaultJsx}
+      backgroundColor={'green'}
+      editorFlex={'none'}
+      viewerFlex={'none'}
+    />
   </div>
 )
 

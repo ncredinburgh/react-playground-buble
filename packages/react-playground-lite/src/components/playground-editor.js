@@ -2,6 +2,7 @@ import React from 'react'
 import Codemirror from 'react-codemirror'
 import WebFont from 'webfontloader'
 import codeMirrorInstance from 'codemirror'
+import CodemirrorStyleSheet from './codemirror-style-sheet'
 //import { transform } from 'buble'
 require('codemirror/mode/javascript/javascript')
 require('codemirror/mode/xml/xml')
@@ -23,6 +24,10 @@ WebFont.load({
 export default class PlaygroundEditor extends React.Component {
   state = {
     value: this.props.defaultValue || ''
+  }
+  hash = `hash-${(Math.random().toString(10).substr(2) * 1).toString(36)}`
+  static defaultProps = {
+    css: CodemirrorStyleSheet,
   }
 
   constructor(props, ctx) {
@@ -66,30 +71,35 @@ export default class PlaygroundEditor extends React.Component {
   //     },
   //   })
   // }
-
   render() {
     const { value } = this.state
     const { code } = value
-    const { onChange } = this.props
+    const { props } = this
+    const { onChange } = props
+    const { hash } = this
     return (
-      <div style={{
-        ...this.props.style,
-      }}>
-        {/* <pre>{JSON.stringify(this.state.value)}</pre> */}
+      <div style={props.style} className={hash}>
+        {props.css({ ...props, hash })}
         <Codemirror
           // ref={cm => this.cm = cm}
-          style={{padding: 20}}
           value={value}
           onChange={this.onChange}
           options={{
-            mode: "jsx",
+            mode: 'jsx',
+            indentWithTabs: false,
             lineNumbers: false,
             lineWrapping: true,
             smartIndent: false,
             matchBrackets: true,
-            theme: 'night',
+            theme: 'default',
             invisibles: true,
-            codeMirrorInstance
+            extraKeys: {
+              Tab: (cm) => {
+                const spaces = Array(cm.getOption('indentUnit') + 1).join(' ')
+                cm.replaceSelection(spaces)
+              },
+            },
+            codeMirrorInstance,
           }}
         />
       </div>

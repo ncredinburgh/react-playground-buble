@@ -73,6 +73,7 @@ module.exports = env => {
       alias: {
         react: path.resolve('./node_modules/react'),
         'react-dom': path.resolve('./node_modules/react-dom'),
+        'styled-components': path.resolve('./node_modules/styled-components'),
       },
     },
     context: resolve(packageRoot, 'src'),

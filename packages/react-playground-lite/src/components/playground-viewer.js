@@ -12,12 +12,19 @@ function evalInContext(js, context) {
   }.call(context)
 }
 
+const _forceUpdateCallbacks = []
+export const forceViewerUpdate = () =>
+  _forceUpdateCallbacks.forEach(fn => fn())
+
 export default class PlaygroundViewer extends React.Component {
-  update = ({ source, onChange }) => {
-    console.log(source)
+  update = ({ source, onChange, scope }) => {
     let errorMessage
     try {
-      const trans = transform(source)
+      const trans = transform(source, {
+        transforms: {
+          dangerousTaggedTemplateString: true,
+        },
+      })
       const { code } = trans
       const answer = evalInContext(code, {
         React,
@@ -25,10 +32,16 @@ export default class PlaygroundViewer extends React.Component {
         render: ReactDOM.render,
         Component: React.Component,
         mountNode: this.el,
+        ...scope
       })
       errorMessage = ''
       if(React.isValidElement(answer)) {
-        ReactDOM.render(answer, this.el)
+        ReactDOM.unmountComponentAtNode(this.el)
+        const wrapOutput = this.props.wrapOutput || (x => x)
+        ReactDOM.render(
+          wrapOutput(answer),
+          this.el
+        )
       }
     } catch (e) {
       errorMessage = e.message
@@ -46,7 +59,18 @@ export default class PlaygroundViewer extends React.Component {
   }
 
   componentDidMount() {
+    _forceUpdateCallbacks.push(this.forceUpdate)
     this.update(this.props)
+  }
+
+  forceUpdate = () => {
+    this.update(this.props)
+  }
+
+  componentWillUnmount() {
+    _forceUpdateCallbacks
+      .filter(x => x !== this.forceUpdate)
+    ReactDOM.unmountComponentAtNode(this.el)
   }
 
   shouldComponentUpdate() { return false }
@@ -55,6 +79,7 @@ export default class PlaygroundViewer extends React.Component {
     return (
       <div
         ref={el => {if (el !== null) this.el = el}}
+        className="thisDiv"
         style={{
           ...this.props.style,
         }}
