@@ -32,6 +32,14 @@ const ButtonPage = () => (
       scope={{ Button, styled }}
     />
 
+    <p>`secondary` button should be white `onGray` backgroud:</p>
+    <Playground
+      defaultValue={
+`<Button onGray>Click</Button>`
+      }
+      scope={{ Button, styled }}
+    />
+
     <p>Buttons can be `disabled`:</p>
     <Playground
       defaultValue={

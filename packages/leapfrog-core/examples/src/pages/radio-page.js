@@ -27,7 +27,7 @@ const RadioPage = () => (
 
     <p>With label:</p>
     <Playground
-      defaultValue={`<Radio name="phil">Label</Radio>`}
+      defaultValue={`<Radio>Label</Radio>`}
       scope={{ Radio }}
     />
 

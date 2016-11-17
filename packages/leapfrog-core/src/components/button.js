@@ -46,16 +46,18 @@ ${
 }`
 }
 
-const secondaryStyles = ({ primary, tertiary, disabled }) =>
+const secondaryStyles = ({ primary, tertiary, disabled, onGray }) =>
   primary || tertiary ? '' :
-`background-image: linear-gradient(#fff 0px, #ddd 100%);
-color: #333333;
-${
-  disabled ? '' :
-  `&:hover {
-    background-image: linear-gradient(to bottom, #ddd 0, #ddd 100%);
+`
+  background-image: linear-gradient(#fff 0px, ${onGray ? '#fff' : '#ddd'} 100%);
+  ${onGray ? 'border: 1px solid transparent;' : ''}
+  color: #333333;
+  ${
+    disabled ? '' :
+    `&:hover {
+      background-image: linear-gradient(to bottom, #ddd 0, #ddd 100%);
+    }`
   }`
-}`
 
 
 const tertiaryStyles = ({ tertiary, disabled }) =>

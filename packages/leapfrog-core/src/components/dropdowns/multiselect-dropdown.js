@@ -2,7 +2,42 @@
 
 import React, { Component } from 'react'
 import DropdownBox from './dropdown-box'
+import Checkbox from '../checkbox'
+import Button from '../button'
+import Caret from '../caret-svg'
+import TextInput from '../text-input'
 import Spacer from '../spacer'
+import styled from 'styled-components'
+
+const getLi = ({ hidden }) => hidden ? `
+  height: 0;
+  padding: 0 8px;
+  overflow: 'hidden';
+` : ''
+
+const Li = styled.li`
+  margin: 0;
+  padding: 8px;
+  ${getLi}
+  list-style: none;
+  white-space: nowrap;`
+
+const Ul = styled.ul`
+  margin: 0;
+  padding: 8px 10px 5px;
+  maxHeight: 300px;
+  overflowY: auto;`
+
+const SearchWrapper = styled.div`
+  padding: 14px;
+  border-bottom: 1px solid #ccc;
+`
+
+const DropdownWrapper = styled.div`
+  text-align: left;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.45);
+  background: white;
+`
 
 type OptionsType = {
   value: string,
@@ -82,61 +117,42 @@ export default class MultiselectDropdown extends Component {
       filter,
     } = this.state
 
-    const wrapperClasses = `di dropdown open${onGray ? ' on-gray' : ''}`
-    const button = (
-      <button
-        className="toggle"
-        id="dLabel2"
-        type="button"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="true"
-        title="Select One ..."
-        onClick={this.onButtonClick}
-      >
-        <span className="ddlabel">
-          {title}
-        </span>
-        <span className="caret" />
-      </button>
-    )
-
-    const linkTag = (
-      <div
-        style={{display: 'inline-block'}}
-        onClick={this.onButtonClick}
-      >
-        <a href="" onClick={e => e.preventDefault()}>
-          Show columns
-        </a>
-          {<Spacer />}
-        <span className="caret" />
-      </div>
-    )
-
     return (
-      <div className={wrapperClasses}>
-        {link ? linkTag : button}
+      <div>
+        <Button
+          id="dLabel2"
+          type="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="true"
+          title="Select One ..."
+          onClick={this.onButtonClick}
+          onGray={onGray}
+        >
+          {title}
+          <Spacer />
+          <Caret />
+        </Button>
         <DropdownBox
           right={right}
           open={this.state.isOpen}
           onClickOutside={() => this.setState({ isOpen: false })}
         >
-          <div
+          <DropdownWrapper
             role="menu"
-            ref={(ul: HTMLElement) => { if (ul) this.ul = ul }}
-            style={styles.dropdown}
+            innerRef={(ul: HTMLElement) => { if (ul) this.ul = ul }}
           >
-            <div className="form-group-sm" style={styles.searchWrapper}>
-              <input
+            <SearchWrapper>
+              <TextInput
                 style={{ minWidth: 40 }}
-                className="form-control"
                 placeholder="Search"
                 value={filter}
                 onChange={this.onChangeFilter}
+                small
               />
-            </div>
-            <ul style={styles.ul}>
+
+            </SearchWrapper>
+            <Ul>
               {
                 options
                   // .filter(({ label }) =>
@@ -146,7 +162,6 @@ export default class MultiselectDropdown extends Component {
                     const inputProps = {
                       type: 'checkbox',
                       value: option.value,
-                      className: 'sm',
                       name,
                       onChange: this.onCheck,
                       checked: undefined,
@@ -161,73 +176,22 @@ export default class MultiselectDropdown extends Component {
                         this.state.selected.includes(option.value)
                     }
                     return (
-                      <li
+                      <Li
                         key={option.value}
-                        style={this.matchesFilter(option) ?
-                          styles.li :
-                          styles.liHidden
-                        }
+                        hidden={!this.matchesFilter(option)}
                       >
-                        <label className="di-checkbox" style={{position: 'relative'}}>
-                          <input {...inputProps} />
-                          <span className="lbl sm">
-                            {option.label}
-                          </span>
-                        </label>
-                      </li>
+                        <Checkbox {...inputProps} small>
+                          {option.label}
+                        </Checkbox>
+                      </Li>
                     )
                   }
                 )
               }
-            </ul>
-          </div>
+            </Ul>
+          </DropdownWrapper>
         </DropdownBox>
       </div>
     )
-  }
-}
-
-const styles = {
-  dropdown: {
-//    position: 'absolute',
-//    right: 0,
-    textAlign: 'left',
-    boxShadow: '0 1px 3px 0 rgba(0,0,0,0.45)',
-    background: 'white',
-    zIndex: 1,
-  },
-  searchWrapper: {
-    padding: 14,
-    borderBottom: '1px solid #ccc',
-  },
-  ul: {
-    margin: 0,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 8,
-    paddingBottom: 5,
-    maxHeight: 300,
-    overflowY: 'auto',
-  },
-  li: {
-    margin: 0,
-    paddingTop: 8,
-    paddingBottom: 8,
-    paddingLeft: 8,
-    paddingRight: 8,
-    listStyle: 'none',
-    whiteSpace: 'nowrap',
-  },
-  liHidden: {
-    height: 0,
-    margin: 0,
-    paddingTop: 0,
-    paddingBottom: 0,
-    paddingLeft: 8,
-    paddingRight: 8,
-    listStyle: 'none',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-
   }
 }
