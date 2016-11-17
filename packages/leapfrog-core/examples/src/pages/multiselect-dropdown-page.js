@@ -35,9 +35,7 @@ const PageHeaderPage = () => (
 />`
       }
       scope={{ PageHeader, MultiselectDropdown }}
-      top left
-      viewerStyle={{width: '100%'}}
-      wrapOutput={children => <article>{children}</article>}
+      top
     />
   </div>
 )

@@ -50,6 +50,7 @@ const Menu = () => (
       <li><Link to="/examples/button">Button</Link></li>
       <li><Link to="/examples/text-input">TextInput</Link></li>
       <li><Link to="/examples/checkbox">Checkbox</Link></li>
+      <li><Link to="/examples/radio">Radio</Link></li>
       <li><Link to="/examples/page-header">PageHeader</Link></li>
       <li><Link to="/examples/toast">Toasts</Link></li>
       <li><Link to="/examples/multiselect-dropdown">MultiselectDropdown</Link></li>

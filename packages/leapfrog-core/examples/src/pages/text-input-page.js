@@ -11,17 +11,13 @@ const PageHeaderPage = () => (
     <Playground
       defaultValue={`<TextInput placeholder="name" />`}
       scope={{ TextInput }}
-      top left
       viewerStyle={{width: '100%'}}
-      wrapOutput={children => <article>{children}</article>}
     />
     <p>`small`:</p>
     <Playground
       defaultValue={`<TextInput small placeholder="email" type="email"/>`}
       scope={{ TextInput }}
-      top left
       viewerStyle={{width: '100%'}}
-      wrapOutput={children => <article>{children}</article>}
     />
     <p>`validity` can be `success`, `warning` or `error`:</p>
     <Playground
@@ -29,27 +25,21 @@ const PageHeaderPage = () => (
 `<TextInput defaultValue="success" validity="success"/>`
       }
       scope={{ TextInput }}
-      top left
       viewerStyle={{width: '100%'}}
-      wrapOutput={children => <article>{children}</article>}
     />
     <Playground
       defaultValue={
 `<TextInput defaultValue="warning" validity="warning"/>`
       }
       scope={{ TextInput }}
-      top left
       viewerStyle={{width: '100%'}}
-      wrapOutput={children => <article>{children}</article>}
     />
     <Playground
       defaultValue={
 `<TextInput defaultValue="error" validity="error"/>`
       }
       scope={{ TextInput }}
-      top left
       viewerStyle={{width: '100%'}}
-      wrapOutput={children => <article>{children}</article>}
     />
   </div>
 )
