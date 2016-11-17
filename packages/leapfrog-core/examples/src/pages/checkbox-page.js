@@ -27,7 +27,7 @@ const CheckboxPage = () => (
 
     <p>With label:</p>
     <Playground
-      defaultValue={`<Checkbox>Label</Checkbox>`}
+      defaultValue={`<Checkbox value="2">Label</Checkbox>`}
       scope={{ Checkbox }}
     />
 
@@ -43,6 +43,30 @@ const CheckboxPage = () => (
       scope={{ Checkbox }}
     />
 
+    <p>Vertical by default:</p>
+    <Playground
+      defaultValue={
+`<div>
+  <Checkbox value="1">One</Checkbox>
+  <Checkbox value="2">Two</Checkbox>
+  <Checkbox value="3">Three</Checkbox>
+</div>`
+      }
+      scope={{ Checkbox }}
+    />
+
+    <p>`inline`:</p>
+    <Playground
+      defaultValue={
+`<div>
+  <Checkbox value="1" inline>One</Checkbox>
+  <Checkbox value="2" inline>Two</Checkbox>
+  <Checkbox value="3" inline>Three</Checkbox>
+</div>`
+      }
+      scope={{ Checkbox }}
+    />
+
     <p>Uncontrolled:</p>
     <Playground
       defaultValue={`<Checkbox defaultChecked>Label</Checkbox>`}
@@ -55,20 +79,39 @@ const CheckboxPage = () => (
 `class CtrlCheck extends Component {
   constructor(props) {
     super(props)
-    this.state = ({ checked: false })
-    this.onChange = ({ target: { checked } }) => {
-      this.setState({ checked })
+    this.state = ({ checked: {} })
+    this.onCheck = id => ({ target }) => {
+      const clone = { ...this.state.checked }
+      clone[id] = target.checked
+      this.setState({
+        checked: clone
+      })
     }
   }
 
   render() {
+    const { checked } = this.state
+    const { onCheck } = this
     return (
-      <Checkbox
-        checked={this.state.checked}
-        onChange={this.onChange}
-      >
-        Label
-      </Checkbox>
+      <div>
+        <Checkbox
+          checked={checked[1]}
+          onChange={onCheck(1)}
+        >
+          One
+        </Checkbox>
+        <Checkbox
+          checked={checked[2]}
+          onChange={onCheck(2)}
+        >
+          Two
+        </Checkbox>
+        Selected:
+        {
+          Object.keys(checked).sort()
+            .filter(id => checked[id]).join(', ')
+        }
+      </div>
     )
   }
 }

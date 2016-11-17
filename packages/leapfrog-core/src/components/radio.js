@@ -12,7 +12,7 @@ const getGutter = ({ gutter, hasChildren, before, small }) => {
       `margin-left: ${gap}px;` :
       `margin-right: ${gap}px;`
   }
-  return null
+  return ''
 }
 
 const getSize = ({ small }) =>
@@ -27,7 +27,16 @@ const getDisabled = ({ disabled }) =>
     opacity: 0.3;
     cursor: not-allowed;
     pointer-events: none;` :
-    null
+    ''
+
+const getLabel = ({ margin, inline }) => `
+  margin: ${margin === undefined ? '8px 25px 8px 0' : margin};
+  display: ${inline ? 'inline-flex' : 'flex'};
+  ${inline && margin === undefined ?
+    `&:last-child {
+      margin-right: 0;
+    }` : ''
+  }`
 
 const Box = styled.div`
   ${getGutter}
@@ -53,8 +62,8 @@ const BoxInner = styled.div`
 
 
 const Label = styled.label`
+  ${getLabel}
   alignItems: center;
-  display: flex;
   position: relative;`
 
 const Input = styled.input`
@@ -73,9 +82,11 @@ const Radio = ({
   gutter,
   children,
   before,
+  margin,
+  inline,
   ...props
 }) => (
-  <Label>
+  <Label margin={margin} inline={inline}>
     {before ? children : null}
     <Input
       {...props}

@@ -21,6 +21,7 @@ export default class PlaygroundViewer extends React.Component {
     let errorMessage
     try {
       const trans = transform(source, {
+        objectAssign: 'Object.assign',
         transforms: {
           dangerousTaggedTemplateString: true,
         },

@@ -27,12 +27,7 @@ const RadioPage = () => (
 
     <p>With label:</p>
     <Playground
-      defaultValue={
-`<div>
-  <Radio name="phil">Label</Radio>
-  <Radio name="phil">Label</Radio>
-  <Radio name="phil">Label</Radio>
-</div>`}
+      defaultValue={`<Radio name="phil">Label</Radio>`}
       scope={{ Radio }}
     />
 
@@ -48,6 +43,31 @@ const RadioPage = () => (
       scope={{ Radio }}
     />
 
+    <p>Vertical stacking by default. Note `name` group radios making them
+    mutually exclusive:</p>
+    <Playground
+      defaultValue={
+`<div>
+  <Radio name="group1" value="1">One</Radio>
+  <Radio name="group1" value="2">Two</Radio>
+  <Radio name="group1" value="3">Three</Radio>
+</div>`
+      }
+      scope={{ Radio }}
+    />
+
+    <p>`inline`:</p>
+    <Playground
+      defaultValue={
+`<div>
+  <Radio name="group2" value="1" inline>One</Radio>
+  <Radio name="group2" value="2" inline>Two</Radio>
+  <Radio name="group2" value="3" inline>Three</Radio>
+</div>`
+      }
+      scope={{ Radio }}
+    />
+
     <p>Uncontrolled:</p>
     <Playground
       defaultValue={`<Radio defaultChecked>Label</Radio>`}
@@ -60,20 +80,30 @@ const RadioPage = () => (
 `class CtrlCheck extends Component {
   constructor(props) {
     super(props)
-    this.state = ({ checked: false })
-    this.onChange = ({ target: { checked } }) => {
-      this.setState({ checked })
+    this.state = { checked: undefined }
+    this.onCheck = n => () => {
+      this.setState({ checked: n })
     }
   }
 
   render() {
+    const { checked } = this.state
     return (
-      <Radio
-        checked={this.state.checked}
-        onChange={this.onChange}
-      >
-        Label
-      </Radio>
+      <div>
+        <Radio
+          checked={checked == 1}
+          onChange={this.onCheck(1)}
+        >
+          One
+        </Radio>
+        <Radio
+          checked={checked == 2}
+          onChange={this.onCheck(2)}
+        >
+          Two
+        </Radio>
+        Checked: {checked}
+      </div>
     )
   }
 }

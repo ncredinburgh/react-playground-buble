@@ -47,7 +47,6 @@ const rotate =
 const CaretPage = () => (
   <div>
     <Title>Caret</Title>
-    <h2>JS</h2>
     <p>Default caret:</p>
     <Playground
       defaultValue={`<Caret />`}
