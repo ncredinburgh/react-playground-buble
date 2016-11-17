@@ -18,11 +18,9 @@ const getGutter = ({ gutter, hasChildren, before, small }) => {
 const getSize = ({ small }) =>
   `${small ? 20 : 30}px`
 
-const getInner = ({ small, checked }) =>
+const getInner = ({ small }) =>
   `width: ${small ? 12 : 18}px;
-  height: ${small ? 12 : 18}px;
-  opacity: ${checked ? 1 : 0};
-  transform: scale3d(${checked ? '1,1,1' : '0.25,0.25,1'});`
+  height: ${small ? 12 : 18}px;`
 
 const getDisabled = ({ disabled }) =>
   disabled ? `
@@ -34,7 +32,6 @@ const getDisabled = ({ disabled }) =>
 const Box = styled.div`
   ${getGutter}
   display: flex;
-  content: ' ';
   box-sizing: border-box;
   width: ${getSize};
   height: ${getSize};
@@ -49,89 +46,59 @@ const BoxInner = styled.div`
   background-color: #666;
   border-radius: 40px;
   ${getInner}
+  opacity: 0;
+  transform: scale3d(0,0,1);
   transition: .15s all;
-  transition-timing-function: ease-out;
-`
-// transfrom: scale3d(1,1,1);
+  transition-timing-function: ease-out;`
+
 
 const Label = styled.label`
   alignItems: center;
   display: flex;
-  position: relative;
-`
+  position: relative;`
 
-export default class Checkbox extends React.Component {
-  state = { checked: undefined }
+const Input = styled.input`
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  &:checked+div>div {
+    display: block;
+    opacity: 1;
+    transform: scale3d(1,1,1);
+  }`
 
-  onDeselect = () => {
-    this.setState({ checked: false })
-  }
-
-  componentDidMount() {
-    this.el.addEventListener('deselect', this.onDeselect)
-  }
-
-  componentWillUnmount() {
-    this.el.removeEventListener('deselect', this.onDeselect)
-  }
-
-
-  onChange = (e) => {
-    const { onChange } = this.props
-    this.setState({ checked: e.target.checked })
-    if (onChange) onChange(e)
-    const name = e.target.getAttribute('name')
-    if (!name) return
-    let radios = document.querySelectorAll(`input[type=radio][name=${name}]:not(:checked)`)
-    radios = [...radios]
-    radios.forEach(el => el.dispatchEvent(new Event('deselect')))
-  }
-
-  getChecked = () => {
-    const { state, props } = this
-    if (props.checked !== undefined) return props.checked
-    if (state.checked !== undefined) return state.checked
-    if (props.defaultChecked !== undefined) return props.defaultChecked
-  }
-
-  render() {
-    const { onChange } = this
-    const { small, gutter, children, before, ...props } = this.props
-    return (
-      <Label>
-        {before ? children : null}
-        <Box
-          {
-            ...{
-              gutter,
-              hasChildren: !!children,
-              before,
-              small,
-              disabled: props.disabled,
-            }
-          }
-        >
-        {
-          <BoxInner
-            small={small}
-            checked={this.getChecked()}
-          />
+const Radio = ({
+  small,
+  gutter,
+  children,
+  before,
+  ...props
+}) => (
+  <Label>
+    {before ? children : null}
+    <Input
+      {...props}
+      type="radio"
+      innerRef={el => { if (el) this.el = el }}
+    />
+    <Box
+      {
+        ...{
+          gutter,
+          hasChildren: !!children,
+          before,
+          small,
+          disabled: props.disabled,
         }
-        </Box>
-        <input
-          {...props}
-          type="radio"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            opacity: 0,
-          }}
-          onChange={onChange}
-          ref={el => { if (el) this.el = el }}
-        />
-        {before ? null : children}
-      </Label>
-    )
-  }
-}
+      }
+    >
+      <BoxInner
+        small={small}
+      />
+    </Box>
+    {before ? null : children}
+  </Label>
+)
+
+export default Radio

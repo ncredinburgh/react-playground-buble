@@ -28,7 +28,6 @@ const getDisabled = ({ disabled }) =>
 const Box = styled.div`
   ${getGutter}
   display: flex;
-  content: ' ';
   box-sizing: border-box;
   width: ${getSize};
   height: ${getSize};
@@ -41,63 +40,51 @@ const Box = styled.div`
 const Label = styled.label`
   alignItems: center;
   display: flex;
-  position: relative;
+  position: relative;`
+
+const Input = styled.input`
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  &:checked+div>svg {
+    display: block;
+  }
 `
 
-export default class Checkbox extends React.Component {
-  state = { checked: undefined }
+const Icon = styled(Checkmark)`
+  display: none;
+`
 
-  onChange = (e) => {
-    const { onChange } = this.props
-    this.setState({ checked: e.target.checked })
-    if (onChange) onChange(e)
-  }
-
-  getChecked = () => {
-    const { state, props } = this
-    if (props.checked !== undefined) return props.checked
-    if (state.checked !== undefined) return state.checked
-    if (props.defaultChecked !== undefined) return props.defaultChecked
-  }
-
-  render() {
-    const { onChange } = this
-    const { small, gutter, children, before, ...props } = this.props
-    return (
-      <Label>
-        {before ? children : null}
-        <Box
-          {
-            ...{
-              gutter,
-              hasChildren: !!children,
-              before,
-              small,
-              disabled: props.disabled,
-            }
-          }
-        >
-        {
-          this.getChecked() ?
-            <Checkmark height={small ? 11 : 16} block /> :
-            null
+const Checkbox = ({
+  small,
+  gutter,
+  children,
+  before,
+  ...props
+}) => (
+  <Label>
+    {before ? children : null}
+    <Input
+      {...props}
+      type="checkbox"
+      innerRef={el => { if (el) this.el = el }}
+    />
+    <Box
+      {
+        ...{
+          gutter,
+          hasChildren: !!children,
+          before,
+          small,
+          disabled: props.disabled,
         }
-        </Box>
-        <input
-          {...props}
-          type="checkbox"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            opacity: 0,
-          }}
-          onChange={onChange}
-          ref={el => { if (el) this.el = el }}
-        />
-        {before ? null : children}
-      </Label>
-    )
-  }
+      }
+    >
+      <Icon height={small ? 11 : 16} />
+    </Box>
+    {before ? null : children}
+  </Label>
+)
 
-}
+export default Checkbox
