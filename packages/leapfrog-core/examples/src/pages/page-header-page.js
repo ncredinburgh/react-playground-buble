@@ -13,7 +13,6 @@ const PageHeaderPage = () => (
       scope={{ PageHeader }}
       top left
       viewerStyle={{width: '100%'}}
-      wrapOutput={children => <article>{children}</article>}
     />
     <p>Add content in line with header on right side of page:</p>
     <Playground
