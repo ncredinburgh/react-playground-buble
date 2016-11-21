@@ -56,6 +56,7 @@ const Menu = () => (
       <li><Link to="/examples/multiselect-dropdown">MultiselectDropdown</Link></li>
       <li><Link to="/examples/leapfrog-icons">Icons</Link></li>
       <li><Link to="/examples/loader">Loader</Link></li>
+      <li><Link to="/examples/modal">Modal</Link></li>
     </Ul>
   </Wrapper>
 )

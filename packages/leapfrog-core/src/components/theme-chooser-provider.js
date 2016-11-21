@@ -15,6 +15,7 @@ export default class ThemeChooserProvider extends React.Component {
     themeChooser: React.PropTypes.shape({
       theme: React.PropTypes.object,
       onChangeTheme: React.PropTypes.func,
+      themeBroadcast: React.PropTypes.object,
     }),
   }
 

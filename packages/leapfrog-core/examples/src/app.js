@@ -20,6 +20,7 @@ import LoaderPage from './pages/loader-page'
 import TextInputPage from './pages/text-input-page'
 import CheckboxPage from './pages/checkbox-page'
 import RadioPage from './pages/radio-page'
+import ModalPage from './pages/modal-page'
 import Menu from './components/menu'
 import styled from 'styled-components'
 import { fromTheme } from '../../src/util/from-theme'
@@ -55,6 +56,7 @@ const App = () => (
           <Match exactly pattern="/examples/loader" component={LoaderPage} />
           <Match exactly pattern="/examples/checkbox" component={CheckboxPage} />
           <Match exactly pattern="/examples/radio" component={RadioPage} />
+          <Match exactly pattern="/examples/modal" component={ModalPage} />
         </Page>
       </Wrapper>
     </ThemeChooserProvider>
