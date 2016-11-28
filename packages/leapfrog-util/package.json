@@ -1,37 +1,32 @@
 {
-  "version": "0.0.3",
-  "name": "@di/react-playground-lite",
+  "version": "0.0.1",
+  "name": "@di/leapfrog-util",
   "description": "React playground using Buble",
   "main": "lib/index.js",
+  "jsnext:main": "es/index.js",
   "author": "Phil Holden (http://github.com/philholden)",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
+    "svgo": "node ./node_modules/svgo/bin/svgo --pretty -f input/svg/current-color/ -o output/current-color",
     "start": "cd ../.. && PACKAGE=$npm_package_config_package node ./dev-server.js",
     "test": "cd ../.. && PACKAGE=$npm_package_config_package npm test",
     "build:babel": "cd ../.. && PACKAGE=$npm_package_config_package npm run build:babel",
     "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/omysoul/omysoul.git"
-  },
-  "homepage": "https://github.com/omysoul/omysoul/packages/react-playground-lite",
   "dependencies": {
-    "buble": "^0.14.2",
-    "codemirror": "^5.19.0",
-    "react-codemirror": "^0.2.6",
-    "webfontloader": "^1.6.26"
+    "color-array": "0.0.8"
+  },
+  "devDependencies": {
   },
   "peerDependencies": {
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
-  "devDependencies": {},
   "config": {
-    "package": "react-playground-lite",
+    "package": "leapfrog-util",
     "port": 3000
   }
 }

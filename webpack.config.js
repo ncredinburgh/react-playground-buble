@@ -40,6 +40,7 @@ module.exports = env => {
       publicPath: '/static/',
     },
     plugins: [
+      //new webpack.NormalModuleReplacementPlugin(/\/iconv-loader$/, 'node-noop'),
       new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }),
       ...ifDev(
         new webpack.HotModuleReplacementPlugin(),
@@ -75,12 +76,12 @@ module.exports = env => {
         'react-dom': path.resolve('./node_modules/react-dom'),
         'styled-components': path.resolve('./node_modules/styled-components'),
       },
-      // mainFields: [
-      //   ...ifDev('dev:main'),
-      //   'module',
-      //   'jsnext:main',
-      //   'main',
-      // ],
+      mainFields: [
+        'browser',
+//        ...ifDev('dev:main'),
+        'module',
+        'main',
+      ],
     },
     context: resolve(packageRoot, 'src'),
     devtool: env.prod ? 'source-map' : 'module-eval-source-map',
@@ -94,8 +95,9 @@ module.exports = env => {
             join(packageRoot, 'src'),
             join(packageRoot, 'example'),
             // ...ifDev(
-            //   join(packageRoot, 'node_modules', '@di', 'react-playground-lite'),
-            //   join(packageRoot, 'node_modules', '@di', 'leapfrog-icons')
+            //   join(packageRoot, 'node_modules', '@di', 'react-playground-lite', 'src'),
+            //   join(packageRoot, 'node_modules', '@di', 'leapfrog-icons'),
+            //   join(packageRoot, 'node_modules', '@di', 'leapfrog-util')
             // ),
           ],
         },

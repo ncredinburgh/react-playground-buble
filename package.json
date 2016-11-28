@@ -1,10 +1,10 @@
 {
   "scripts": {
-    "clean": "rimraf lib dist es",
+    "clean": "rimraf lib dist lib-es",
     "build:webpack-var": "npm run clean && NODE_ENV=production webpack --config webpack.config.js --env.var",
     "build:webpack": "npm run clean && NODE_ENV=production webpack --config packages/$PACKAGE/webpack.config.js --env.prod",
-    "build:babel": "npm run clean && NODE_ENV=lib babel -D packages/$PACKAGE/src -d packages/$PACKAGE/lib && npm run build:es",
-    "build:es": "NODE_ENV=es babel -D packages/$PACKAGE/src -d packages/$PACKAGE/es",
+    "build:babel": "npm run clean && NODE_ENV=lib babel -D packages/$PACKAGE/src -d packages/$PACKAGE/lib",
+    "build:es": "NODE_ENV=es babel -D packages/$PACKAGE/src -d packages/$PACKAGE/lib-es",
     "build": "npm run clean && npm run build:webpack",
     "start": "node packages/$PACKAGE/devServer.js",
     "lint": "eslint src",
@@ -71,6 +71,7 @@
     "jsdom": "^9.4.1",
     "json-loader": "^0.5.4",
     "lerna": "2.0.0-beta.28",
+    "node-noop": "^1.0.0",
     "nodemon": "^1.8.1",
     "nyc": "^7.0.0",
     "radium": "^0.18.1",
