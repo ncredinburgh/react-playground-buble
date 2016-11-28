@@ -3,7 +3,7 @@
   "name": "@di/leapfrog-core",
   "description": "React playground using Buble",
   "main": "lib/index.js",
-  "module": "es/index.js",
+  "browser:ie9": "lib/index-ie9.js",
   "author": "Phil Holden (http://github.com/philholden)",
   "license": "MIT",
   "publishConfig": {

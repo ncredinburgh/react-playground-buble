@@ -7,6 +7,7 @@
 
 // export Spacer from './components/spacer'
 
+import fallback from './utils/fallback'
 export Caret from './components/caret'
 export PageHeader from './components/page-header'
 export Button from './components/button'
@@ -21,4 +22,6 @@ export Checkbox from './components/checkbox'
 export Radio from './components/radio'
 export Modal from './components/modal'
 export ModalTitle from './components/modal-title'
-export ToggleSwitch from './components/toggle-switch'
+import ToggleSwitchMain from './components/toggle-switch'
+import ToggleSwitchIe9 from './components/toggle-switch.ie9'
+export const ToggleSwitch = fallback(ToggleSwitchMain, ToggleSwitchIe9)

@@ -11,6 +11,7 @@ const packageRoot = packageName ?
 module.exports = env => {
   const ifProd = (...args) => env.prod ? args : []
   const ifDev = (...args) => env.dev ? args : []
+  const ifIe9 = (...args) => env.dev ? args : []
 
   return {
     entry: {
@@ -77,6 +78,7 @@ module.exports = env => {
         'styled-components': path.resolve('./node_modules/styled-components'),
       },
       mainFields: [
+        ...ifIe9('browser:ie9'),
         'browser',
 //        ...ifDev('dev:main'),
         'module',
