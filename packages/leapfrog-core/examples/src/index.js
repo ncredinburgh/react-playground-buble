@@ -6,10 +6,15 @@ import {
   forceViewerUpdate,
 } from '@di/react-playground-lite'
 import { defaultTheme } from '../../src/themes'
-import ThemeBroadcast from '../../src/util/theme-broadcast'
+import { ThemeBroadcast } from '@di/leapfrog-util'
 import { initThemedPlayground } from './components/themed-playground'
+import FastClick from 'fastclick'
 export const themeBroadcast = new ThemeBroadcast(defaultTheme)
 initThemedPlayground(themeBroadcast)
+
+window.addEventListener('load', () => {
+  FastClick.attach(document.body)
+})
 
 function rerender(App2) {
   render(

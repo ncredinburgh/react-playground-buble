@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { fromTheme } from '../util/from-theme'
+import { fromTheme } from '@di/leapfrog-util'
 
 import {
   compose,

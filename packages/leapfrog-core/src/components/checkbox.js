@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Checkmark } from '@di/leapfrog-icons'
+import { getSectionAColor } from '@di/leapfrog-util'
 
 const getGutter = ({ gutter, hasChildren, before, small }) => {
   if (hasChildren) {
@@ -40,15 +41,16 @@ const Box = styled.div`
   box-sizing: border-box;
   width: ${getSize};
   height: ${getSize};
-  border: 2px solid #666;
-  color: #666;
+  border: 2px solid ${getSectionAColor};
+  color: ${getSectionAColor};
   ${getDisabled}
   align-items: center;
   justify-content: center;`
 
 const Label = styled.label`
+  user-select: none;
   ${getLabel}
-  alignItems: center;
+  align-items: center;
   position: relative;`
 
 const Input = styled.input`
@@ -64,10 +66,9 @@ const Input = styled.input`
 
 const Icon = styled(Checkmark)`
 opacity: 0;
-transform: scale3d(0,0,1);
-transition: .15s all;
-transition-timing-function: ease-out;
-  user-select: none;
+transform: scale3d(0.3,0.3,1);
+transition: .15s all cubic-bezier(0.215, 0.61, 0.355, 1);
+user-select: none;
 `
 
 const Checkbox = ({

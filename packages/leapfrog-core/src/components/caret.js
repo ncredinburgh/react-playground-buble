@@ -1,48 +1,26 @@
 import React from 'react'
-import { css } from 'aphrodite'
-import bindStyles from '../hocs/bind-styles'
-import { compose, defaultProps, setDisplayName } from 'recompose'
 
-const Caret = ({ styles, north, south, east, west}) => {
-  let direction = 'south'
-  if (north) direction = 'north'
-  if (east) direction = 'east'
-  if (west) direction = 'west'
+const Caret = ({ north, south, east, west, width = 15, height = 11, style = {}, rotate = 0, transitionSpeed = 0 }) => {
+  if (north) rotate = 180
+  if (east) rotate = 270
+  if (west) rotate = 90
 
-  return <div className={css(styles.caret, styles[direction])} />
+  return (
+    <svg
+      fill="currentColor"
+      width={width}
+      height={height}
+      viewBox={`0 0 ${width} ${height}`}
+      xmlns="http://www.w3.org/2000/svg"
+      style={{
+        transform: `rotate(${rotate}deg)`,
+        transition: `transform ${transitionSpeed}s`,
+        ...style
+      }}
+    >
+      <path d={`M0 0l${width / 2} ${height} ${width / 2}-${height}z`}/>
+    </svg>
+  )
 }
 
-const getStyles = ({ width, height }) => ({
-  [`caret`]: {
-    borderTop: `${height}px solid`,
-    borderRight: `${width}px solid transparent`,
-    borderLeft: `${width}px solid transparent`,
-    marginLeft: 0,
-    display: 'inline-block',
-  },
-  north: {
-    transform: 'rotate(180deg)',
-  },
-  south: {
-    transform: 'rotate(0deg)',
-  },
-  east: {
-    transform: 'rotate(90deg)',
-  },
-  west: {
-    transform: 'rotate(270deg)',
-  },
-})
-
-const enhance = compose(
-  setDisplayName('Caret'),
-  defaultProps({
-    width: 5,
-    height: 10,
-  }),
-  bindStyles({
-    getStyles,
-  }),
-)
-
-export default enhance(Caret)
+export default Caret;

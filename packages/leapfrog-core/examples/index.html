@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Leapfrog Core</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/codemirror.min.css"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/theme/night.min.css"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/theme/neo.min.css"/>
@@ -68,6 +69,14 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      if(!window.console) {
+        window.console = {
+          log: function(){},
+          warn: function() {}
+        }
+      }
+    </script>
     <script type="text/javascript" src="/static/bundle-vendor.js"></script>
     <script type="text/javascript" src="/static/bundle-examples.js"></script>
   </body>

@@ -21,19 +21,25 @@ import TextInputPage from './pages/text-input-page'
 import CheckboxPage from './pages/checkbox-page'
 import RadioPage from './pages/radio-page'
 import ModalPage from './pages/modal-page'
+import ToggleSwitchPage from './pages/toggle-switch-page'
+import Ie9Page from './pages/ie9-page'
 import Menu from './components/menu'
 import styled from 'styled-components'
-import { fromTheme } from '../../src/util/from-theme'
 import PageHeader from '../../src/components/page-header'
 import { themeBroadcast } from './index'
 
 const Wrapper = styled.div`
  display: flex;
+ flex-direction: column-reverse;
+ @media (min-width: 768px) {
+   flex-direction: row;
+ }
 `
 
 const Page = styled.div`
  flex: 1;
  margin: 23px;
+
 `
 
 // const themeBroadcast = new ThemeBroadcast(defaultTheme)
@@ -57,6 +63,8 @@ const App = () => (
           <Match exactly pattern="/examples/checkbox" component={CheckboxPage} />
           <Match exactly pattern="/examples/radio" component={RadioPage} />
           <Match exactly pattern="/examples/modal" component={ModalPage} />
+          <Match exactly pattern="/examples/toggle-switch" component={ToggleSwitchPage} />
+          <Match exactly pattern="/examples/ie9" component={Ie9Page} />
         </Page>
       </Wrapper>
     </ThemeChooserProvider>

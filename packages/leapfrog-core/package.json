@@ -19,20 +19,20 @@
   "dependencies": {
     "@di/dropdown-box": "^0.0.1",
     "@di/leapfrog-icons": "^0.0.1",
+    "@di/leapfrog-util": "^0.0.1",
     "color-array": "0.0.8",
     "react-addons-transition-group": "^15.3.2",
     "recompose": "^0.20.2"
   },
   "devDependencies": {
     "@di/react-playground-lite": "^0.0.3",
+    "fastclick": "^1.0.6",
     "react-router": "^4.0.0-alpha.5",
-    "rxjs": "^5.0.0-rc.1",
     "styled-components": "^1.0.10"
   },
   "peerDependencies": {
     "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "aphrodite": "^0.5.0"
+    "react-dom": "^15.3.2"
   },
   "config": {
     "package": "leapfrog-core",

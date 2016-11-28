@@ -7,7 +7,7 @@
 
 // export Spacer from './components/spacer'
 
-export Caret from './components/caret-svg'
+export Caret from './components/caret'
 export PageHeader from './components/page-header'
 export Button from './components/button'
 export Toast from './components/toasts/toast'
@@ -21,3 +21,4 @@ export Checkbox from './components/checkbox'
 export Radio from './components/radio'
 export Modal from './components/modal'
 export ModalTitle from './components/modal-title'
+export ToggleSwitch from './components/toggle-switch'

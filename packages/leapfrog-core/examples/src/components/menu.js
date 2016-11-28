@@ -3,7 +3,7 @@ import {
   Link,
 } from 'react-router'
 import styled from 'styled-components'
-import { fromTheme } from '../../../src/util/from-theme'
+import { fromTheme } from '@di/leapfrog-util'
 
 const Ul = styled.ul`
   color: ${fromTheme('sectionATextColor')};
@@ -37,7 +37,9 @@ const MenuTitle = styled.h2`
 const Wrapper = styled.div`
   background-color: ${fromTheme('sectionAColor')};
   color: ${fromTheme('sectionATextColor')};
-  width: 220px;
+  @media (min-width: 768px) {
+    width: 220px;
+  }
   min-height: 100vh;
   box-sizing: border-box;
 `
@@ -57,6 +59,8 @@ const Menu = () => (
       <li><Link to="/examples/leapfrog-icons">Icons</Link></li>
       <li><Link to="/examples/loader">Loader</Link></li>
       <li><Link to="/examples/modal">Modal</Link></li>
+      <li><Link to="/examples/toggle-switch">ToggleSwitch</Link></li>
+      <li><Link to="/examples/ie9">Ie9</Link></li>
     </Ul>
   </Wrapper>
 )

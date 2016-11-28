@@ -5,6 +5,9 @@ const app = express()
 const server = require('http').createServer(app)
 const fs = require('fs')
 const path = require('path')
+const bodyParser = require('body-parser')
+const { transform } = require('buble')
+
 
 const port = process.env.npm_package_config_port || 3000
 const packageName = process.env.npm_package_config_package
@@ -46,10 +49,34 @@ app.use(compression({
   threshold: 512,
 }))
 
+app.use(bodyParser.json())
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   next()
+})
+
+app.post('/eval', (req, res) => {
+  res.setHeader('Content-Type', 'application/json')
+  let transpiled = ''
+  let errorMessage = ''
+  try {
+    const trans = transform(req.body.source, {
+      objectAssign: 'Object.assign',
+      transforms: {
+        dangerousTaggedTemplateString: true,
+      },
+    })
+    transpiled = trans.code
+  } catch (e) {
+    errorMessage = e.message
+  }
+
+  res.send(JSON.stringify({
+    transpiled,
+    errorMessage,
+  }))
 })
 
 app.use('/', express.static(webRoot))

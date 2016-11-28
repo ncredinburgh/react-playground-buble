@@ -1,12 +1,10 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+
 import {
-  fromCss,
-  lighten,
-  darken,
-  toCss,
-  luminance
-} from 'color-array'
+  lightenCssColor,
+  darkenCssColor,
+} from '@di/leapfrog-util'
 
 const primaryStyles = ({
   primary,
@@ -18,19 +16,18 @@ const primaryStyles = ({
   },
 }) => {
   if (!primary) return ''
-  const rgbaArr = fromCss(sectionAColor)
   let bottom
   let top
   let hoverColor
 
   if (useLightAccent) {
-    top = toCss(lighten(rgbaArr, 0.18))
+    top = lightenCssColor(sectionAColor, 0.18)
     bottom = sectionAColor
-    hoverColor = toCss(lighten(rgbaArr, 0.25))
+    hoverColor = lightenCssColor(sectionAColor, 0.25)
   } else {
     top = sectionAColor
-    bottom = toCss(darken(rgbaArr, 0.18))
-    hoverColor = toCss(darken(rgbaArr, 0.25))
+    bottom = darkenCssColor(sectionAColor, 0.18)
+    hoverColor = darkenCssColor(sectionAColor, 0.25)
   }
 
   return `

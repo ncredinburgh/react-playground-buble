@@ -1,10 +1,11 @@
 import React from 'react'
 import { transform } from 'buble'
 import ReactDOM from 'react-dom'
+import 'isomorphic-fetch'
 
 function evalInContext(js, context) {
   const scope = Object.keys(context)
-    .map(key => `const ${key} = this.${key};\n`)
+    .map(key => `var ${key} = this.${key};\n`)
     .join('')
 
   return function () {
@@ -17,41 +18,95 @@ export const forceViewerUpdate = () =>
   _forceUpdateCallbacks.forEach(fn => fn())
 
 export default class PlaygroundViewer extends React.Component {
-  update = ({ source, onChange, scope }) => {
-    let errorMessage
-    try {
-      const trans = transform(source, {
-        objectAssign: 'Object.assign',
-        transforms: {
-          dangerousTaggedTemplateString: true,
-        },
-      })
-      const { code } = trans
-      const answer = evalInContext(code, {
-        React,
-        ReactDOM,
-        render: ReactDOM.render,
-        Component: React.Component,
-        mountNode: this.el,
-        ...scope
-      })
-      errorMessage = ''
-      if(React.isValidElement(answer)) {
-        ReactDOM.unmountComponentAtNode(this.el)
-        const wrapOutput = this.props.wrapOutput || (x => x)
-        ReactDOM.render(
-          wrapOutput(answer),
-          this.el
-        )
-      }
-    } catch (e) {
-      errorMessage = e.message
-    }
-    if (!onChange) return
-    onChange({
-      source,
-      errorMessage,
+  remoteCompile = source => fetch('/eval', {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+    body: JSON.stringify({ source }),
+  })
+  .then(res => res.json())
+  .then(({ transpiled, errorMessage }) => {
+    if (errorMessage !== '') throw new Error(errorMessage)
+    return transpiled
+  })
+
+  localCompile = source => new Promise((resolve, reject) => {
+    const trans = transform(source, {
+      objectAssign: 'Object.assign',
+      transforms: {
+        dangerousTaggedTemplateString: true,
+      },
     })
+    resolve(trans.code)
+  })
+
+  renderDom = scope => transpiled => new Promise((resolve, reject) => {
+    const answer = evalInContext(transpiled, {
+      React,
+      ReactDOM,
+      render: ReactDOM.render,
+      Component: React.Component,
+      mountNode: this.el,
+      ...scope
+    })
+
+    if (React.isValidElement(answer)) {
+      ReactDOM.unmountComponentAtNode(this.el)
+      const wrapOutput = this.props.wrapOutput || (x => x)
+      ReactDOM.render(
+        wrapOutput(answer),
+        this.el
+      )
+    }
+    resolve(true)
+  })
+
+  update = ({
+    source,
+    onChange,
+    scope
+  }) => {
+    const after = ({ message } = {}) => {
+      if (!onChange) return
+      onChange({
+        source,
+        errorMessage: message,
+      })
+    }
+    
+    this.remoteCompile(source)
+      .then(this.renderDom(scope))
+      .then(after)
+      .catch(after)
+
+    // try {
+    //   const answer = evalInContext(transpiled, {
+    //     React,
+    //     ReactDOM,
+    //     render: ReactDOM.render,
+    //     Component: React.Component,
+    //     mountNode: this.el,
+    //     ...scope
+    //   })
+    //
+    //   if (React.isValidElement(answer)) {
+    //     ReactDOM.unmountComponentAtNode(this.el)
+    //     const wrapOutput = this.props.wrapOutput || (x => x)
+    //     ReactDOM.render(
+    //       wrapOutput(answer),
+    //       this.el
+    //     )
+    //   }
+    // } catch (e) {
+    //   errorMessage = e.message
+    // }
+    // if (!onChange) return
+    // onChange({
+    //   source,
+    //   errorMessage,
+    // })
   }
 
   componentWillReceiveProps(nextProps) {

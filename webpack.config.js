@@ -75,6 +75,12 @@ module.exports = env => {
         'react-dom': path.resolve('./node_modules/react-dom'),
         'styled-components': path.resolve('./node_modules/styled-components'),
       },
+      // mainFields: [
+      //   ...ifDev('dev:main'),
+      //   'module',
+      //   'jsnext:main',
+      //   'main',
+      // ],
     },
     context: resolve(packageRoot, 'src'),
     devtool: env.prod ? 'source-map' : 'module-eval-source-map',
@@ -87,6 +93,10 @@ module.exports = env => {
           include: [
             join(packageRoot, 'src'),
             join(packageRoot, 'example'),
+            // ...ifDev(
+            //   join(packageRoot, 'node_modules', '@di', 'react-playground-lite'),
+            //   join(packageRoot, 'node_modules', '@di', 'leapfrog-icons')
+            // ),
           ],
         },
         {
