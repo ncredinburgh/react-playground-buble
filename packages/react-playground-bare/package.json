@@ -1,0 +1,37 @@
+{
+  "version": "0.0.3",
+  "name": "@di/react-playground-bare",
+  "description": "React playground using Buble",
+  "main": "lib/index.js",
+  "author": "Phil Holden (http://github.com/philholden)",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "start": "cd ../.. && PACKAGE=$npm_package_config_package node ./dev-server.js",
+    "test": "cd ../.. && PACKAGE=$npm_package_config_package npm test",
+    "build:babel": "cd ../.. && PACKAGE=$npm_package_config_package npm run build:babel",
+    "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omysoul/omysoul.git"
+  },
+  "homepage": "https://github.com/omysoul/omysoul/packages/react-playground-bare",
+  "dependencies": {
+    "buble": "^0.14.2",
+    "codemirror": "^5.19.0",
+    "react-codemirror": "^0.2.6",
+    "webfontloader": "^1.6.26"
+  },
+  "peerDependencies": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
+  },
+  "devDependencies": {},
+  "config": {
+    "package": "react-playground-bare",
+    "port": 3000
+  }
+}

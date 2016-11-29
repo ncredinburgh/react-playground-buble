@@ -3,6 +3,7 @@
 import React from 'react'
 import {
   ReactPlaygroundLite,
+  WithPlayground,
 } from '../../../src'
 
 const defaultJsx = `<div className="Edit">
@@ -35,10 +36,55 @@ const evalToJsx =
 
 <MyComponent />`
 
+const Log = ({defaultValue,
+  onChange,
+  errorMessage,
+  evalChild,
+}) => (
+  <pre>
+  {
+    JSON.stringify({
+      defaultValue,
+      onChange,
+      errorMessage,
+      evalChild,
+    },0,2)
+  }
+  </pre>
+)
+
 
 const App = () => (
   <div>
     <h2>JSX</h2>
+    <WithPlayground
+      defaultValue={defaultJsx}
+    >
+      {
+        ({
+          defaultValue,
+          onChange,
+          errorMessage,
+          evalChild,
+        }) => {
+          return (
+            <div>
+              <Log {...{defaultValue,
+              onChange,
+              errorMessage,
+              evalChild}} />
+              <pre>{errorMessage}</pre>
+              <textarea {...{
+                defaultValue,
+                style: {width: 300, height: 100},
+                onChange: e => onChange(e.target.value),
+              }} />
+              {evalChild}
+            </div>
+          )
+        }
+      }
+    </WithPlayground>
     If code evaluates to JSX then it will be mounted automatically:<p />
     <ReactPlaygroundLite defaultValue={defaultJsx} />
     <h2>Class Components</h2>
