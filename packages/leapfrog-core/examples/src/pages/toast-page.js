@@ -1,6 +1,6 @@
 import React from 'react'
 import Title from '../components/title'
-import { withToasts, Button, Toasts, Toast } from '../../../src'
+import { WithToasts, Button, Toasts, Toast } from '../../../src'
 
 import Playground from '../components/themed-playground'
 
@@ -45,11 +45,13 @@ const PageHeaderPage = () => (
       viewerStyle={{width: '100%'}}
     />
     <p>
-      The `withToast` higher order component provides `pushToast` & `toasts` to a component as `props`:
+      The `WithToast` is a <a href="https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9#.im92hggs6">
+        Function as Child Component
+      </a> it provides `{'{'} pushToast, toasts {'}'}` to its child function. The child function should return a React Element:
     </p>
     <Playground
       defaultValue={
-`let Comp = ({toasts, pushToast}) => (
+`const MyToaster = ({toasts, pushToast}) => (
   <div>
     <Toasts toasts={toasts} />
     <Button onClick={() => pushToast({
@@ -62,14 +64,38 @@ const PageHeaderPage = () => (
   </div>
 );
 
-Comp = withToasts(3000)(Comp);
-
-<Comp />`}
-      scope={{ withToasts, Button, Toasts }}
+<WithToasts>{MyToaster}</WithToasts>`}
+      scope={{ WithToasts, Button, Toasts }}
       top left
       viewerStyle={{width: '100%'}}
       wrapOutput={children => <article>{children}</article>}
     />
+  </div>
+)
+
+const Comp = ({toasts, pushToast}) => (
+  <div>
+    <Toasts toasts={toasts} />
+    <Button onClick={() => pushToast({
+      children: <div>Hello <a href="#">link</a></div>,
+      type: 'success',
+      icon: true,
+    })}>
+      Click x3
+    </Button>
+  </div>
+);
+
+({toasts, pushToast}) => (
+  <div>
+    <Toasts toasts={toasts} />
+    <Button onClick={() => pushToast({
+      children: <div>Hello <a href="#">link</a></div>,
+      type: 'success',
+      icon: true,
+    })}>
+      Click x3
+    </Button>
   </div>
 )
 
