@@ -16,6 +16,11 @@ const getAlignment = ({ top, bottom, left, right }) => {
     align-items: ${alignItems};`
 }
 
+const getFullWidth = ({ fullWidth }) => fullWidth ?
+  `display: block;
+  width: 100%;` :
+  'display: flex;'
+
 export const PlaygroundWrapper = styled.div`
   margin: -${fromTheme('gutter')}px;
   display: flex;
@@ -27,7 +32,14 @@ export const EditorWrapper = styled.div`
   flex: ${fromTheme('editorFlex')};
   margin: ${fromTheme('gutter')}px;
   border: 1px solid #eee;
-  min-width: ${fromTheme('minWidth')}px;`
+  min-width: ${fromTheme('minWidth')}px;
+  & .CodeMirror {
+    font-family: ${fromTheme('fontFamily')};
+    font-weight: 400;
+    height: auto;
+    padding: ${fromTheme('padding')}px;
+    border-radius: ${fromTheme('borderRadius')};
+  }`
 
 export const ViewerWrapper = styled.div`
   ${getAlignment}
@@ -43,8 +55,7 @@ export const ViewerWrapper = styled.div`
   ${({ errorMessage }) => errorMessage ? 'min-height: 100px;' : ''}`
 
 export const ViewerAlign = styled.div`
-  display: flex;
-  flex: ${fromTheme('viewerFlex')}px;;
+  ${getFullWidth}
   margin: ${fromTheme('padding')}px;`
 
 export const EvalWrapper = styled.div``
@@ -59,7 +70,7 @@ export const ErrorWrapper = styled.pre`
   padding: 5px;
 `
 
-const ReactPlaygroundStyled = ({
+export const ReactPlaygroundStyled = ({
   top,
   bottom,
   left,
@@ -70,6 +81,7 @@ const ReactPlaygroundStyled = ({
   backgroundColor,
   viewerFlex,
   editorFlex,
+  fullWidth,
   minWidth,
   PlaygroundWrapper,
   EditorWrapper,
@@ -78,6 +90,7 @@ const ReactPlaygroundStyled = ({
   EvalWrapper,
   ErrorWrapper,
   defaultValue,
+  scope,
 }) => {
   const Inner = ({
     defaultValue,
@@ -90,6 +103,7 @@ const ReactPlaygroundStyled = ({
       bottom,
       left,
       right,
+      fullWidth,
       gutter,
       padding,
       borderRadius,
@@ -125,7 +139,11 @@ const ReactPlaygroundStyled = ({
   }
 
   return (
-    <ReactPlaygroundBare defaultValue={defaultValue}>
+    <ReactPlaygroundBare
+      defaultValue={defaultValue}
+      scope={scope}
+      EvalWrapper={EvalWrapper}
+    >
       {Inner}
     </ReactPlaygroundBare>
   )
@@ -147,5 +165,3 @@ ReactPlaygroundStyled.defaultProps = {
   editorFlex: 1,
   minWidth: 320,
 }
-
-export default ReactPlaygroundStyled

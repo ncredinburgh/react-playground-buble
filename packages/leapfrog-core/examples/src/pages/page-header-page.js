@@ -11,8 +11,7 @@ const PageHeaderPage = () => (
     <Playground
       defaultValue={`<PageHeader title="Hello World" />`}
       scope={{ PageHeader }}
-      top left
-      viewerStyle={{width: '100%'}}
+      top left fullWidth
     />
     <p>Add content in line with header on right side of page:</p>
     <Playground
@@ -22,8 +21,7 @@ const PageHeaderPage = () => (
 </PageHeader>`
       }
       scope={{ PageHeader }}
-      top left
-      viewerStyle={{width: '100%'}}
+      top left fullWidth
     />
     <p>
       Stretch line edge to edge by compensating for outer padding. Only do
@@ -40,8 +38,7 @@ const PageHeaderPage = () => (
 </PageHeader>`
       }
       scope={{ PageHeader }}
-      top left
-      viewerStyle={{ width: '100%' }}
+      top left fullWidth
     />
   </div>
 )

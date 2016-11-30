@@ -13,8 +13,7 @@ const PageHeaderPage = () => (
 `<Toast>message</Toast>`
       }
       scope={{ Toast }}
-      top left
-      viewerStyle={{width: '100%'}}
+      top left fullWidth
     />
     <p>Other `type`s:</p>
     <Playground
@@ -27,8 +26,7 @@ const PageHeaderPage = () => (
 </div>`
       }
       scope={{ Toast }}
-      top left
-      viewerStyle={{width: '100%'}}
+      top left fullWidth
     />
     <p>`icon` adds and icon:</p>
     <Playground
@@ -41,8 +39,7 @@ const PageHeaderPage = () => (
 </div>`
       }
       scope={{ Toast }}
-      top left
-      viewerStyle={{width: '100%'}}
+      top left fullWidth
     />
     <p>
       The `WithToast` is a <a href="https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9#.im92hggs6">
@@ -66,8 +63,7 @@ const PageHeaderPage = () => (
 
 <WithToasts>{MyToaster}</WithToasts>`}
       scope={{ WithToasts, Button, Toasts }}
-      top left
-      viewerStyle={{width: '100%'}}
+      top left fullWidth
       wrapOutput={children => <article>{children}</article>}
     />
   </div>

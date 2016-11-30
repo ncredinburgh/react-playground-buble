@@ -1,10 +1,7 @@
 // @flow
 
 import React from 'react'
-import {
-  ReactPlaygroundLite,
-  ReactPlaygroundStyled,
-} from '../../../src'
+import { ReactPlaygroundStyled } from '../../../src'
 
 const defaultJsx = `<div className="Edit">
   <button>Hello</button>
@@ -41,46 +38,46 @@ const App = () => (
     <h2>JSX</h2>
     <ReactPlaygroundStyled defaultValue={defaultJsx} />
     <p>If code evaluates to JSX then it will be mounted automatically:</p>
-    <ReactPlaygroundLite defaultValue={defaultJsx} />
+    <ReactPlaygroundStyled defaultValue={defaultJsx} />
     <h2>Class Components</h2>
     This means a class components can be implicitly mounted by making
     the final statement evaluate to JSX:<p />
-    <ReactPlaygroundLite defaultValue={evalToJsx} />
+    <ReactPlaygroundStyled defaultValue={evalToJsx} />
     <h2>Eval to Jsx</h2>
     Or they can be explicitly mounted like this:<p />
-    <ReactPlaygroundLite defaultValue={defaultClass} />
+    <ReactPlaygroundStyled defaultValue={defaultClass} />
     <p>backgroundColor:</p>
-    <ReactPlaygroundLite
+    <ReactPlaygroundStyled
       defaultValue={defaultJsx}
       backgroundColor={'green'}
     />
     <p>top left:</p>
-    <ReactPlaygroundLite
+    <ReactPlaygroundStyled
       defaultValue={defaultJsx}
       backgroundColor={'hotpink'}
       top left
     />
     <p>top:</p>
-    <ReactPlaygroundLite
+    <ReactPlaygroundStyled
       defaultValue={defaultJsx}
       backgroundColor={'hotpink'}
       top
     />
     <p>top:</p>
-    <ReactPlaygroundLite
+    <ReactPlaygroundStyled
       defaultValue={defaultJsx}
       backgroundColor={'hotpink'}
       bottom
       right
     />
     <p>fontFamily:</p>
-    <ReactPlaygroundLite
+    <ReactPlaygroundStyled
       defaultValue={defaultJsx}
       backgroundColor={'green'}
       fontFamily="cursive"
     />
     <p>padding:</p>
-    <ReactPlaygroundLite
+    <ReactPlaygroundStyled
       defaultValue={defaultJsx}
       backgroundColor={'green'}
       padding={35}
@@ -89,13 +86,13 @@ const App = () => (
       viewerFlex={'1 0 0'}
     />
     <p>flex:</p>
-    <ReactPlaygroundLite
+    <ReactPlaygroundStyled
       defaultValue={defaultJsx}
       backgroundColor={'green'}
       editorFlex={2}
     />
     <p>flex:</p>
-    <ReactPlaygroundLite
+    <ReactPlaygroundStyled
       defaultValue={defaultJsx}
       backgroundColor={'green'}
       editorFlex={'none'}

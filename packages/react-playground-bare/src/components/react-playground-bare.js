@@ -42,15 +42,17 @@ export default class ReactPlaygroundBare extends React.Component {
   onComponent = evalChild => {
     const { EvalWrapper } = this.props
     const { mountNode } = this
-    ReactDOM.unmountComponentAtNode(mountNode)
-    ReactDOM.render(
-      EvalWrapper ? (
-        <EvalWrapper>
-          {evalChild}
-        </EvalWrapper>
-      ) : evalChild,
-      mountNode
-    )
+    if (evalChild) {
+      ReactDOM.unmountComponentAtNode(mountNode)
+      ReactDOM.render(
+        EvalWrapper ? (
+          <EvalWrapper>
+            {evalChild}
+          </EvalWrapper>
+        ) : evalChild,
+        mountNode
+      )
+    }
 
     this.setState({
       evalChild,

@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@di/react-playground-lite": "^0.0.3",
+    "@di/react-playground-styled": "^0.0.3",
     "fastclick": "^1.0.6",
     "react-router": "^4.0.0-alpha.5"
   },

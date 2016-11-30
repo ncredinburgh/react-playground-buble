@@ -25,7 +25,6 @@ export const remoteCompile = source => fetch('/eval', {
 .then(res => res.json())
 .then(({ transpiled, errorMessage }) => {
   if (errorMessage !== '') throw new Error(errorMessage)
-  console.log(transpiled)
   return transpiled
 })
 

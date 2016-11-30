@@ -1,6 +1,6 @@
 import {
-  ReactPlaygroundLite,
-} from '@di/react-playground-lite'
+  ReactPlaygroundStyled,
+} from '@di/react-playground-styled'
 import React from 'react'
 import ThemeChooserProvider from '../../../src/components/theme-chooser-provider'
 
@@ -10,14 +10,23 @@ export const initThemedPlayground = themeBroadcast => {
   _themeBroadcast = themeBroadcast
 }
 
+const EvalWrapper = ({ children }) => (
+  <ThemeChooserProvider
+    themeBroadcast={_themeBroadcast}
+  >
+    {children}
+  </ThemeChooserProvider>
+)
+
 const ThemedPlayground = ({
   wrapOutput = x => x,
   ...props,
 }) => (
-  <ReactPlaygroundLite
+  <ReactPlaygroundStyled
     borderRadius={0}
     gutter={8}
     {...props}
+    EvalWrapper={EvalWrapper}
     wrapOutput={children => (
       <ThemeChooserProvider
         themeBroadcast={_themeBroadcast}

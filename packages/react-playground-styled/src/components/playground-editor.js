@@ -2,7 +2,6 @@ import React from 'react'
 import Codemirror from 'react-codemirror'
 import WebFont from 'webfontloader'
 import codeMirrorInstance from 'codemirror'
-import CodemirrorStyleSheet from './codemirror-style-sheet'
 
 require('codemirror/mode/javascript/javascript')
 require('codemirror/mode/xml/xml')
@@ -24,10 +23,6 @@ WebFont.load({
 export default class PlaygroundEditor extends React.Component {
   state = {
     value: this.props.defaultValue || ''
-  }
-  hash = `hash-${(Math.random().toString(10).substr(2) * 1).toString(36)}`
-  static defaultProps = {
-    css: CodemirrorStyleSheet,
   }
 
   constructor(props, ctx) {
@@ -76,10 +71,9 @@ export default class PlaygroundEditor extends React.Component {
     const { code } = value
     const { props } = this
     const { onChange } = props
-    const { hash } = this
     return (
-      <div style={props.style} className={hash}>
-        {props.css({ ...props, hash })}
+      <div style={props.style}>
+
         <Codemirror
           // ref={cm => this.cm = cm}
           value={value}

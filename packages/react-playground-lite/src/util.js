@@ -49,7 +49,6 @@ export const evalReact = scope => transpiled => new Promise((resolve, reject) =>
     mountNode: this.el,
     ...scope
   })
-  console.log(evaluatedChild)
   resolve(React.isValidElement(evaluatedChild) ? evaluatedChild : null)
 })
 
