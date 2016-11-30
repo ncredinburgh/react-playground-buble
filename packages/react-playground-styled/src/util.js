@@ -40,15 +40,16 @@ export const localCompile = source => new Promise((resolve, reject) => {
   resolve(trans.code)
 })
 
-export const evalReact = (scope, mountNode) => transpiled => new Promise((resolve, reject) => {
+export const evalReact = scope => transpiled => new Promise((resolve, reject) => {
   const evaluatedChild = evalInContext(transpiled, {
     React,
     ReactDOM,
     render: ReactDOM.render,
     Component: React.Component,
-    mountNode,
+    mountNode: this.el,
     ...scope
   })
+  console.log(evaluatedChild)
   resolve(React.isValidElement(evaluatedChild) ? evaluatedChild : null)
 })
 

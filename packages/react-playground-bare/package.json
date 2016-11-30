@@ -21,9 +21,7 @@
   "homepage": "https://github.com/omysoul/omysoul/packages/react-playground-bare",
   "dependencies": {
     "buble": "^0.14.2",
-    "codemirror": "^5.19.0",
-    "react-codemirror": "^0.2.6",
-    "webfontloader": "^1.6.26"
+    "codemirror": "^5.19.0"
   },
   "peerDependencies": {
     "react": "^15.3.2",

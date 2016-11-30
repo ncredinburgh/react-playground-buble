@@ -1,41 +1,39 @@
 {
-  "version": "0.0.1",
-  "name": "@di/leapfrog-core",
+  "version": "0.0.3",
+  "name": "@di/react-playground-styled",
   "description": "React playground using Buble",
   "main": "lib/index.js",
-  "browser:ie9": "lib/index-ie9.js",
   "author": "Phil Holden (http://github.com/philholden)",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "svgo": "node ./node_modules/svgo/bin/svgo --pretty -f input/svg/current-color/ -o output/current-color",
     "start": "cd ../.. && PACKAGE=$npm_package_config_package node ./dev-server.js",
     "test": "cd ../.. && PACKAGE=$npm_package_config_package npm test",
     "build:babel": "cd ../.. && PACKAGE=$npm_package_config_package npm run build:babel",
     "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs"
   },
-  "dependencies": {
-    "@di/dropdown-box": "^0.0.1",
-    "@di/leapfrog-icons": "^0.0.1",
-    "@di/leapfrog-util": "^0.0.1",
-    "color-array": "0.0.8",
-    "react-addons-transition-group": "^15.3.2",
-    "recompose": "^0.20.2",
-    "styled-components": "^1.0.10"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omysoul/omysoul.git"
   },
-  "devDependencies": {
-    "@di/react-playground-lite": "^0.0.3",
-    "fastclick": "^1.0.6",
-    "react-router": "^4.0.0-alpha.5"
+  "homepage": "https://github.com/omysoul/omysoul/packages/react-playground-styled",
+  "dependencies": {
+    "buble": "^0.14.2",
+    "codemirror": "^5.19.0",
+    "react-codemirror": "^0.2.6",
+    "webfontloader": "^1.6.26",
+    "styled-components": "^1.0.10",
+    "@di/react-playground-bare": "0.0.3"
   },
   "peerDependencies": {
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
+  "devDependencies": {},
   "config": {
-    "package": "leapfrog-core",
+    "package": "react-playground-styled",
     "port": 3000
   }
 }

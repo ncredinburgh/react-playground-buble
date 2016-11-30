@@ -11,15 +11,16 @@ import {
   formatErrorMessage,
 } from '../util'
 
-type ReactPlaygroundBareType = {
+type WithPlaygroundType = {
   defaultValue: string,
   scope: object,
   children: () => React.Element<*>,
 }
 
-export default class ReactPlaygroundBare extends React.Component {
-  props: ReactPlaygroundBareType
+export default class WithPlayground extends React.Component {
+  props: WithPlaygroundType
   static defaultProps = {
+    delay: 3000,
   }
 
   state = {
@@ -28,10 +29,9 @@ export default class ReactPlaygroundBare extends React.Component {
   }
 
   onUpdateSource = source => {
-    const { scope, EvalWrapper } = this.props
-    const { mountNode } = this
+    const { scope } = this.props
     remoteCompile(source)
-      .then(evalReact(scope, mountNode, EvalWrapper))
+      .then(evalReact(scope))
       .then(this.onComponent)
       .catch(error => this.onError({
         source,
@@ -40,18 +40,6 @@ export default class ReactPlaygroundBare extends React.Component {
   }
 
   onComponent = evalChild => {
-    const { EvalWrapper } = this.props
-    const { mountNode } = this
-    ReactDOM.unmountComponentAtNode(mountNode)
-    ReactDOM.render(
-      EvalWrapper ? (
-        <EvalWrapper>
-          {evalChild}
-        </EvalWrapper>
-      ) : evalChild,
-      mountNode
-    )
-
     this.setState({
       evalChild,
       errorMessage: '',
@@ -69,28 +57,17 @@ export default class ReactPlaygroundBare extends React.Component {
     this.onUpdateSource(this.props.defaultValue)
   }
 
-  componentWillUnmount() {
-    ReactDOM.unmountComponentAtNode(this.mountNode)
-  }
-
-  onViewerMount = el => {
-    if (!(el instanceof Node)) return
-    this.mountNode = el
-    this.onUpdateSource(this.props.defaultValue)
-  }
-
   onChange = this.onUpdateSource
 
   render() {
     const { children, defaultValue } = this.props
     const { errorMessage, evalChild } = this.state
-    const { onChange, onViewerMount } = this
+    const { onChange } = this
     return children({
       defaultValue,
       onChange,
       errorMessage,
       evalChild,
-      onViewerMount,
     })
   }
 }

@@ -1,1 +1,1 @@
-export ReactPlaygroundBare from './components/react-playground-bare'
+export default from './components/react-playground-bare'
