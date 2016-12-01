@@ -2,23 +2,13 @@ import React from 'react'
 import Codemirror from 'react-codemirror'
 import WebFont from 'webfontloader'
 import codeMirrorInstance from 'codemirror'
+import { injectCss } from '../util'
 
 require('codemirror/mode/javascript/javascript')
 require('codemirror/mode/xml/xml')
 require('codemirror/mode/jsx/jsx')
 
-let fontsResolve
-
-const fontsLoaded = new Promise((resolve, reject) => {
-  fontsResolve = resolve()
-})
-
-WebFont.load({
-  google: {
-    families: ['Source Sans Pro'],
-  },
-  active: fontsResolve,
-})
+const fontsLoaded = {}
 
 export default class PlaygroundEditor extends React.Component {
   state = {
@@ -27,7 +17,34 @@ export default class PlaygroundEditor extends React.Component {
 
   constructor(props, ctx) {
     super(props, ctx)
-    fontsLoaded.then(() => {
+    this.loadCss()
+    this.loadFont()
+  }
+
+  loadCss = () => {
+    injectCss('//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/codemirror.min.css')
+
+    const { loadTheme } = this.props
+    if (!loadTheme) return
+    injectCss(`//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/theme/${loadTheme}.min.css`)
+  }
+
+  loadFont = () => {
+    const { loadFont } = this.props
+    if (!loadFont) return
+    if (!fontsLoaded[loadFont]) {
+      let fontLoaded
+      fontsLoaded[loadFont] = new Promise((resolve, reject) => {
+        fontLoaded = resolve
+      })
+      WebFont.load({
+        google: {
+          families: ['Source Sans Pro'],
+        },
+        active: fontLoaded,
+      })
+    }
+    fontsLoaded[loadFont].then(() => {
       setTimeout(() => this.forceUpdate(), 100)
     })
   }
@@ -70,9 +87,15 @@ export default class PlaygroundEditor extends React.Component {
     const { value } = this.state
     const { code } = value
     const { props } = this
-    const { onChange } = props
+    const {
+      onChange,
+      codeMirrorOptions,
+      theme,
+      loadTheme,
+    } = props
+    //console.log(theme || loadTheme || 'default')
     return (
-      <div style={props.style}>
+
 
         <Codemirror
           // ref={cm => this.cm = cm}
@@ -85,18 +108,19 @@ export default class PlaygroundEditor extends React.Component {
             lineWrapping: true,
             smartIndent: false,
             matchBrackets: true,
-            theme: 'default',
+            theme: theme || loadTheme || 'default',
             invisibles: true,
             extraKeys: {
-              Tab: (cm) => {
+              Tab: cm => {
                 const spaces = Array(cm.getOption('indentUnit') + 1).join(' ')
                 cm.replaceSelection(spaces)
               },
             },
             codeMirrorInstance,
+            ...(codeMirrorOptions || {})
           }}
         />
-      </div>
+
     )
   }
 }

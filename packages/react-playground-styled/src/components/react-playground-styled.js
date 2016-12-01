@@ -30,13 +30,21 @@ export const PlaygroundWrapper = styled.div`
 export const EditorWrapper = styled.div`
   border-radius: ${fromTheme('borderRadius')}px;
   flex: ${fromTheme('editorFlex')};
+  display: flex;
+  flex-direction: column;
   margin: ${fromTheme('gutter')}px;
   border: 1px solid #eee;
-  min-width: ${fromTheme('minWidth')}px;
+  min-width: ${fromTheme('minWidthEditor')}px;
+  & .ReactCodeMirror {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
   & .CodeMirror {
-    font-family: ${fromTheme('fontFamily')};
+    font-family: ${fromTheme('font')};
     font-weight: 400;
     height: auto;
+    flex: 1;
     padding: ${fromTheme('padding')}px;
     border-radius: ${fromTheme('borderRadius')};
   }`
@@ -51,7 +59,7 @@ export const ViewerWrapper = styled.div`
   margin: ${fromTheme('gutter')}px;
   background-color: ${fromTheme('backgroundColor')};
   box-sizing: border-box;
-  min-width: ${fromTheme('minWidth')}px;
+  min-width: ${fromTheme('minWidthViewer')}px;
   ${({ errorMessage }) => errorMessage ? 'min-height: 100px;' : ''}`
 
 export const ViewerAlign = styled.div`
@@ -82,7 +90,13 @@ export const ReactPlaygroundStyled = ({
   viewerFlex,
   editorFlex,
   fullWidth,
-  minWidth,
+  font,
+  loadFont,
+  theme,
+  loadTheme,
+  minWidthViewer,
+  minWidthEditor,
+  codeMirrorOptions,
   PlaygroundWrapper,
   EditorWrapper,
   ViewerWrapper,
@@ -98,40 +112,46 @@ export const ReactPlaygroundStyled = ({
     errorMessage,
     onViewerMount,
   }) => {
-    const theme = {
+    const themeVars = {
       top,
       bottom,
       left,
       right,
       fullWidth,
+      font,
       gutter,
       padding,
       borderRadius,
       backgroundColor,
       viewerFlex,
       editorFlex,
-      minWidth,
+      minWidthViewer,
+      minWidthEditor,
       errorMessage,
     }
     return (
-      <PlaygroundWrapper {...theme}>
-        <ViewerWrapper {...theme}>
+      <PlaygroundWrapper {...themeVars}>
+        <ViewerWrapper {...themeVars}>
           <ViewerAlign
-            {...theme}
+            {...themeVars}
             ref={onViewerMount}
             innerRef={onViewerMount}
           />
           {
             !errorMessage ? null :
-              <ErrorWrapper {...theme}>
+              <ErrorWrapper {...themeVars}>
                 {errorMessage}
               </ErrorWrapper>
           }
         </ViewerWrapper>
-        <EditorWrapper {...theme}>
+        <EditorWrapper {...themeVars}>
           <PlaygroundEditor
             onChange={onChange}
             defaultValue={defaultValue}
+            loadFont={loadFont}
+            codeMirrorOptions={codeMirrorOptions}
+            theme={theme}
+            loadTheme={loadTheme}
           />
         </EditorWrapper>
       </PlaygroundWrapper>
@@ -157,11 +177,13 @@ ReactPlaygroundStyled.defaultProps = {
   ErrorWrapper,
   defaultValue: '',
   borderRadius: 0,
-  fontFamily: 'Source Sans Pro',
+  loadFont: `'Source Sans Pro', sans-serif`,
+  font: `'Source Sans Pro'`,
   padding: 12,
   gutter: 4,
   backgroundColor: '#fcfcfc',
   viewerFlex: 1,
   editorFlex: 1,
-  minWidth: 320,
+  minWidthEditor: 240,
+  minWidthViewer: 240,
 }

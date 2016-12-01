@@ -9,6 +9,8 @@ import Playground from '../components/themed-playground'
 const iconsToPlayground = icons => iconName => (
   <Playground
     key={iconName}
+    minWidthViewer={50}
+    minWidthEditor={205}
     defaultValue={
 `<${iconName} />`
     }
