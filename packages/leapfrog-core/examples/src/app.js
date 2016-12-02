@@ -25,8 +25,8 @@ import ToggleSwitchPage from './pages/toggle-switch-page'
 import Ie9Page from './pages/ie9-page'
 import Menu from './components/menu'
 import styled from 'styled-components'
-import PageHeader from '../../src/components/page-header'
 import { themeBroadcast } from './index'
+import '../../src/utils/inject-global-css'
 
 const Wrapper = styled.div`
  display: flex;

@@ -11,12 +11,14 @@ import {
 const H1 = styled.h1`
   font-size: 28px;
   font-family: Arial, sans-serif;
-  line-height: 1.1;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
   color: ${fromTheme('sectionAColor')};
 `
 const Wrapper = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: baseline;
   text-align: center;
   justify-content: space-between;
   margin: 0 0 15px 0;

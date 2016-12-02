@@ -30,7 +30,7 @@ const Ul = styled.ul`
 
 const MenuTitle = styled.h2`
   font-size: 26px;
-  padding: 26px 20px;
+  padding: 23px 20px;
   border-bottom: 2px solid #2d89c1;
 `
 

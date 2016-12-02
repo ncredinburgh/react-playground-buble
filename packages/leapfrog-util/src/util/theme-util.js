@@ -35,8 +35,17 @@ export const lightenThemeColor = (callback, amount) => props =>
 export const darkenThemeColor = (callback, amount) => props =>
   darkenCssColor(callback(props), amount)
 
+export const opacityThemeColor = (callback, amount) => props =>
+    darkenCssColor(callback(props), amount)
+
 export const lightenCssColor = (color, amount) =>
   toCss(lighten(fromCss(color), amount))
 
 export const darkenCssColor = (color, amount) =>
   toCss(darken(fromCss(color), amount))
+
+export const opacityCssColor = (color, amount) => {
+  const arr = fromCss(color)
+  arr[3] = amount
+  return toCss(darken(arr, amount))
+}
