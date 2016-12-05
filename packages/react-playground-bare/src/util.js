@@ -14,7 +14,7 @@ export function evalInContext(js, context) {
   }.call(context)
 }
 
-export const remoteCompile = source => fetch('/eval', {
+export const remoteCompile = (source, url) => fetch(url, {
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',

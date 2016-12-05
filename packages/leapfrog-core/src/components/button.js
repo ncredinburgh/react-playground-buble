@@ -12,6 +12,8 @@ const hoverGradient = ({
   darkenGradient,
   darkenHover,
   color,
+  length,
+  borderSize,
 }) => {
   let darker
   let lighter
@@ -26,84 +28,35 @@ const hoverGradient = ({
     hoverColor = darkenCssColor(color, darkenHover)
   }
   const opacity = opacityCssColor(darker, 0)
-  const midPoint = Math.round(darkenGradient * 1000 / darkenHover) / 10
-  console.log(lighter)
-  const start = `
-    background-color: ${lighter};
-    background-image: linear-gradient(to bottom,${opacity} 0, ${darker} 100%);
-  `
+  const midPoint = darkenGradient * length / darkenHover
+  const midColor = darkenCssColor(color, darkenGradient / 2)
 
-  const end = `
-  background-color: ${hoverColor};
-  background-image: none;
-  `
-  console.log(color, lighter, darker, hoverColor)
-  // const color = keyframes`
-  //   0% { background-color: ${lighter}; }
-  //   100% { background-color: ${hoverColor}; }
-  const anim = keyframes`
-    0% {
-      ${start}
+  const init = `
+    &:before {
+      content: '';
+      position: absolute;
+      transition: opacity ${length}s;
+      background: ${color};
+      background: transparent linear-gradient(to bottom,${lighter} 0, ${darker} 100%);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.45);
+      border: inherit;
+      border-radius: inherit;
+      will-change: opacity;
+      opacity: 1;
+      width: 100%;
+      height: 100%;
+      top: -${borderSize}px;
+      left: -${borderSize}px;
+      z-index: -1;
     }
-    ${midPoint - 0.1}% {
-      background-color: ${darker};
-      background-image: linear-gradient(to bottom,${opacity} 0, ${darker} 100%);
-    }
-    ${midPoint}% {
-      background-color: ${darker};
-      background-image: none;
-    }
-    100% {
-      background-image: none;
-      background-color: ${hoverColor};
-    }
-  `
-  return { start, end, anim }
-}
+    position: relative;
+    background-color: ${hoverColor};
+    transition: box-shadow ${length}s;`
 
-const primaryStylesOld = ({
-  primary,
-  disabled,
-  theme: {
-    sectionAColor,
-    sectionATextColor,
-    useLightAccent,
-  },
-}) => {
-  console.log(hoverFlatDark({
-    useLightAccent,
-    darkenGradient: 0.18,
-    darkenHover: 0.25,
-    color: sectionAColor,
-  }))
-  if (!primary) return ''
-  let darker
-  let lighter
-
-  let hoverColor
-
-  if (useLightAccent) {
-    lighter = lightenCssColor(sectionAColor, 0.18)
-    darker = sectionAColor
-    hoverColor = lightenCssColor(sectionAColor, 0.25)
-  } else {
-    darker = darkenCssColor(sectionAColor, 0.18)
-    lighter = sectionAColor
-    hoverColor = darkenCssColor(sectionAColor, 1)
-  }
-  const opacity = opacityCssColor(darker, 0)
-  return `
-border: 0px solid #acacac;
-border-radius: 2px;
-background-color: ${lighter};
-background-image: linear-gradient(to bottom,${opacity} 0, ${darker} 100%);
-color: ${sectionATextColor};
-${
-  disabled ? '' :
-  `&:hover {
-    background-color: red;
+  const hover = `&:hover:before {
+    opacity: 0;
   }`
-}`
+  return { init, hover }
 }
 
 const primaryStyles = ({
@@ -120,23 +73,16 @@ const primaryStyles = ({
     darkenGradient: 0.18,
     darkenHover: 0.25,
     color: sectionAColor,
+    length: 0.3,
+    borderSize: 0,
   })
   if (!primary) return ''
 
   return `
-border: 0px solid #acacac;
-border-radius: 2px;
-${grad.start}
-
 color: ${sectionATextColor};
-${
-  disabled ? '' :
-  `&:hover {
-    ${grad.end}
-    animation: .2s ${grad.anim};
-    animation-timing-function: linear;
-  }`
-}`
+border: 0px solid #acacac; border-radius: 2px;
+${grad.init}
+${disabled ? '' : grad.hover}`
 }
 
 const secondaryStyles = ({ primary, tertiary, disabled, onGray }) => {
@@ -146,26 +92,24 @@ const secondaryStyles = ({ primary, tertiary, disabled, onGray }) => {
     darkenGradient: onGray ? 0 : 0.18,
     darkenHover: 0.25,
     color: '#fff',
+    length: 0.3,
+    borderSize: 1,
   })
 
   return `
-${onGray ? 'border: 1px solid transparent;' : ''}
+border: 1px solid ${onGray ? 'transparent' : '#acacac'};
 color: #333;
-${grad.start}
-${
-  disabled ? '' :
-  `&:hover {
-    ${grad.end}
-    animation: .2s ${grad.anim};
-  }`
-}`
+${grad.init}
+${disabled ? '' : grad.hover}`
 }
+
 const tertiaryStyles = ({ tertiary, disabled }) =>
   !tertiary ? '' :
 `line-height: 35px;
 height: 35px;
 background: #fff;
 font-size: 13px;
+transition: background-color 0.3s;
 ${
   disabled ? '' :
   `&:hover {
@@ -179,13 +123,8 @@ const disabledStyles = ({ disabled }) =>
 `opacity: 0.4`
 
 const style = css`
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.45);
-  &:hover {
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,0);
-  }
-  will-change: box-shadow, background-color;
-  transition: box-shadow 0.2s;
-  z-index: 1;
+  z-index: 0;
+  -webkit-font-smoothing: antialiased;
   padding: 0 20px;
   border: 1px solid #acacac;
   line-height: 42px;

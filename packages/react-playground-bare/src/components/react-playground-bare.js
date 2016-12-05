@@ -13,13 +13,17 @@ import {
 
 type ReactPlaygroundBareType = {
   defaultValue: string,
-  scope: object,
+  scope: { [key: string]: any },
+  remoteEvalUrl?: string,
+  useRemoteEval?: boolean | () => boolean;
   children: () => React.Element<*>,
 }
 
 export default class ReactPlaygroundBare extends React.Component {
   props: ReactPlaygroundBareType
   static defaultProps = {
+    useRemoteEval: /MSIE [6-9]/.test(navigator.userAgent),
+    remoteEvalUrl: '/eval',
   }
 
   state = {
@@ -28,9 +32,18 @@ export default class ReactPlaygroundBare extends React.Component {
   }
 
   onUpdateSource = source => {
-    const { scope, EvalWrapper } = this.props
+    const {
+      scope,
+      EvalWrapper,
+      useRemoteEval,
+      remoteEvalUrl,
+    } = this.props
     const { mountNode } = this
-    remoteCompile(source)
+    const useRemote = typeof useRemoteEval === 'function' ?
+      useRemoteEval() :
+      useRemoteEval
+    const compile = useRemote ? remoteCompile : localCompile
+    compile(source, remoteEvalUrl)
       .then(evalReact(scope, mountNode, EvalWrapper))
       .then(this.onComponent)
       .catch(error => this.onError({

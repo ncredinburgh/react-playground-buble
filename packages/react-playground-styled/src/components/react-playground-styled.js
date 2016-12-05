@@ -105,6 +105,8 @@ export const ReactPlaygroundStyled = ({
   ErrorWrapper,
   defaultValue,
   scope,
+  useRemoteEval,
+  remoteEvalUrl,
 }) => {
   const Inner = ({
     defaultValue,
@@ -160,9 +162,13 @@ export const ReactPlaygroundStyled = ({
 
   return (
     <ReactPlaygroundBare
-      defaultValue={defaultValue}
-      scope={scope}
-      EvalWrapper={EvalWrapper}
+      {...{
+        defaultValue,
+        scope,
+        EvalWrapper,
+        useRemoteEval,
+        remoteEvalUrl,
+      }}
     >
       {Inner}
     </ReactPlaygroundBare>
