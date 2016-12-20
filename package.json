@@ -2,7 +2,7 @@
   "scripts": {
     "clean": "rimraf lib dist lib-es",
     "build:webpack-var": "npm run clean && NODE_ENV=production webpack --config webpack.config.js --env.var",
-    "build:webpack": "npm run clean && NODE_ENV=production webpack --config packages/$PACKAGE/webpack.config.js --env.prod",
+    "build:webpack": "npm run clean && NODE_ENV=production webpack --config packages/$PACKAGE/webpack.config.local.js --env.prod",
     "build:babel": "npm run clean && NODE_ENV=lib babel -D packages/$PACKAGE/src -d packages/$PACKAGE/lib",
     "build:es": "NODE_ENV=es babel -D packages/$PACKAGE/src -d packages/$PACKAGE/lib-es",
     "build": "npm run clean && npm run build:webpack",

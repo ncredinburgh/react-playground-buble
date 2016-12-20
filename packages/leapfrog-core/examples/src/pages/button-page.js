@@ -105,7 +105,7 @@ const ButtonPage = () => (
 </div>`
       }
       scope={{ Button, styled }}
-      viewerStyle={{ width: '100%' }}
+      fullWidth
     />
     <Playground
       defaultValue={

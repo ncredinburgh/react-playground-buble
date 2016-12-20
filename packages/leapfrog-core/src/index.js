@@ -22,6 +22,8 @@ export Checkbox from './components/checkbox'
 export Radio from './components/radio'
 export Modal from './components/modal'
 export ModalTitle from './components/modal-title'
+export ModalProvider from './components/modal-provider2'
+export WithPushModal from './components/with-push-modal'
 import ToggleSwitchMain from './components/toggle-switch'
 import ToggleSwitchIe9 from './components/toggle-switch.ie9'
 export const ToggleSwitch = fallback(ToggleSwitchMain, ToggleSwitchIe9)

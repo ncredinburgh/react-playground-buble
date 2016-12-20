@@ -39,6 +39,7 @@ const hoverGradient = ({
       background: ${color};
       background: transparent linear-gradient(to bottom,${lighter} 0, ${darker} 100%);
       box-shadow: 0 1px 3px rgba(0,0,0,0.45);
+      box-sizing: content-box;
       border: inherit;
       border-radius: inherit;
       will-change: opacity;

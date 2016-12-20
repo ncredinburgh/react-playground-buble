@@ -12,7 +12,8 @@ const fontsLoaded = {}
 
 export default class PlaygroundEditor extends React.Component {
   state = {
-    value: this.props.defaultValue || ''
+    value: this.props.defaultValue || '',
+    key: 0,
   }
 
   constructor(props, ctx) {
@@ -45,7 +46,7 @@ export default class PlaygroundEditor extends React.Component {
       })
     }
     fontsLoaded[loadFont].then(() => {
-      setTimeout(() => this.forceUpdate(), 100)
+      this.forceRemount = setTimeout(this.setState({ key: 1 }))
     })
   }
 
@@ -53,6 +54,10 @@ export default class PlaygroundEditor extends React.Component {
     const { onChange } = this.props
     this.setState({value})
     if (onChange) onChange(value)
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.forceRemount)
   }
 
   // componentDidMount() {
@@ -84,8 +89,7 @@ export default class PlaygroundEditor extends React.Component {
   //   })
   // }
   render() {
-    const { value } = this.state
-    const { code } = value
+    const { value, blank, key } = this.state
     const { props } = this
     const {
       onChange,
@@ -95,10 +99,9 @@ export default class PlaygroundEditor extends React.Component {
     } = props
     //console.log(theme || loadTheme || 'default')
     return (
-
-
         <Codemirror
           // ref={cm => this.cm = cm}
+          key={key}
           value={value}
           onChange={this.onChange}
           options={{

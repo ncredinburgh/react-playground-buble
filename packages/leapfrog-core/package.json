@@ -10,10 +10,12 @@
     "access": "public"
   },
   "scripts": {
+    "clean": "rimraf lib dist lib-es",
     "svgo": "node ./node_modules/svgo/bin/svgo --pretty -f input/svg/current-color/ -o output/current-color",
     "start": "cd ../.. && PACKAGE=$npm_package_config_package node ./dev-server.js",
     "test": "cd ../.. && PACKAGE=$npm_package_config_package npm test",
     "build:babel": "cd ../.. && PACKAGE=$npm_package_config_package npm run build:babel",
+    "build:webpack": "npm run clean && NODE_ENV=production webpack --config webpack.config.local.js --env.prod && cp examples/index.html dist",
     "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs"
   },
   "dependencies": {
@@ -21,7 +23,7 @@
     "@di/leapfrog-icons": "^0.0.1",
     "@di/leapfrog-util": "^0.0.1",
     "color-array": "0.0.8",
-    "react-addons-transition-group": "^15.3.2",
+    "react-addons-transition-group": "^15.4.1",
     "recompose": "^0.20.2",
     "styled-components": "^1.0.10"
   },

@@ -52,7 +52,7 @@ const App = () => (
       <Wrapper>
         <Menu />
         <Page themeBroadcast={themeBroadcast}>
-          <Match exactly pattern="/examples/" component={CaretPage} />
+          <Match exactly pattern="/examples/caret" component={CaretPage} />
           <Match exactly pattern="/examples/page-header" component={PageHeaderPage} />
           <Match exactly pattern="/examples/button" component={ButtonPage} />
           <Match exactly pattern="/examples/toast" component={ToastPage} />
@@ -65,6 +65,7 @@ const App = () => (
           <Match exactly pattern="/examples/modal" component={ModalPage} />
           <Match exactly pattern="/examples/toggle-switch" component={ToggleSwitchPage} />
           <Match exactly pattern="/examples/ie9" component={Ie9Page} />
+          <Miss render={() => <PageHeaderPage />} />
         </Page>
       </Wrapper>
     </ThemeChooserProvider>

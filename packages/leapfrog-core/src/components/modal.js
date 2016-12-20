@@ -49,7 +49,7 @@ const CloseIcon = styled(Close)`
   }
 `
 
-class Modal extends React.Component {
+class ModalInner extends React.Component {
   state = {
     phase: 'init'
   }
@@ -72,23 +72,58 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { onCancel, zIndex, children } = this.props
+    const { onCancel, zIndex, children, portal } = this.props
     const { phase } = this.state
+    const content = (
+      <FullScreen zIndex={zIndex} onClick={onCancel} phase={phase}>
+        <Content onClick={e => e.stopPropagation()} phase={phase}>
+          {onCancel ? <CloseIcon onClick={onCancel} /> : null}
+          {children}
+        </Content>
+      </FullScreen>
+    )
+
+    return portal ?
+      <ThemedPortal>content</ThemedPortal> :
+      content
+  }
+}
+
+export default class Modal extends React.Component{
+  static defaultProps = {
+    portal: true,
+  }
+
+  state = {
+    show: false,
+  }
+
+  componentDidMount() {
+    const { show } = this.props
+    if (!show) return
+    this.setState({
+      show,
+    })
+  }
+
+  componentWillReceiveProps({ show }) {
+    this.setState({
+      show,
+    })
+  }
+
+  render() {
+    const { show, ...props } = this.props
     return (
-      <ThemedPortal>
-        <FullScreen zIndex={zIndex} onClick={onCancel} phase={phase}>
-          <Content onClick={e => e.stopPropagation()} phase={phase}>
-            {onCancel ? <CloseIcon onClick={onCancel} /> : null}
-            {children}
-          </Content>
-        </FullScreen>
-      </ThemedPortal>
+      <TransitionGroup>
+        {this.state.show ? <ModalInner {...props} /> : null}
+      </TransitionGroup>
     )
   }
 }
 
-export default ({ show, ...props }) => (
-  <TransitionGroup>
-    {show ? <Modal {...props} /> : null}
-  </TransitionGroup>
-)
+// export default ({ show, ...props }) => (
+//   <TransitionGroup>
+//     {show ? <Modal {...props} /> : null}
+//   </TransitionGroup>
+// )

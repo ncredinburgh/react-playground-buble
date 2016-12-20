@@ -29,14 +29,14 @@ module.exports = env => {
       //     'eventsource-polyfill',
       //     'webpack-hot-middleware/client'
       //   ),
-      //   '../examples/src/index-dist',
+      //   '../examples/src/index',
       // ],
       vendor: ['babel-polyfill', 'react', 'react-dom'],
     },
     output: {
       filename: 'bundle-[name].js',
       sourceMapFilename: 'bundle-[name].js.map',
-      path: resolve(packageRoot, 'dist'),
+      path: resolve(__dirname, 'dist', 'static'),
       pathinfo: !env.prod,
       publicPath: '/static/',
     },

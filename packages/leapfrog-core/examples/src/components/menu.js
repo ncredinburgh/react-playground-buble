@@ -48,19 +48,18 @@ const Menu = () => (
   <Wrapper>
     <MenuTitle>Leapfrog</MenuTitle>
     <Ul>
-      <li><Link to="/examples/">Caret</Link></li>
+      <li><Link to="/examples/page-header">PageHeader</Link></li>
       <li><Link to="/examples/button">Button</Link></li>
       <li><Link to="/examples/text-input">TextInput</Link></li>
       <li><Link to="/examples/checkbox">Checkbox</Link></li>
       <li><Link to="/examples/radio">Radio</Link></li>
-      <li><Link to="/examples/page-header">PageHeader</Link></li>
       <li><Link to="/examples/toast">Toasts</Link></li>
       <li><Link to="/examples/multiselect-dropdown">MultiselectDropdown</Link></li>
       <li><Link to="/examples/leapfrog-icons">Icons</Link></li>
       <li><Link to="/examples/loader">Loader</Link></li>
       <li><Link to="/examples/modal">Modal</Link></li>
       <li><Link to="/examples/toggle-switch">ToggleSwitch</Link></li>
-      <li><Link to="/examples/ie9">Ie9</Link></li>
+      <li><Link to="/examples/caret">Caret</Link></li>
     </Ul>
   </Wrapper>
 )
