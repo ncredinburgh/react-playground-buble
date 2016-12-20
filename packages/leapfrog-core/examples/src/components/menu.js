@@ -11,10 +11,10 @@ const Ul = styled.ul`
   padding: 0;
   box-sizing: border-box;
   list-style: none;
-  &>li {
+`
 
-  }
-  &>li>a {
+const MenuListItem = styled.li`
+  &>a {
     color: ${fromTheme('sectionATextColor')};
     text-decoration: none;
     line-height: 42px;
@@ -22,6 +22,7 @@ const Ul = styled.ul`
     display: block;
     font-weight: normal;
     font-size: 14px;
+    ${({ selected }) => selected ? 'background-color: #6cc3eb;' : ''}
     &:hover {
       background-color: #6cc3eb;
     }
@@ -44,22 +45,31 @@ const Wrapper = styled.div`
   box-sizing: border-box;
 `
 
+const MenuItem = ({ pathname, label }) => {
+  const selected = window.location.pathname === pathname
+  return (
+    <MenuListItem selected={selected}>
+      <Link to={pathname}>{label}</Link>
+    </MenuListItem>
+  )
+}
+
 const Menu = () => (
   <Wrapper>
     <MenuTitle>Leapfrog</MenuTitle>
     <Ul>
-      <li><Link to="/examples/page-header">PageHeader</Link></li>
-      <li><Link to="/examples/button">Button</Link></li>
-      <li><Link to="/examples/text-input">TextInput</Link></li>
-      <li><Link to="/examples/checkbox">Checkbox</Link></li>
-      <li><Link to="/examples/radio">Radio</Link></li>
-      <li><Link to="/examples/toast">Toasts</Link></li>
-      <li><Link to="/examples/multiselect-dropdown">MultiselectDropdown</Link></li>
-      <li><Link to="/examples/leapfrog-icons">Icons</Link></li>
-      <li><Link to="/examples/loader">Loader</Link></li>
-      <li><Link to="/examples/modal">Modal</Link></li>
-      <li><Link to="/examples/toggle-switch">ToggleSwitch</Link></li>
-      <li><Link to="/examples/caret">Caret</Link></li>
+      <MenuItem pathname="/examples/page-header" label="PageHeader" />
+      <MenuItem pathname="/examples/button" label="Button" />
+      <MenuItem pathname="/examples/text-input" label="TextInput" />
+      <MenuItem pathname="/examples/checkbox" label="Checkbox" />
+      <MenuItem pathname="/examples/radio" label="Radio" />
+      <MenuItem pathname="/examples/toast" label="Toasts" />
+      <MenuItem pathname="/examples/multiselect-dropdown" label="MultiselectDropdown" />
+      <MenuItem pathname="/examples/leapfrog-icons" label="Icons" />
+      <MenuItem pathname="/examples/loader" label="Loader" />
+      <MenuItem pathname="/examples/modal" label="Modal" />
+      <MenuItem pathname="/examples/toggle-switch" label="ToggleSwitch" />
+      <MenuItem pathname="/examples/caret" label="Caret" />
     </Ul>
   </Wrapper>
 )

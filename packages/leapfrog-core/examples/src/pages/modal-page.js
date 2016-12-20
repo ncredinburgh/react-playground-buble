@@ -1,5 +1,6 @@
 import React from 'react'
 import Title from '../components/title'
+import { compose } from 'recompose'
 import {
   Loader,
   PageHeader,
@@ -8,7 +9,8 @@ import {
   Modal,
   ModalTitle,
   ModalProvider,
-  WithPushModal,
+  WithModal,
+  withModal,
 } from '../../../src'
 
 import Playground from '../components/themed-playground'
@@ -17,8 +19,8 @@ const LoaderPage = () => (
   <div>
     <Title>Loader</Title>
     <p>`ModalProvider` puts `pushModal` on the context. Ideally wrap this round
-    the App at the root. `WithPushModal` can retrieve `pushModal` in deeply
-    nested components. `WithPushModal` is a Function
+    the App at the root. `WithModal` can retrieve `pushModal` in deeply
+    nested components. `WithModal` is a Function
     as Child component. It provides `pushModal` as an argument to the children
     function. `pushModal` has the same signature as a new promise, it returns a
     promise and provides `reject` and `resolve` as arguments to the function
@@ -45,12 +47,40 @@ const ModalLauncher = pushModal => (
 );
 
 <ModalProvider>
-  <WithPushModal>
+  <WithModal>
     {ModalLauncher}
-  </WithPushModal>
+  </WithModal>
 </ModalProvider>`
       }
-      scope={{ Modal, Button, ModalTitle, Spacer, ModalProvider, WithPushModal }}
+      scope={{ Modal, Button, ModalTitle, Spacer, ModalProvider, WithModal }}
+    />
+
+    <Playground
+      defaultValue={
+`const ModalContent = (resolve, reject) => (
+  <Button onClick={resolve}>
+    Ok
+  </Button>
+)
+
+let ModalLauncher = ({ pushModal }) => (
+  <Button
+  onClick={
+    () => pushModal(ModalContent)
+      .then(() => alert('ok'))
+  }
+  >
+    Click
+  </Button>
+);
+
+ModalLauncher = withModal(ModalLauncher);
+
+<ModalProvider>
+  <ModalLauncher />
+</ModalProvider>`
+      }
+      scope={{ Modal, Button, ModalTitle, Spacer, ModalProvider, withModal }}
     />
     <p>Modals are often related to async behaviour. This means a modal may
     be triggered while another modal is showing. For this reason we queue
@@ -80,12 +110,12 @@ const ModalLauncher = pushModal => (
 );
 
 <ModalProvider>
-  <WithPushModal>
+  <WithModal>
     {ModalLauncher}
-  </WithPushModal>
+  </WithModal>
 </ModalProvider>`
       }
-      scope={{ Modal, Button, ModalTitle, Spacer, ModalProvider, WithPushModal }}
+      scope={{ Modal, Button, ModalTitle, Spacer, ModalProvider, WithModal }}
     />
     <p>The promise API helps manage async behaviour:</p>
     <Playground
@@ -123,12 +153,12 @@ const ModalLauncher = pushModal => (
 );
 
 <ModalProvider>
-  <WithPushModal>
+  <WithModal>
     {ModalLauncher}
-  </WithPushModal>
+  </WithModal>
 </ModalProvider>`
       }
-      scope={{ Modal, Button, ModalTitle, Spacer, ModalProvider, WithPushModal }}
+      scope={{ Modal, Button, ModalTitle, Spacer, ModalProvider, WithModal }}
     />
 
   </div>
