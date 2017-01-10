@@ -35,6 +35,7 @@ export const EditorWrapper = styled.div`
   margin: ${fromTheme('gutter')}px;
   border: 1px solid #eee;
   min-width: ${fromTheme('minWidthEditor')}px;
+  ${/Trident\/7/.test(navigator.userAgent) ? 'min-height: 200px;' : '' }
   & .ReactCodeMirror {
     flex: 1;
     display: flex;

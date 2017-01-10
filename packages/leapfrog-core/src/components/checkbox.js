@@ -26,8 +26,9 @@ const getDisabled = ({ disabled }) =>
     pointer-events: none;` :
     ''
 
-const getLabel = ({ margin, inline }) => `
+const getLabel = ({ margin, padding, inline }) => `
   margin: ${margin === undefined ? '8px 25px 8px 0' : margin};
+  padding: ${padding === undefined ? '0' : padding};
   display: ${inline ? 'inline-flex' : 'flex'};
   ${inline && margin === undefined ?
     `&:last-child {
@@ -38,6 +39,7 @@ const getLabel = ({ margin, inline }) => `
 const Box = styled.div`
   ${getGutter}
   display: flex;
+  flex-shrink: 0;
   box-sizing: border-box;
   width: ${getSize};
   height: ${getSize};
@@ -62,6 +64,9 @@ const Input = styled.input`
     opacity: 1;
     transform: scale3d(1,1,1);
   }
+  &:focus+div, &:active+div {
+    box-shadow: 0 0 5px rgba(0,0,0,0.4);
+  }
 `
 
 const Icon = styled(Checkmark)`
@@ -78,9 +83,10 @@ const Checkbox = ({
   before,
   margin,
   inline,
+  padding,
   ...props
 }) => (
-  <Label margin={margin} inline={inline}>
+  <Label margin={margin} padding={padding} inline={inline}>
     {before ? children : null}
     <Input
       {...props}

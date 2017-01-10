@@ -1,6 +1,17 @@
 // @flow
-
+import styled from 'styled-components'
 import React, { Component } from 'react'
+
+const Box = styled.div`
+  display: ${({ open }) => open ? 'block' : 'none'};
+  ${({ right }) => right ? 'right: 0;' : ''}
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.45);
+  background: #fff;
+  z-index: 1;
+`
 
 type DropDownBoxPropType = {
   onClickOutside: () => void,
@@ -50,32 +61,20 @@ export default class DropdownBox extends Component {
       open,
       children,
       right,
+      ...props,
     } = this.props
 
     if (!open) return null
 
     return (
-      <div
-        ref={(el: HTMLElement) => this.el = el || this.el}
-        style={{
-          ...styles.dropdown,
-          ...{
-            display: open ? 'block' : 'none',
-          },
-          ...(right ? { right: 0 } : {}),
-        }}
+      <Box
+        {...props}
+        right={right}
+        open={open}
+        innerRef={(el: HTMLElement) => this.el = el || this.el}
       >
         {children}
-      </div>
+      </Box>
     )
   }
-}
-
-const styles = {
-  dropdown: {
-    position: 'absolute',
-    boxShadow: '0 1px 3px 0 rgba(0,0,0,0.45)',
-    background: 'white',
-    zIndex: 1,
-  },
 }

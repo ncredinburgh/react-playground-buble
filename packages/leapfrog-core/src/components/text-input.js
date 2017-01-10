@@ -30,6 +30,7 @@ const StyledInput = styled.input`
   ${getBorder()}
   &:focus {
     ${getBorder(true)}
+    padding: 8px 9px;
     box-shadow: none;
     outline: none;
   }
