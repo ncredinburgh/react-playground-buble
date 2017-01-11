@@ -64,7 +64,7 @@ const Menu = () => (
       <MenuItem pathname="/examples/checkbox" label="Checkbox" />
       <MenuItem pathname="/examples/radio" label="Radio" />
       <MenuItem pathname="/examples/toast" label="Toasts" />
-      <MenuItem pathname="/examples/multiselect-dropdown" label="MultiselectDropdown" />
+      <MenuItem pathname="/examples/dropdown" label="Dropdowns" />
       <MenuItem pathname="/examples/leapfrog-icons" label="Icons" />
       <MenuItem pathname="/examples/loader" label="Loader" />
       <MenuItem pathname="/examples/modal" label="Modal" />

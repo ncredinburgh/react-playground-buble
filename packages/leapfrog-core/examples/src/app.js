@@ -14,7 +14,7 @@ import CaretPage from './pages/caret-page'
 import PageHeaderPage from './pages/page-header-page'
 import ButtonPage from './pages/button-page'
 import ToastPage from './pages/toast-page'
-import MultiselectDropdownPage from './pages/multiselect-dropdown-page'
+import DropdownPage from './pages/dropdown-page'
 import LeapfrogIconsPage from './pages/leapfrog-icons-page'
 import LoaderPage from './pages/loader-page'
 import TextInputPage from './pages/text-input-page'
@@ -57,7 +57,7 @@ const App = () => (
           <Match exactly pattern="/examples/button" component={ButtonPage} />
           <Match exactly pattern="/examples/toast" component={ToastPage} />
           <Match exactly pattern="/examples/text-input" component={TextInputPage} />
-          <Match exactly pattern="/examples/multiselect-dropdown" component={MultiselectDropdownPage} />
+          <Match exactly pattern="/examples/dropdown" component={DropdownPage} />
           <Match exactly pattern="/examples/leapfrog-icons" component={LeapfrogIconsPage} />
           <Match exactly pattern="/examples/loader" component={LoaderPage} />
           <Match exactly pattern="/examples/checkbox" component={CheckboxPage} />

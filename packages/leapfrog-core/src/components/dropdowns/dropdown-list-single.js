@@ -2,10 +2,7 @@
 
 import React, { Component } from 'react'
 import DropdownBox from './dropdown-box'
-import Checkbox from '../checkbox'
-import TextInput from '../text-input'
-import DropdownButton from './dropdown-button'
-import SplitDropdownButton from './split-dropdown-button'
+import DropdownSearch from './dropdown-search'
 import styled from 'styled-components'
 import { googlish } from '@di/leapfrog-util'
 
@@ -183,7 +180,7 @@ export default class SelectDropdown extends Component {
         this.focusFirst()
         break
       case 'PAGEDOWN':
-        this.focusLast()
+        this.focusLastLi()
         break
       case 'ESC':
         this.setState({ isOpen: false })
@@ -242,23 +239,12 @@ export default class SelectDropdown extends Component {
       right,
       onGray,
       options,
-      children,
-      undefinedText,
+      title,
       filterFn,
       nowrap,
       width,
-      type,
+      button: Button,
     } = this.props
-
-    let Button
-
-    switch (type) {
-      case 'split':
-        Button = SplitDropdownButton
-        break
-      default:
-        Button = DropdownButton
-    }
 
     return (
       <Wrapper width={width}>
@@ -270,7 +256,7 @@ export default class SelectDropdown extends Component {
         >
           {
             selected === undefined ?
-              undefinedText :
+              title :
               selected.label
           }
         </Button>
@@ -285,20 +271,12 @@ export default class SelectDropdown extends Component {
             role="menu"
             innerRef={(ul: HTMLElement) => { if (ul) this.ul = ul }}
           >
-          {
-            this.props.filter ?
-            <SearchWrapper>
-              <TextInput
-                innerRef={el => { if (el !== null) this.input = el }}
-                style={{ minWidth: 40 }}
-                placeholder="Search"
-                value={filter}
-                onChange={this.onChangeFilter}
-                small
-              />
-
-            </SearchWrapper> : ''
-          }
+            <DropdownSearch
+              show={this.props.filter}
+              onChange={this.onChangeFilter}
+              value={filter}
+              onRef={el => this.input = el}
+            />
 
             <Ul>
               {

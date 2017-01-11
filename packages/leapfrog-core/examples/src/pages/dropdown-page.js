@@ -1,6 +1,12 @@
 import React from 'react'
 import Title from '../components/title'
-import { PageHeader, MultiselectDropdown, DropdownButton, SelectDropdown } from '../../../src'
+import {
+  PageHeader,
+  Dropdown,
+  DropdownSplit,
+  DropdownButton,
+  DropdownButtonSplit,
+} from '../../../src'
 import * as Icons from '@di/leapfrog-icons'
 
 import Playground from '../components/themed-playground'
@@ -10,15 +16,16 @@ const PageHeaderPage = () => (
     <Title>PageHeader</Title>
     <Playground
       defaultValue={
-`<DropdownButton>Button</DropdownButton>`
+    `<DropdownButtonSplit>Button</DropdownButtonSplit>`
       }
-      scope={{ DropdownButton }}
+      scope={{ DropdownButtonSplit }}
       top
     />
+<p>Dropdown allowing only one item to be selected at a time:</p>
 <Playground
   defaultValue={
-`<SelectDropdown
-  undefinedText="Select"
+`<Dropdown
+  title="Select"
   options={[
     {
       label: 'Customer ID',
@@ -39,13 +46,43 @@ const PageHeaderPage = () => (
   ]}
 />`
   }
-  scope={{ SelectDropdown }}
+  scope={{ Dropdown, DropdownSplit }}
+  top
+/>
+<p>Dropdown can be filtered:</p>
+<Playground
+  defaultValue={
+`<Dropdown
+  title="Select"
+  filter
+  options={[
+    {
+      label: 'Customer ID',
+      value: 'Customer ID',
+    },
+    {
+      label: 'Customer Name',
+      value: 'Customer Name',
+    },
+    {
+      label: 'Hold Date',
+      value: 'Hold Date',
+    },
+    {
+      label: 'Registration Date',
+      value: 'Registration Date',
+    },
+  ]}
+/>`
+  }
+  scope={{ Dropdown, DropdownSplit }}
   top
 />
     <p>Default:</p>
     <Playground
       defaultValue={
-`<MultiselectDropdown
+`<Dropdown
+  multiple
   defaultValue={['Customer ID']}
   title="Select Columns"
   options={[
@@ -68,7 +105,14 @@ const PageHeaderPage = () => (
   ]}
 />`
       }
-      scope={{ PageHeader, MultiselectDropdown }}
+      scope={{ Dropdown, DropdownSplit }}
+      top
+    />
+    <Playground
+      defaultValue={
+    `<DropdownButton>Button</DropdownButton>`
+      }
+      scope={{ DropdownButton }}
       top
     />
   </div>
