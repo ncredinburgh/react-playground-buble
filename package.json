@@ -63,7 +63,7 @@
     "express": "^4.13.3",
     "fetch-mock": "^5.0.0",
     "file-loader": "^0.8.5",
-    "flow-bin": "^0.27.0",
+    "flow-bin": "^0.37.4",
     "formidable-landers": "^5.1.0",
     "ghooks": "^1.3.2",
     "googlish": "0.0.6",

@@ -4,12 +4,20 @@ import React, { Component } from 'react'
 import DropdownBox from './dropdown-box'
 import DropdownSearch from './dropdown-search'
 import styled from 'styled-components'
+import {
+  focusFirst,
+  focusLast,
+  focusNext,
+  focusPrev,
+} from './dropdown-focus-helpers'
 import { googlish } from '@di/leapfrog-util'
 
 type OptionsType = {
   value: string,
   label: string,
 }
+
+const visibleItemsQuery = 'li:not([hidden])'
 
 const getLi = ({ hidden }) => hidden ? `
   height: 0;
@@ -85,75 +93,30 @@ export default class SelectDropdown extends Component {
     }
   }
 
-  focusFirstLi = () => {
-    const el = this.ul
-      .querySelector('li:not([hidden])')
-    if (el) el.focus()
-  }
+  focusLast = () => focusLast(
+    this.ul,
+    visibleItemsQuery
+  )
 
-  focusLastLi = () => {
-    const els = this.ul
-      .querySelectorAll('li:not([hidden])')
-    if (els && els.length) els[els.length - 1].focus()
-  }
+  focusFirst = () => focusFirst(
+    this.ul,
+    this.input,
+    this.props.filter,
+    visibleItemsQuery
+  )
+  focusNext = () => focusNext(
+    this.ul,
+    this.input,
+    this.props.filter,
+    visibleItemsQuery
+  )
 
-  focusInput = () => {
-    if (!this.props.filter) return
-    this.input.focus()
-  }
-
-  focusFirst = () => {
-    if (this.props.filter) {
-      this.focusInput()
-    } else {
-      this.focusFirstLi()
-    }
-  }
-
-  isInputFocused = () =>
-    document.activeElement &&
-      (document.activeElement === this.input)
-
-  focusNext = () => {
-    const el = this.ul
-      .querySelector('li:not([hidden]):focus')
-    if (!el) {
-      if (this.props.filter && !this.isInputFocused()) {
-        this.focusInput()
-      } else {
-        this.focusFirstLi()
-      }
-      return
-    }
-    let els = this.ul
-      .querySelectorAll('li:not([hidden])')
-    els = Array.prototype.slice.call(els)
-    const index = els.indexOf(el)
-    els[Math.min(els.length - 1, index + 1)].focus()
-  }
-
-  focusPrev = () => {
-    const { filter } = this.props
-    const el = this.ul
-      .querySelector('li:not([hidden]):focus')
-    if (!el) {
-      if (filter) {
-        this.input.focus()
-      } else {
-        this.focusFirst()
-      }
-      return
-    }
-    let els = this.ul
-      .querySelectorAll('li:not([hidden])')
-    els = Array.prototype.slice.call(els)
-    const index = els.indexOf(el)
-    if (index === 0 && filter) {
-      this.input.focus()
-      return
-    }
-    els[Math.max(0, index - 1)].focus()
-  }
+  focusPrev = () => focusPrev(
+    this.ul,
+    this.input,
+    this.props.filter,
+    visibleItemsQuery
+  )
 
   onKeyDown = (event: Event) => {
     const key = {
@@ -180,7 +143,7 @@ export default class SelectDropdown extends Component {
         this.focusFirst()
         break
       case 'PAGEDOWN':
-        this.focusLastLi()
+        this.focusLast()
         break
       case 'ESC':
         this.setState({ isOpen: false })
