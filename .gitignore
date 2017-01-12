@@ -7,3 +7,4 @@ coverage
 lib
 lib-es
 p42git.conf
+lerna-debug.log
