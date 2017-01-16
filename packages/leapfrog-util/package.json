@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
-  "name": "@di/leapfrog-util",
+  "name": "@di-internal/leapfrog-util",
   "description": "React playground using Buble",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
@@ -28,5 +28,8 @@
   "config": {
     "package": "leapfrog-util",
     "port": 3000
+  },
+  "publishConfig": {
+    "registry": "http://anprd10d2dge140.dca.diginsite.net:8080/repository/npm-internal"
   }
 }

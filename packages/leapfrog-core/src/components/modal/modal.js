@@ -2,7 +2,7 @@ import React from 'react'
 import ThemedPortal from '../themed-portal'
 import styled from 'styled-components'
 import TransitionGroup from 'react-addons-transition-group'
-import { Close } from '@di/leapfrog-icons'
+import { Close } from '@di-internal/leapfrog-icons'
 
 const FullScreen = styled.div`
   width: 100vw;

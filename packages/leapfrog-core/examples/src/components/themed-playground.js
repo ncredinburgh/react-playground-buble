@@ -1,6 +1,6 @@
 import {
   ReactPlaygroundStyled,
-} from '@di/react-playground-styled'
+} from '@di-internal/react-playground-styled'
 import React from 'react'
 import ThemeChooserProvider from '../../../src/components/theme-chooser-provider'
 

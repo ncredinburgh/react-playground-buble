@@ -4,9 +4,9 @@ import App from './app'
 import { AppContainer } from 'react-hot-loader'
 import {
   forceViewerUpdate,
-} from '@di/react-playground-lite'
+} from '@di-internal/react-playground-lite'
 import { defaultTheme } from '../../src/themes'
-import { ThemeBroadcast } from '@di/leapfrog-util'
+import { ThemeBroadcast } from '@di-internal/leapfrog-util'
 import { initThemedPlayground } from './components/themed-playground'
 import FastClick from 'fastclick'
 export const themeBroadcast = new ThemeBroadcast(defaultTheme)

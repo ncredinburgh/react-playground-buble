@@ -7,7 +7,7 @@ import TextInput from '../text-input'
 import DropdownButton from './dropdown-button'
 import SplitDropdownButton from './split-dropdown-button'
 import styled from 'styled-components'
-import { googlish } from '@di/leapfrog-util'
+import { googlish } from '@di-internal/leapfrog-util'
 
 type OptionsType = {
   value: string,

@@ -7,7 +7,7 @@ import {
   DropdownButton,
   DropdownButtonSplit,
 } from '../../../src'
-import * as Icons from '@di/leapfrog-icons'
+import * as Icons from '@di-internal/leapfrog-icons'
 
 import Playground from '../components/themed-playground'
 

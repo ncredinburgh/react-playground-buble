@@ -1,13 +1,13 @@
 {
   "version": "0.0.1",
-  "name": "@di/leapfrog-core",
+  "name": "@di-internal/leapfrog-core",
   "description": "React playground using Buble",
   "main": "lib/index.js",
   "browser:ie9": "lib/index-ie9.js",
   "author": "Phil Holden (http://github.com/philholden)",
   "license": "MIT",
   "publishConfig": {
-    "access": "public"
+    "registry": "http://anprd10d2dge140.dca.diginsite.net:8080/repository/npm-internal"
   },
   "scripts": {
     "clean": "rimraf lib dist lib-es",
@@ -19,17 +19,18 @@
     "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs"
   },
   "dependencies": {
-    "@di/dropdown-box": "^0.0.1",
-    "@di/leapfrog-icons": "^0.0.1",
-    "@di/leapfrog-util": "^0.0.1",
+    "@di-internal/dropdown-box": "^0.0.1",
+    "@di-internal/leapfrog-icons": "^0.0.1",
+    "@di-internal/leapfrog-util": "^0.0.1",
     "color-array": "0.0.8",
     "react-addons-transition-group": "^15.4.1",
+    "react-motion": "^0.4.7",
     "recompose": "^0.20.2",
     "styled-components": "^1.0.10"
   },
   "devDependencies": {
-    "@di/react-playground-lite": "^0.0.3",
-    "@di/react-playground-styled": "^0.0.3",
+    "@di-internal/react-playground-lite": "^0.0.3",
+    "@di-internal/react-playground-styled": "^0.0.3",
     "fastclick": "^1.0.6",
     "react-router": "^4.0.0-alpha.5"
   },

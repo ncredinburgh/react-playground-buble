@@ -1,6 +1,6 @@
 {
   "version": "0.0.3",
-  "name": "@di/react-playground-lite",
+  "name": "@di-internal/react-playground-lite",
   "description": "React playground using Buble",
   "main": "lib/index.js",
   "author": "Phil Holden (http://github.com/philholden)",
@@ -33,5 +33,8 @@
   "config": {
     "package": "react-playground-lite",
     "port": 3000
+  },
+  "publishConfig": {
+    "registry": "http://anprd10d2dge140.dca.diginsite.net:8080/repository/npm-internal"
   }
 }

@@ -1,4 +1,4 @@
-import { PageLoader, SmallLoader } from '@di/leapfrog-icons'
+import { PageLoader, SmallLoader } from '@di-internal/leapfrog-icons'
 import { withProps } from 'recompose'
 import styled, { keyframes } from 'styled-components'
 

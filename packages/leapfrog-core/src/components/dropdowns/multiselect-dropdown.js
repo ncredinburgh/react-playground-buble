@@ -7,7 +7,7 @@ import Button from './dropdown-button'
 import TextInput from '../text-input'
 import Spacer from '../spacer'
 import styled from 'styled-components'
-import { googlish } from '@di/leapfrog-util'
+import { googlish } from '@di-internal/leapfrog-util'
 
 const getLi = ({ hidden }) => hidden ? `
   height: 0;

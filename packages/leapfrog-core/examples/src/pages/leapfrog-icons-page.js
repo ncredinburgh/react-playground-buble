@@ -1,7 +1,7 @@
 import React from 'react'
 import Title from '../components/title'
 import { PageHeader } from '../../../src'
-import * as icons from '@di/leapfrog-icons'
+import * as icons from '@di-internal/leapfrog-icons'
 import styled, { keyframes } from 'styled-components'
 
 import Playground from '../components/themed-playground'

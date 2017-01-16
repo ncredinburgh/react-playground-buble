@@ -3,7 +3,7 @@ import {
   Link,
 } from 'react-router'
 import styled from 'styled-components'
-import { fromTheme } from '@di/leapfrog-util'
+import { fromTheme } from '@di-internal/leapfrog-util'
 
 const Ul = styled.ul`
   color: ${fromTheme('sectionATextColor')};
@@ -70,6 +70,7 @@ const Menu = () => (
       <MenuItem pathname="/examples/modal" label="Modal" />
       <MenuItem pathname="/examples/toggle-switch" label="ToggleSwitch" />
       <MenuItem pathname="/examples/caret" label="Caret" />
+      <MenuItem pathname="/examples/date-picker" label="DatePicker" />
     </Ul>
   </Wrapper>
 )

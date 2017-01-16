@@ -1,5 +1,5 @@
 {
-  "name": "@di/dropdown-box",
+  "name": "@di-internal/dropdown-box",
   "version": "0.0.1",
   "description": "a box with a callback that fires when clicked outside of",
   "main": "lib/index.js",
