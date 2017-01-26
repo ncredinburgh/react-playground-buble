@@ -25,6 +25,7 @@
     "color-array": "0.0.8",
     "react-addons-transition-group": "^15.4.1",
     "react-motion": "^0.4.7",
+    "react-pure-render": "^1.0.2",
     "recompose": "^0.20.2",
     "styled-components": "^1.0.10"
   },

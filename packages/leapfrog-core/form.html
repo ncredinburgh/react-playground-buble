@@ -1,0 +1,10 @@
+<form action="/form" method="post">
+  <input name="json">
+  <input name="json2" value="hello">
+  <button>download</button>
+</form>
+
+<script>
+  var input = document.querySelector('input')
+  input.value = JSON.stringify({a:1, b:'"\ndfd"'})
+</script>

@@ -1,12 +1,6 @@
 // @flow
 
 
-// export Button from 'button'
-// export TextInput from 'TextInput'
-// export Checkbox from 'checkbox'
-
-// export Spacer from './components/spacer'
-
 import fallback from './utils/fallback'
 export Caret from './components/caret'
 export PageHeader from './components/page-header'
@@ -39,3 +33,8 @@ import ToggleSwitchIe9 from './components/toggle-switch.ie9'
 export const ToggleSwitch = fallback(ToggleSwitchMain, ToggleSwitchIe9)
 
 export Day from './components/dates/day-anim'
+export Month from './components/dates/month'
+export MonthChooser from './components/dates/month-chooser'
+export DatePicker from './components/dates/date-picker'
+export DateDropdown from './components/dates/date-dropdown'
+export DateDropdownPrimative from './components/dates/date-dropdown-primative'

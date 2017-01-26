@@ -18,10 +18,10 @@ export default class WithCanvas extends React.Component {
   }
 
   componentWillReceiveProps({ width, height }) {
-    const { props } = this
-    if (width !== props.width || height !== props.height) {
+    //const { props } = this
+    //if (width !== props.width || height !== props.height) {
       this.update()
-    }
+    //}
   }
 
   componentDidMount = this.update
@@ -36,11 +36,11 @@ export default class WithCanvas extends React.Component {
 
     return (
       <canvas
-        width={width}
-        height={height}
+        width={width * this.sf}
+        height={height * this.sf}
         style={{
-          width: width * this.sf,
-          height: height * this.sf,
+          width: width ,
+          height: height,
         }}
         ref={el => { if (el !== null) this.canvas = el }}
       />

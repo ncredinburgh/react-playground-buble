@@ -17,7 +17,7 @@ const StyledInput = styled.input`
   display: block;
   width: 100%;
   height: ${({small}) => small ? 35 : 42}px;
-  padding: 8px 10px;
+  padding: ${({ paddingLeft, paddingRight }) => `8px ${paddingRight}px 8px ${paddingLeft}px`};
   font-size: 16px;
   line-height: 1.42857143;
   color: #333;
@@ -34,9 +34,17 @@ const StyledInput = styled.input`
     box-shadow: none;
     outline: none;
   }
+  &:disabled {
+    opacity: 0.4;
+  }
 
 `
 
 const TextInput = props => <StyledInput type="text" {...props} />
+
+TextInput.defaultProps = {
+  paddingLeft: 10,
+  paddingRight: 10,
+}
 
 export default TextInput

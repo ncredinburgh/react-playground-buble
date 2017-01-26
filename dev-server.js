@@ -50,11 +50,20 @@ app.use(compression({
 }))
 
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded())
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   next()
+})
+
+app.post('/form', (req, res) => {
+  console.log(req.body)
+  res.header('Content-Type', 'text/csv')
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Content-Disposition', 'attachment; filename=out.csv')
+  res.send('hello')
 })
 
 app.post('/eval', (req, res) => {

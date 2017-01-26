@@ -3,12 +3,18 @@ import styled from 'styled-components'
 import { Motion, spring } from 'react-motion'
 const size = 40
 const r = size / 2
+const springConf = {
+  stiffness: 250,
+  damping: 28,
+  precision: 0.01,
+}
 
 const Wrapper = styled.div`
   position: relative;
   width: ${size}px;
   height: ${size}px;
   cursor: default;
+  user-select: none;
 `
 
 const Text = styled.div`
@@ -36,17 +42,15 @@ const DaySvg = ({
   <Wrapper>
     <svg viewBox={`0 0 ${size} ${size}`}>
       <Motion style={{
-        radius: spring(showCircle ? 18 : 0),
-        opacity: spring(showCircle ? 1 : 0),
+        radius: spring(showCircle ? 18 : 8, springConf),
       }}>
         {
-          ({ radius, opacity }) =>
+          ({ radius }) =>
             <Circle
               cx={r}
               cy={r}
               r={radius}
               fill={fill}
-              opacity={opacity}
             />
         }
       </Motion>
