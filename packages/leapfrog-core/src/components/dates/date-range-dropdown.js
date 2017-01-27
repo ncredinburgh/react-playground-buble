@@ -1,7 +1,7 @@
 import React from 'react'
 import DateDropdownPrimative from './date-dropdown-primative'
 
-const DateDropdown = ({
+const DateRangeDropdown = ({
   disableWeekends,
   maxEndDate,
   minStartDate,
@@ -17,6 +17,7 @@ const DateDropdown = ({
     minStartDate,
     disabled: !!disabled,
     value,
+    range: true,
     defaultValue,
     onChange,
   }
@@ -28,4 +29,4 @@ const DateDropdown = ({
   )
 }
 
-export default DateDropdown
+export default DateRangeDropdown

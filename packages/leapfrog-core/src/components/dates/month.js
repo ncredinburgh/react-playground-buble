@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import Day from './day-anim'
-import { getWeeksInMonth, isWeekend } from './date-math'
-
+import { getWeeksInMonth, isWeekend, getLocalDate } from './date-math'
+import withTheme from '../with-theme-hoc'
 
 const Row = styled.div`
   display: flex;
 `
 
-export default class Month extends React.Component {
+class Month extends React.Component {
   state = {
     hoveredDate: null,
   }
@@ -94,6 +94,16 @@ export default class Month extends React.Component {
     return this.mouseLeaveFns[time]
   }
 
+  getHoopColor = date => {
+    if (date.getTime() !== getLocalDate().getTime()) {
+      return null
+    }
+    const { theme } = this.props
+    return (!theme || !theme.sectionAColor) ?
+      '#666' :
+      theme.sectionAColor
+  }
+
   onSelect = date => {
     const time = date.getTime()
     const fn = this.selectFns[time]
@@ -115,6 +125,7 @@ export default class Month extends React.Component {
       onMouseEnterDate,
       onMouseLeaveDate,
       onSelect,
+      getHoopColor,
     } = this
 
     const rows = getWeeksInMonth(showMonth)
@@ -124,6 +135,7 @@ export default class Month extends React.Component {
         onMouseEnter={onMouseEnterDate(date)}
         onMouseLeave={onMouseLeaveDate(date)}
         onClick={onSelect(date)}
+        hoopColor={getHoopColor(date)}
       >
         {date.getDate()}
       </Day>
@@ -140,3 +152,5 @@ export default class Month extends React.Component {
     )
   }
 }
+
+export default withTheme(Month)

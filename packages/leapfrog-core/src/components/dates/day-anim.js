@@ -66,18 +66,19 @@ export default class DayAnim extends React.Component {
       showCircle,
     } = this.getColors()
     const { onMouseEnter, onMouseLeave, onClick } = this
-    const { children, type } = this.props
+    const { children, type, hoopColor } = this.props
     return (
       <Wrapper
         disabled={type === 'disabled'}
-        onMouseEnterr={onMouseEnter}
-        onMouseLeaver={onMouseLeave}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
         onClick={onClick}
       >
         <DaySvg
           showCircle={showCircle}
           fill={fill}
           color={color}
+          hoopColor={hoopColor}
         >
           {children}
         </DaySvg>

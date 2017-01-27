@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Forward, Back } from '@di-internal/leapfrog-icons'
 import { fromTheme } from '@di-internal/leapfrog-util'
-import { monthAdd } from './date-math'
+import { monthAdd, getLocalDate } from './date-math'
 
 const Wrapper = styled.div`
   display: flex;
@@ -43,7 +43,7 @@ const months = [
 
 export default class MonthChooser extends React.Component {
   static defaultProps = {
-    defaultValue: new Date(),
+    defaultValue: getLocalDate(),
   }
 
   state = {
@@ -53,8 +53,8 @@ export default class MonthChooser extends React.Component {
   changeDate = sgn => () => {
     const { onChange } = this.props
     const { value } = this.state
-    const month = value.getMonth()
-    const year = value.getFullYear()
+    const month = value.getUTCMonth()
+    const year = value.getUTCFullYear()
     const date = new Date(0)
     const nextValue = monthAdd(value, sgn)
     this.setState({
@@ -69,7 +69,7 @@ export default class MonthChooser extends React.Component {
 
   getText = () => {
     const { value } = this.state
-    return `${months[value.getMonth()]} ${value.getFullYear()}`
+    return `${months[value.getUTCMonth()]} ${value.getUTCFullYear()}`
   }
 
   shouldComponentUpdate(nextProps, nextState) {

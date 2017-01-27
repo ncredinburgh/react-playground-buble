@@ -44,6 +44,7 @@ const DayCanvas = ({
   color,
   fill,
   showCircle,
+  hoopColor,
 }) => {
   const [fillR, fillG, fillB, fillA] = fromCss(fill).map(spring)
   const [colorR, colorG, colorB, colorA] = fromCss(color).map(spring)
@@ -73,9 +74,15 @@ const DayCanvas = ({
                     ctx.clearRect(0, 0, size, size)
                     ctx.beginPath()
                     ctx.fillStyle = toCssRgba([fillR, fillG, fillB, fillA])
-                    ctx.fillColor = toCssRgba([colorR, colorG, colorB, colorA])
+                    //ctx.fillColor = toCssRgba([colorR, colorG, colorB, colorA])
                     ctx.arc(r, r, radius, 0, 2 * Math.PI, false)
                     ctx.fill()
+                    if (hoopColor) {
+                      ctx.beginPath()
+                      ctx.strokeStyle = hoopColor
+                      ctx.arc(r, r, 18, 0, 2 * Math.PI, false)
+                      ctx.stroke()
+                    }
                     ctx.restore()
                   }
                 }

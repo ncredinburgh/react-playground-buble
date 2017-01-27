@@ -61,6 +61,7 @@ export const ViewerWrapper = styled.div`
   background-color: ${fromTheme('backgroundColor')};
   box-sizing: border-box;
   min-width: ${fromTheme('minWidthViewer')}px;
+  min-height: ${fromTheme('minHeightViewer')}px;
   ${({ errorMessage }) => errorMessage ? 'min-height: 100px;' : ''}`
 
 export const ViewerAlign = styled.div`
@@ -96,6 +97,7 @@ export const ReactPlaygroundStyled = ({
   theme,
   loadTheme,
   minWidthViewer,
+  minHeightViewer,
   minWidthEditor,
   codeMirrorOptions,
   PlaygroundWrapper,
@@ -129,6 +131,7 @@ export const ReactPlaygroundStyled = ({
       viewerFlex,
       editorFlex,
       minWidthViewer,
+      minHeightViewer,
       minWidthEditor,
       errorMessage,
     }
@@ -193,4 +196,5 @@ ReactPlaygroundStyled.defaultProps = {
   editorFlex: 1,
   minWidthEditor: 240,
   minWidthViewer: 240,
+  minHeightViewer: 25,
 }
