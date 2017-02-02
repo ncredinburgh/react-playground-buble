@@ -44,7 +44,7 @@ const IconWrapper = styled.div`
   top: 12px;
   width: 18px;
   text-align: right;
-  color: ${fromTheme('sectionAColor')};
+  color: ${fromTheme('sectionCColor')};
   ${({ disabled }) => `opacity: ${disabled ? 0.4 : 2};`}
 `
 

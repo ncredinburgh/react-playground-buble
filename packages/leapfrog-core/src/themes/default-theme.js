@@ -18,7 +18,8 @@ export default {
   sectionBTextColor: '#FFFFFF',
 
   // LINK - COLOR
-  sectionCColor: '#0055CC',
+  sectionCColor: '#666666',
+  //sectionCColor: '#0055CC',
 
   // Page Background Color
   sectionDColor: '#EDEDED',

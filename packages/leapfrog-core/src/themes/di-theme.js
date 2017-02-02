@@ -6,7 +6,7 @@ export default {
   accentPercent: '5%',
 
   // Color A : Title and Widgets Heading
-  sectionAColor: '#005496',
+  sectionAColor: '#666666',
   // Color A : Text Color in contrast to Primary Color
   sectionATextColor: '#FFFFFF',
   sectionATextStyle: 'inhert',
@@ -18,7 +18,7 @@ export default {
   sectionBTextColor: '#FFFFFF',
 
   // LINK - COLOR
-  sectionCColor: '#0055CC',
+  sectionCColor: '#005496',
 
   // Page Background Color
   sectionDColor: '#EDEDED',

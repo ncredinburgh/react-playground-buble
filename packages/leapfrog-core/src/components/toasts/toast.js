@@ -52,7 +52,7 @@ const Toast = ({ id, type, icon, children }) => (
   >
     {
       icon ? (
-        <div style={{ color: '#05c' }}>
+        <div style={{ color: '#05c', width: 18 }}>
           {icons[type || 'message']}
         </div>
       ) : null

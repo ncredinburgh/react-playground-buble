@@ -34,9 +34,11 @@ const rotate =
 
   render() {
     return (
+
       <Caret
         rotate={this.state.angle}
         transitionSpeed={0.3}
+        style={{'zIndex': 3, position: 'relative'}}
       />
     )
   }

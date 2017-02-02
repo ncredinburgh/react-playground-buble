@@ -21,6 +21,12 @@ const iconsToPlayground = icons => iconName => (
 const IconsPage = () => (
   <div>
     <Title>Icons</Title>
+    <p>All icons:</p>
+    {
+      Object
+        .keys(icons)
+        .map(iconsToPlayground(icons))
+    }
     <p>By default most icons render in the current color with a height of 18px:</p>
     <Playground
       defaultValue={
@@ -85,12 +91,6 @@ cursor: pointer;
       }
       scope={{ Accounts : icons.Accounts, styled }}
     />
-    <p>All icons:</p>
-    {
-      Object
-        .keys(icons)
-        .map(iconsToPlayground(icons))
-    }
   </div>
 )
 

@@ -6,7 +6,7 @@ import { monthAdd, getLocalDate } from './date-math'
 
 const Wrapper = styled.div`
   display: flex;
-  color: ${fromTheme('sectionAColor')};
+  color: ${fromTheme('sectionCColor')};
   position: relative;
   user-select: none;
   align-items: center;

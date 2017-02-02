@@ -82,12 +82,12 @@ const ButtonPage = () => (
       }
       scope={{ Button, styled }}
     />
-    <p>But a few shorthands are provided: `flex`, `margin` & `block`.</p>
+    <p>But a few shorthands are provided: `margin` & `block`.</p>
     <Playground
       defaultValue={
 `<div style={{display: 'flex', width: '100%'}}>
-  <Button flex margin="0 2px">Cancel</Button>
-  <Button flex primary margin="0 2px">OK</Button>
+  <Button margin="0 2px">Cancel</Button>
+  <Button primary margin="0 2px">OK</Button>
 </div>`
       }
       scope={{ Button, styled }}
@@ -99,9 +99,9 @@ const ButtonPage = () => (
   display: 'flex',
   flexDirection: 'column',
   width: '100%'}}>
-  <Button flex margin="2px 0">One</Button>
-  <Button flex margin="2px 0">Two</Button>
-  <Button flex margin="2px 0">Three</Button>
+  <Button margin="2px 0">One</Button>
+  <Button margin="2px 0">Two</Button>
+  <Button margin="2px 0">Three</Button>
 </div>`
       }
       scope={{ Button, styled }}

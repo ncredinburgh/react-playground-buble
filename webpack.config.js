@@ -45,7 +45,7 @@ module.exports = env => {
       new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }),
       ...ifDev(
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin()
       ),
       ...ifProd(
         new webpack.optimize.OccurrenceOrderPlugin(),

@@ -39,10 +39,12 @@ const Content = styled.div`
   `
 
 const CloseIcon = styled(Close)`
+  box-sizing: content-box;
   color: #666;
   position: absolute;
   top: 0px;
   right: 0px;
+  width: 18px;
   padding: 15px;
   &:hover {
     color: #333;

@@ -19,10 +19,10 @@ const Outer = styled.div`
   user-select: none;
   box-sizing: border-box;
   background-color: ${({ value, theme: {
-    sectionAColor } }) => value ? sectionAColor : '#ededed'};
+    sectionCColor } }) => value ? sectionCColor : '#ededed'};
   &:hover {
     background-color: ${({ value, theme: {
-      sectionAColor } }) => value ? toCss(lighten(fromCss(sectionAColor), 0.10)) : '#e2e2e2'};
+      sectionCColor } }) => value ? toCss(lighten(fromCss(sectionCColor), 0.10)) : '#e2e2e2'};
   }
   color: ${({ value }) => value ? '#ededed' : '#666'};
   transition: background .2s;

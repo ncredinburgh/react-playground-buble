@@ -4,7 +4,7 @@ export default {
   accentPercent: '5%',
 
   // Color A : Title and Widgets Heading
-  sectionAColor: '#B4BDC7',
+  sectionCColor: '#B4BDC7',
   // Color A : Text Color in contrast to Primary Color
   sectionATextColor: '#333333',
   sectionATextStyle: 'inhert',

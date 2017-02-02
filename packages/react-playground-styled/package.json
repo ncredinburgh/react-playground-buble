@@ -6,7 +6,7 @@
   "author": "Phil Holden (http://github.com/philholden)",
   "license": "MIT",
   "publishConfig": {
-    "access": "public"
+    "registry": "http://anprd10d2dge140.dca.diginsite.net:8080/repository/npm-internal"
   },
   "scripts": {
     "start": "cd ../.. && PACKAGE=$npm_package_config_package node ./dev-server.js",
@@ -20,12 +20,11 @@
   },
   "homepage": "https://github.com/omysoul/omysoul/packages/react-playground-styled",
   "dependencies": {
+    "@di-internal/react-playground-bare": "0.0.3",
     "buble": "^0.14.2",
     "codemirror": "^5.19.0",
     "react-codemirror": "^0.2.6",
-    "webfontloader": "^1.6.26",
-    "@di-internal/react-playground-bare": "0.0.3",
-    "styled-components": "^1.0.10"
+    "webfontloader": "^1.6.26"
   },
   "peerDependencies": {
     "react": "^15.3.2",
@@ -35,8 +34,5 @@
   "config": {
     "package": "react-playground-styled",
     "port": 3000
-  },
-  "publishConfig": {
-    "registry": "http://anprd10d2dge140.dca.diginsite.net:8080/repository/npm-internal"
   }
 }

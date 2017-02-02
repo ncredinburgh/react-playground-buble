@@ -36,7 +36,7 @@ const MenuTitle = styled.h2`
 `
 
 const Wrapper = styled.div`
-  background-color: ${fromTheme('sectionAColor')};
+  background-color: ${fromTheme('sectionCColor')};
   color: ${fromTheme('sectionATextColor')};
   @media (min-width: 768px) {
     width: 220px;
@@ -46,7 +46,8 @@ const Wrapper = styled.div`
 `
 
 const MenuItem = ({ pathname, label }) => {
-  const selected = window.location.pathname === pathname
+  const selected = window.location.pathname === pathname ||
+    (window.location.hash && (window.location.hash.substring(1) === pathname))
   return (
     <MenuListItem selected={selected}>
       <Link to={pathname}>{label}</Link>
@@ -56,21 +57,23 @@ const MenuItem = ({ pathname, label }) => {
 
 const Menu = () => (
   <Wrapper>
-    <MenuTitle>Leapfrog</MenuTitle>
+    <MenuTitle>React Responsive UI</MenuTitle>
+    <div></div>
     <Ul>
-      <MenuItem pathname="/examples/page-header" label="PageHeader" />
+      <MenuItem pathname="/examples/intro" label="Introduction" />
       <MenuItem pathname="/examples/button" label="Button" />
       <MenuItem pathname="/examples/text-input" label="TextInput" />
       <MenuItem pathname="/examples/checkbox" label="Checkbox" />
       <MenuItem pathname="/examples/radio" label="Radio" />
       <MenuItem pathname="/examples/toast" label="Toasts" />
       <MenuItem pathname="/examples/dropdown" label="Dropdowns" />
-      <MenuItem pathname="/examples/leapfrog-icons" label="Icons" />
-      <MenuItem pathname="/examples/loader" label="Loader" />
-      <MenuItem pathname="/examples/modal" label="Modal" />
-      <MenuItem pathname="/examples/toggle-switch" label="ToggleSwitch" />
-      <MenuItem pathname="/examples/caret" label="Caret" />
       <MenuItem pathname="/examples/date-picker" label="DatePicker" />
+      <MenuItem pathname="/examples/leapfrog-icons" label="Icons" />
+      <MenuItem pathname="/examples/modal" label="Modal" />
+      <MenuItem pathname="/examples/loader" label="Loader" />
+      <MenuItem pathname="/examples/toggle-switch" label="ToggleSwitch" />
+      <MenuItem pathname="/examples/page-header" label="PageHeader" />
+      <MenuItem pathname="/examples/caret" label="Caret" />
     </Ul>
   </Wrapper>
 )

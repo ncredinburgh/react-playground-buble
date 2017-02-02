@@ -6,6 +6,7 @@ import withTheme from '../with-theme-hoc'
 
 const Row = styled.div`
   display: flex;
+  height: 40px;
 `
 
 class Month extends React.Component {
@@ -99,9 +100,9 @@ class Month extends React.Component {
       return null
     }
     const { theme } = this.props
-    return (!theme || !theme.sectionAColor) ?
+    return (!theme || !theme.sectionCColor) ?
       '#666' :
-      theme.sectionAColor
+      theme.sectionCColor
   }
 
   onSelect = date => {
@@ -145,7 +146,11 @@ class Month extends React.Component {
       <div>
         {
           rows.map((row, i) => (
-            <Row key={i}>{row.map(item)}</Row>
+            <Row key={i}>
+              {
+                row.map(item)
+              }
+            </Row>
           ))
         }
       </div>

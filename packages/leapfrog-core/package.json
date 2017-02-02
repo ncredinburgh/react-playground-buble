@@ -27,7 +27,7 @@
     "react-motion": "^0.4.7",
     "react-pure-render": "^1.0.2",
     "recompose": "^0.20.2",
-    "styled-components": "^1.0.10"
+    "styled-components": "^1.4.0"
   },
   "devDependencies": {
     "@di-internal/react-playground-lite": "^0.0.3",

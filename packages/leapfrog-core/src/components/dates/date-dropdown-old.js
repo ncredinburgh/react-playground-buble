@@ -24,7 +24,7 @@ const IconWrapper = styled.div`
   position: absolute;
   right: 10px;
   top: 12px;
-  color: ${fromTheme('sectionAColor')};
+  color: ${fromTheme('sectionCColor')};
 `
 
 export default class DateDropdown extends Component {

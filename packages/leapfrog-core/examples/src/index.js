@@ -5,11 +5,11 @@ import { AppContainer } from 'react-hot-loader'
 import {
   forceViewerUpdate,
 } from '@di-internal/react-playground-lite'
-import { defaultTheme } from '../../src/themes'
+import { diTheme } from '../../src/themes'
 import { ThemeBroadcast } from '@di-internal/leapfrog-util'
 import { initThemedPlayground } from './components/themed-playground'
 import FastClick from 'fastclick'
-export const themeBroadcast = new ThemeBroadcast(defaultTheme)
+export const themeBroadcast = new ThemeBroadcast(diTheme)
 initThemedPlayground(themeBroadcast)
 
 window.addEventListener('load', () => {

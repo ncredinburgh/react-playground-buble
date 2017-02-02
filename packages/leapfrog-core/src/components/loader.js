@@ -3,10 +3,19 @@ import { PageLoader, SmallLoader } from '@di-internal/leapfrog-icons'
 import styled, { keyframes } from 'styled-components'
 
 const rotate360 = keyframes`
-  from { transform: rotate3d(0,0,1,0deg); }
-  to { transform: rotate3d(0,0,1,360deg); }`
+  from {
+    -webkit-transform: rotate3d(0,0,1,0deg);
+    transform: rotate3d(0,0,1,0deg);
+  }
+  to {
+    -webkit-transform: rotate3d(0,0,1,360deg);
+    transform: rotate3d(0,0,1,360deg);
+  }`
+
+console.log(rotate360)
 
 const rotate = icon => styled(icon)`
+  -webkit-animation: ${rotate360} 1s linear infinite;
   animation: ${rotate360} 1s linear infinite;`
 
 const Page = rotate(PageLoader)

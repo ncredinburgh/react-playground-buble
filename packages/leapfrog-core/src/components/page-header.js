@@ -14,7 +14,7 @@ const H1 = styled.h1`
   line-height: 1;
   margin: 0;
   padding: 0;
-  color: ${fromTheme('sectionAColor')};
+  color: ${fromTheme('sectionCColor')};
 `
 const Wrapper = styled.div`
   display: flex;

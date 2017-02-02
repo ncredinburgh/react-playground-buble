@@ -13,14 +13,7 @@ import Playground from '../components/themed-playground'
 
 const PageHeaderPage = () => (
   <div>
-    <Title>PageHeader</Title>
-    <Playground
-      defaultValue={
-    `<DropdownButtonSplit>Button</DropdownButtonSplit>`
-      }
-      scope={{ DropdownButtonSplit }}
-      top
-    />
+      <Title>Dropdown</Title>
 <p>Dropdown allowing only one item to be selected at a time:</p>
 <Playground
   defaultValue={
@@ -47,6 +40,7 @@ const PageHeaderPage = () => (
 />`
   }
   scope={{ Dropdown, DropdownSplit }}
+  minHeightViewer={320}
   top
 />
 <p>Dropdown can be filtered:</p>
@@ -76,9 +70,10 @@ const PageHeaderPage = () => (
 />`
   }
   scope={{ Dropdown, DropdownSplit }}
+  minHeightViewer={320}
   top
 />
-    <p>Default:</p>
+    <p>Multiselect Dropdown:</p>
     <Playground
       defaultValue={
 `<Dropdown
@@ -106,13 +101,23 @@ const PageHeaderPage = () => (
 />`
       }
       scope={{ Dropdown, DropdownSplit }}
+      minHeightViewer={320}
       top
     />
+<p>Partials used in rendering dropdowns:</p>
     <Playground
       defaultValue={
     `<DropdownButton>Button</DropdownButton>`
       }
       scope={{ DropdownButton }}
+      top
+    />
+
+    <Playground
+      defaultValue={
+    `<DropdownButtonSplit>Button</DropdownButtonSplit>`
+      }
+      scope={{ DropdownButtonSplit }}
       top
     />
   </div>

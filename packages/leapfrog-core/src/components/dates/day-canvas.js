@@ -34,11 +34,6 @@ const Text = styled.div`
   transition: color 0.3s;
 `
 
-const Circle = styled.circle`
-  fill: ${({ fill }) => fill};
-  transition: fill 0.3s;
-`
-
 const DayCanvas = ({
   children,
   color,
@@ -53,44 +48,42 @@ const DayCanvas = ({
 
   return (
     <Wrapper>
-        <Motion style={{
-          radius: spring(showCircle ? 18 : 8, springConf),
-          fillR, fillG, fillB, fillA,
-          colorR, colorG, colorB, colorA,
-        }}>
-          {
-            ({ radius, fillRgba, fillR, fillG, fillB, fillA, colorR, colorG, colorB, colorA }) => (
-              <div>
-              <Canvas
-                width={size}
-                height={size}
-                style={{ display: 'block' }}
-              >
-                {
-                  (canvas, sf) => {
-                    const ctx = canvas.getContext('2d')
-                    ctx.save()
-                    ctx.scale(sf, sf)
-                    ctx.clearRect(0, 0, size, size)
+      <Motion style={{
+        radius: spring(showCircle ? 18 : 8, springConf),
+        fillR, fillG, fillB, fillA,
+        colorR, colorG, colorB, colorA,
+      }}>
+        {
+          ({ radius, fillRgba, fillR, fillG, fillB, fillA, colorR, colorG, colorB, colorA }) => (
+            <Canvas
+              width={size}
+              height={size}
+              style={{ display: 'block' }}
+            >
+              {
+                (canvas, sf) => {
+                  const ctx = canvas.getContext('2d')
+                  ctx.save()
+                  ctx.scale(sf, sf)
+                  ctx.clearRect(0, 0, size, size)
+                  ctx.beginPath()
+                  ctx.fillStyle = toCssRgba([fillR, fillG, fillB, fillA])
+                  //ctx.fillColor = toCssRgba([colorR, colorG, colorB, colorA])
+                  ctx.arc(r, r, radius, 0, 2 * Math.PI, false)
+                  ctx.fill()
+                  if (hoopColor) {
                     ctx.beginPath()
-                    ctx.fillStyle = toCssRgba([fillR, fillG, fillB, fillA])
-                    //ctx.fillColor = toCssRgba([colorR, colorG, colorB, colorA])
-                    ctx.arc(r, r, radius, 0, 2 * Math.PI, false)
-                    ctx.fill()
-                    if (hoopColor) {
-                      ctx.beginPath()
-                      ctx.strokeStyle = hoopColor
-                      ctx.arc(r, r, 18, 0, 2 * Math.PI, false)
-                      ctx.stroke()
-                    }
-                    ctx.restore()
+                    ctx.strokeStyle = hoopColor
+                    ctx.arc(r, r, 18, 0, 2 * Math.PI, false)
+                    ctx.stroke()
                   }
+                  ctx.restore()
                 }
-              </Canvas>
-              </div>
-            )
-          }
-        </Motion>
+              }
+            </Canvas>
+          )
+        }
+      </Motion>
       <Text color={color}>{children}</Text>
     </Wrapper>
   )

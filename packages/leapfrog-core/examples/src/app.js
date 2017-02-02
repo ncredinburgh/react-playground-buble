@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import {
-  BrowserRouter,
+  HashRouter,
   Match,
   Link,
   Miss,
 } from 'react-router'
 
-import { defaultTheme } from '../../src/themes'
-//import ThemeBroadcast from '../../src/util/theme-broadcast'
+import { diTheme } from '../../src/themes'
 import ThemeChooserProvider from '../../src/components/theme-chooser-provider'
-//import { initThemedPlayground } from './components/themed-playground'
 import CaretPage from './pages/caret-page'
 import PageHeaderPage from './pages/page-header-page'
 import ButtonPage from './pages/button-page'
@@ -24,6 +22,7 @@ import RadioPage from './pages/radio-page'
 import ModalPage from './pages/modal-page'
 import ToggleSwitchPage from './pages/toggle-switch-page'
 import Ie9Page from './pages/ie9-page'
+import StatusPage from './pages/status-page'
 import Menu from './components/menu'
 import styled from 'styled-components'
 import { themeBroadcast } from './index'
@@ -48,11 +47,12 @@ const Page = styled.div`
 
 
 const App = () => (
-  <BrowserRouter>
+  <HashRouter>
     <ThemeChooserProvider themeBroadcast={themeBroadcast}>
       <Wrapper>
         <Menu />
         <Page themeBroadcast={themeBroadcast}>
+          <Match exactly pattern="/examples/intro" component={StatusPage} />
           <Match exactly pattern="/examples/caret" component={CaretPage} />
           <Match exactly pattern="/examples/page-header" component={PageHeaderPage} />
           <Match exactly pattern="/examples/button" component={ButtonPage} />
@@ -67,11 +67,11 @@ const App = () => (
           <Match exactly pattern="/examples/modal" component={ModalPage} />
           <Match exactly pattern="/examples/toggle-switch" component={ToggleSwitchPage} />
           <Match exactly pattern="/examples/ie9" component={Ie9Page} />
-          <Miss render={() => <PageHeaderPage />} />
+          <Miss render={() => <ButtonPage />} />
         </Page>
       </Wrapper>
     </ThemeChooserProvider>
-  </BrowserRouter>
+  </HashRouter>
 )
 
 export default App

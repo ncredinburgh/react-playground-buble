@@ -64,7 +64,7 @@ const primaryStyles = ({
   primary,
   disabled,
   theme: {
-    sectionAColor,
+    sectionCColor,
     sectionATextColor,
     useLightAccent,
   },
@@ -73,7 +73,7 @@ const primaryStyles = ({
     useLightAccent,
     darkenGradient: 0.18,
     darkenHover: 0.25,
-    color: sectionAColor,
+    color: sectionCColor,
     length: 0.3,
     borderSize: 0,
   })

@@ -28,16 +28,16 @@ const DayPage = () => (
     <Playground
       defaultValue={`<DateDropdown />`}
       minHeightViewer={470}
-      scope={{ DateDropdown }}
-      top left fullWidth
+      scope={{ DateDropdown, DateRangeDropdown }}
+      top
     />
 
     <p>DateRangeDropdown</p>
     <Playground
       defaultValue={`<DateRangeDropdown/>`}
       minHeightViewer={470}
-      scope={{ DateRangeDropdown }}
-      top left fullWidth
+      scope={{ DateRangeDropdown, DateRangeDropdown }}
+      top
     />
 
     <p>onChange and defaultValue</p>
@@ -50,7 +50,7 @@ const DayPage = () => (
 }
       minHeightViewer={470}
       scope={{ DateDropdown, DateRangeDropdown }}
-      top left fullWidth
+      top
     />
 
     <p>Disable weekends</p>
@@ -58,7 +58,7 @@ const DayPage = () => (
       defaultValue={`<DateDropdown disableWeekends/>`}
       minHeightViewer={470}
       scope={{ DateDropdown }}
-      top left fullWidth
+      top
     />
     <p>minStartDate and maxEndDate</p>
     <Playground
@@ -73,8 +73,8 @@ const DayPage = () => (
   maxEndDate={maxEndDate}
   />`}
       minHeightViewer={470}
-      scope={{ DateDropdown }}
-      top left fullWidth
+      scope={{ DateDropdown, DateRangeDropdown }}
+      top
     />
   </div>
 )
