@@ -9,29 +9,26 @@ import {
   DownloadForm,
   DateDropdown,
   DateRangeDropdown,
+  H2,
+  H3,
 } from '../../../src'
 
 import Playground from '../components/themed-playground'
+import PropsDocs from '../components/props-docs'
 
-const minHeight = height => children => (
-  <div style={{minHeight: height}}>
-    hello
-    {children}
-  </div>
-)
+const src = require('!!raw-loader!../../../src/components/dates/date-dropdown')
+const src2 = require('!!raw-loader!../../../src/components/dates/date-range-dropdown')
 
 const DayPage = () => (
   <div>
-
     <Title>Date Pickers</Title>
     <p>DateDropdown</p>
     <Playground
       defaultValue={`<DateDropdown />`}
-      minHeightViewer={470}
       scope={{ DateDropdown, DateRangeDropdown }}
+      minHeightViewer={470}
       top
     />
-
     <p>DateRangeDropdown</p>
     <Playground
       defaultValue={`<DateRangeDropdown/>`}
@@ -76,6 +73,27 @@ const DayPage = () => (
       scope={{ DateDropdown, DateRangeDropdown }}
       top
     />
+    <h2>Props</h2>
+    <p>The date picker uses UTC dates. The time at midnight represents the day.
+    You can construct a UTC date like
+    this <code>new Date('2017-02-01')</code> (note zero padding is needed on months and dates).
+    Also note that <code>new Date()</code> gets a date in the current timezone.
+    This may resolve to a different UTC date. So to normalize todays date do the following:
+    </p>
+<pre>{`const normalizeLocalDate = (date) => {
+  const zeroPad = x => \`0\${x}\`.substr(-2)
+  const year = localDate.getFullYear()
+  const month = zeroPad(localDate.getMonth())
+  const date = zeroPad(localDate.getDate())
+  return new Date(\`\${year}-\${month}-\${date}\`)
+}
+
+const utcToday = normalizeLocalDate(new Date())
+`}</pre>
+    <H3>DateDropdown Props</H3>
+    <PropsDocs src={src} />
+    <H3>DateRangeDropdown Props</H3>
+    <PropsDocs src={src2} />
   </div>
 )
 

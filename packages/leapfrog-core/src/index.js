@@ -41,3 +41,4 @@ export DateDropdown from './components/dates/date-dropdown'
 
 export DateRangeDropdown from './components/dates/date-range-dropdown'
 export DownloadForm from './components/download-form'
+export { H1, H2, H3 } from './components/typography/headings'

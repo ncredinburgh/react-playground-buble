@@ -1,7 +1,45 @@
+// @flow
+
 import React from 'react'
 import DateDropdownPrimative from './date-dropdown-primative'
 
-const DateDropdown = ({
+type DateRangeType = {
+  firstSelected: Date,
+  lastSelected: Date,
+}
+
+type DateDropdownPropsType = {
+  /**
+    * Disable weekends
+    */
+  disableWeekends: boolean,
+  /**
+    * Dates after disabled
+    */
+  maxEndDate: Date,
+  /**
+    * Dates before disabled
+    */
+  minStartDate: Date,
+  /**
+    * Disable dropdown
+    */
+  disabled: boolean,
+  /**
+    * Use for uncontrolled component
+    */
+  defaultValue: Date,
+  /**
+    * Use for controlled component
+    */
+  value: Date,
+  onChange: (value: Date) => void,
+}
+
+/**
+  * Date picker for single dates
+  */
+function DateDropdown({
   disableWeekends,
   maxEndDate,
   minStartDate,
@@ -9,8 +47,7 @@ const DateDropdown = ({
   defaultValue,
   value,
   onChange,
-}) => {
-
+}: DateDropdownPropsType) {
   const useProps = {
     disableWeekends,
     maxEndDate,

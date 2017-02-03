@@ -19,11 +19,11 @@
     "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs"
   },
   "dependencies": {
-    "@di-internal/dropdown-box": "^0.0.1",
     "@di-internal/leapfrog-icons": "^0.0.1",
     "@di-internal/leapfrog-util": "^0.0.1",
     "color-array": "0.0.8",
     "react-addons-transition-group": "^15.4.1",
+    "react-docgen": "^2.13.0",
     "react-motion": "^0.4.7",
     "react-pure-render": "^1.0.2",
     "recompose": "^0.20.2",
