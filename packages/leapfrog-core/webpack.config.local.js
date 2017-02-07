@@ -31,7 +31,7 @@ module.exports = env => {
       //   ),
       //   '../examples/src/index',
       // ],
-      vendor: ['babel-polyfill', 'react', 'react-dom'],
+      vendor: ['babel-polyfill', 'react', 'react-dom', 'react-docgen', 'codemirror'],
     },
     output: {
       filename: 'bundle-[name].js',

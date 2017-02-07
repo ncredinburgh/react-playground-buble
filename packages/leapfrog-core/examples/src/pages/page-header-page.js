@@ -3,9 +3,10 @@ import Title from '../components/title'
 import { Caret, PageHeader } from '../../../src'
 
 import Playground from '../components/themed-playground'
+import DocPage from '../components/doc-page'
 
 const PageHeaderPage = () => (
-  <div>
+  <DocPage>
     <Title>PageHeader</Title>
     <p>Default:</p>
     <Playground
@@ -40,7 +41,7 @@ const PageHeaderPage = () => (
       scope={{ PageHeader }}
       top left fullWidth
     />
-  </div>
+  </DocPage>
 )
 
 export default PageHeaderPage

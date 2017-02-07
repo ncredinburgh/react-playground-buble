@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react'
-import DropdownBox from './dropdown-box'
+import DropdownBox from './dropdown-box-css-anim'
 import Checkbox from '../checkbox'
 import DropdownSearch from './dropdown-search'
 import Spacer from '../spacer'
@@ -22,12 +22,18 @@ const getLi = ({ hidden }) => hidden ? `
   overflow: 'hidden';
 ` : ''
 
+const Ellipsis = styled.div`
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+  overflow: hidden;
+`
+
 const Li = styled.li`
   margin: 0;
   padding: 0px;
   ${getLi}
   list-style: none;
-  ${({ nowrap }) => nowrap ? 'white-space: nowrap;' : ''}
   &:hover {
     background-color: #f5f5f5;
   }`
@@ -93,6 +99,7 @@ export default class MultiselectDropdown extends Component {
 
   onCheck = ({ target }: Event) => {
     const { ul } = this
+    const { options } = this.props
     if (
       !(target instanceof HTMLInputElement) ||
       target == null ||
@@ -101,14 +108,10 @@ export default class MultiselectDropdown extends Component {
     const onChange = this.props.onChange || (() => {})
     const nextValue = ([].slice.call(ul.querySelectorAll('input')) || [])
       .filter((input: HTMLInputElement) => input.checked)
-      .map((input: HTMLInputElement) => input.value)
-    if (target.checked) {
-      this.setState({ selected: [...nextValue, target.value] })
-      onChange([...nextValue, target.value])
-    } else {
+      .map((input: HTMLInputElement) => options[input.value])
+
       this.setState({ selected: nextValue })
       onChange(nextValue)
-    }
   }
 
   onChangeFilter = ({ target }: Event) => {
@@ -189,7 +192,7 @@ export default class MultiselectDropdown extends Component {
       onGray,
       right,
       filterFn,
-      nowrap,
+      noWrap,
       width,
       button: Button,
     } = this.props
@@ -238,11 +241,11 @@ export default class MultiselectDropdown extends Component {
                   // .filter(({ label }) =>
                   //   label.substr(0, this.state.filter.length).toLowerCase() ===
                   //     this.state.filter.toLowerCase())
-                  .map((option) => {
+                  .map((option, i) => {
                     const inputProps = {
                       type: 'checkbox',
-                      value: option.value,
                       name,
+                      value: i,
                       onChange: this.onCheck,
                       checked: undefined,
                       defaultChecked: undefined,
@@ -250,16 +253,15 @@ export default class MultiselectDropdown extends Component {
 
                     if (value instanceof Array) {
                       inputProps.checked =
-                        value.includes(option.value)
+                        value.indexOf(option) !== -1
                     } else if (defaultValue instanceof Array) {
                       inputProps.defaultChecked =
-                        this.state.selected.includes(option.value)
+                        this.state.selected.indexOf(option) !== -1
                     }
                     return (
                       <Li
-                        key={option.value}
+                        key={i}
                         hidden={!appliedFilter(option)}
-                        nowrap={nowrap}
                       >
                         <Checkbox
                           {...inputProps}
@@ -267,7 +269,11 @@ export default class MultiselectDropdown extends Component {
                           margin="0px"
                           padding="20px"
                         >
-                          {option.label}
+                        {
+                          noWrap ?
+                            <Ellipsis>{option.label}</Ellipsis> :
+                            option.label
+                        }
                         </Checkbox>
                       </Li>
                     )

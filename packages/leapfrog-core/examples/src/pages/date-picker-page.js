@@ -15,12 +15,13 @@ import {
 
 import Playground from '../components/themed-playground'
 import PropsDocs from '../components/props-docs'
+import DocPage from '../components/doc-page'
 
 const src = require('!!raw-loader!../../../src/components/dates/date-dropdown')
 const src2 = require('!!raw-loader!../../../src/components/dates/date-range-dropdown')
 
 const DayPage = () => (
-  <div>
+  <DocPage>
     <Title>Date Pickers</Title>
     <p>DateDropdown</p>
     <Playground
@@ -90,11 +91,11 @@ const DayPage = () => (
 
 const utcToday = normalizeLocalDate(new Date())
 `}</pre>
-    <H3>DateDropdown Props</H3>
+    <H2>DateDropdown Props</H2>
     <PropsDocs src={src} />
-    <H3>DateRangeDropdown Props</H3>
+    <H2>DateRangeDropdown Props</H2>
     <PropsDocs src={src2} />
-  </div>
+  </DocPage>
 )
 
 export default DayPage

@@ -5,6 +5,7 @@ import * as icons from '@di-internal/leapfrog-icons'
 import styled, { keyframes } from 'styled-components'
 
 import Playground from '../components/themed-playground'
+import DocPage from '../components/doc-page'
 
 const iconsToPlayground = icons => iconName => (
   <Playground
@@ -19,7 +20,7 @@ const iconsToPlayground = icons => iconName => (
 )
 
 const IconsPage = () => (
-  <div>
+  <DocPage>
     <Title>Icons</Title>
     <p>All icons:</p>
     {
@@ -91,7 +92,7 @@ cursor: pointer;
       }
       scope={{ Accounts : icons.Accounts, styled }}
     />
-  </div>
+  </DocPage>
 )
 
 export default IconsPage

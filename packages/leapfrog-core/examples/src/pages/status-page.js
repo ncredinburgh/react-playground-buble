@@ -5,12 +5,10 @@ import styled from 'styled-components'
 
 import Playground from '../components/themed-playground'
 
-const Wrapper = styled.div`
-  line-height: 1.6em;
-`
+import DocPage from '../components/doc-page'
 
 const PageHeaderPage = () => (
-  <Wrapper>
+  <DocPage>
     <Title>Intoduction</Title>
     <p>PoC for responsive UI and UI documentation with the following aims:</p>
     <ul>
@@ -56,30 +54,30 @@ const PageHeaderPage = () => (
       </li>
     </ul>
     <h2>Status</h2>
-    <p>
-      <ul>
-        <li>Chrome & Firefox - Good</li>
-        <li>Safari
-          <ul>
-            <li>Loader does not animate</li>
-          </ul>
-        </li>
-        <li>IE11
-          <ul>
-            <li>Icons must be placed in a wrapper div to render</li>
-            <li>Loader does not animate</li>
-          </ul>
-        </li>
-        <li>IE9 and IE10<ul>
-          <li>Support possible via component switching</li>
-          <li>Tested component switching on ToggleSwitch using table-cell rather than flexbox</li>
-          <li>IE9 and IE10 probably not worth developing further, because obsolete by delivery time</li>
-          <li>Could be done if needed</li>
+
+    <ul>
+      <li>Chrome & Firefox - Good</li>
+      <li>Safari
+        <ul>
+          <li>Loader does not animate</li>
         </ul>
-        </li>
+      </li>
+      <li>IE11
+        <ul>
+          <li>Icons must be placed in a wrapper div to render</li>
+          <li>Loader does not animate</li>
+        </ul>
+      </li>
+      <li>IE9 and IE10<ul>
+        <li>Support possible via component switching</li>
+        <li>Tested component switching on ToggleSwitch using table-cell rather than flexbox</li>
+        <li>IE9 and IE10 probably not worth developing further, because obsolete by delivery time</li>
+        <li>Could be done if needed</li>
       </ul>
-    </p>
-  </Wrapper>
+      </li>
+    </ul>
+
+  </DocPage>
 )
 
 export default PageHeaderPage

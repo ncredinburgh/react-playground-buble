@@ -3,9 +3,10 @@ import Title from '../components/title'
 import { PageHeader, Spacer, ToggleSwitch } from '../../../src'
 
 import Playground from '../components/themed-playground'
+import DocPage from '../components/doc-page'
 
 const ToggleSwitchPage = () => (
-  <div>
+  <DocPage>
     <Title>Loader</Title>
     <p>Default:</p>
     <Playground
@@ -28,7 +29,7 @@ const ToggleSwitchPage = () => (
       }
       scope={{ ToggleSwitch }}
     />
-  </div>
+  </DocPage>
 )
 
 export default ToggleSwitchPage

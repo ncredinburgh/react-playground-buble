@@ -10,22 +10,27 @@ type OptionType = {
 }
 
 type DropdownPropsType = {
-  options: Array<{ label: string }>,
   /**
+    * Options are objects which must have a label key.
+    * They can have any other keys which may be used
+    * by custom filters functions or onChange handlers.
+    */
+  options: Array<{ label: string }>,
+  /*
    * make button white on gray background
    */
   onGray: boolean,
-  /**
+  /*
    * multiselect dropdown
    */
   multiple: boolean,
   width: number,
   noWrap: boolean,
-  /**
-   * show filter
+  /*
+   * show filter. defaults 'space' meaning 'and' and quotes meaning exactly
    */
   filter: boolean,
-  /**
+  /*
    * override filter function.
    */
   filterFn: (filterText: string) => (option: {
@@ -34,19 +39,18 @@ type DropdownPropsType = {
   /*
    * array when multiple true
    */
-  value: OptionType | Array<OptionType>,
+  value: OptionType,
   /*
    * array when multiple true
    */
-  defaultValue: OptionType | Array<OptionType>,
+  defaultValue: OptionType,
   /*
    * array when multiple true
    */
   onChange: (value: OptionType | Array<OptionType>) => void,
 }
 
+const DropdownSplit = (props: DropdownPropsType) =>
+  <DropdownList {...props} button={DropdownButtonSplit} />
 
-const Dropdown = (props: DropdownPropsType) =>
-  <DropdownList {...props} button={DropdownButton} />
-
-export default Dropdown
+export default DropdownSplit

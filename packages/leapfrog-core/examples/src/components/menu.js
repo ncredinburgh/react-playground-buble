@@ -23,7 +23,7 @@ const MenuListItem = styled.li`
     font-weight: normal;
     font-size: 14px;
     ${({ selected }) => selected ? 'background-color: #6cc3eb;' : ''}
-    &:hover {
+    &:hover, &:active {
       background-color: #6cc3eb;
     }
   }
@@ -50,7 +50,7 @@ const MenuItem = ({ pathname, label }) => {
     (window.location.hash && (window.location.hash.substring(1) === pathname))
   return (
     <MenuListItem selected={selected}>
-      <Link to={pathname}>{label}</Link>
+      <Link to={pathname} onClick={() => document.body.scrollTop = 0}>{label}</Link>
     </MenuListItem>
   )
 }

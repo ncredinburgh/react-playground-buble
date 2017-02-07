@@ -14,10 +14,11 @@ import {
 } from '../../../src'
 
 import Playground from '../components/themed-playground'
+import DocPage from '../components/doc-page'
 
 const LoaderPage = () => (
-  <div>
-    <Title>Loader</Title>
+  <DocPage>
+    <Title>Modal</Title>
     <p>`ModalProvider` puts `pushModal` on the context. Ideally wrap this round
     the App at the root. `WithModal` can retrieve `pushModal` in deeply
     nested components. `WithModal` is a Function
@@ -161,7 +162,7 @@ const ModalLauncher = pushModal => (
       scope={{ Modal, Button, ModalTitle, Spacer, ModalProvider, WithModal }}
     />
 
-  </div>
+  </DocPage>
 )
 
 export default LoaderPage

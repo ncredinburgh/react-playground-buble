@@ -6,7 +6,7 @@ export default class SlideDown extends React.Component {
   }
   componentWillEnter(callback) {
     const rect = this.el.getBoundingClientRect()
-    console.log('slide down')
+    console.log(rect)
     this.setState({
       phase: 'hide',
       height: rect.height,
@@ -40,7 +40,7 @@ const styleWrapper = ({ height, phase }) => {
   const styles = {
     init: {
       position: 'relative',
-      overflow: 'hidden',
+//      overflow: 'hidden',
       transition: 'all .3s',
     },
     hide: {

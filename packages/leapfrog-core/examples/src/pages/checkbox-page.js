@@ -3,9 +3,10 @@ import Title from '../components/title'
 import { PageHeader, Spacer, Checkbox } from '../../../src'
 
 import Playground from '../components/themed-playground'
+import DocPage from '../components/doc-page'
 
 const CheckboxPage = () => (
-  <div>
+  <DocPage>
     <Title>Checkbox</Title>
     <p>Default:</p>
     <Playground
@@ -120,7 +121,7 @@ const CheckboxPage = () => (
       }
       scope={{ Checkbox }}
     />
-  </div>
+  </DocPage>
 )
 
 export default CheckboxPage

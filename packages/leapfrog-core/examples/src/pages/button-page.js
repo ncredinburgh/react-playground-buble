@@ -4,9 +4,10 @@ import { Button, PageHeader } from '../../../src'
 import styled from 'styled-components'
 
 import Playground from '../components/themed-playground'
+import DocPage from '../components/doc-page'
 
 const ButtonPage = () => (
-  <div>
+  <DocPage>
     <Title>Button</Title>
     <p>`secondary` by default:</p>
     <Playground
@@ -115,7 +116,7 @@ const ButtonPage = () => (
       viewerStyle={{ width: '100%' }}
     />
 
-  </div>
+  </DocPage>
 )
 
 export default ButtonPage

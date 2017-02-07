@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react'
-import DropdownBox from './dropdown-box'
+import DropdownBox from './dropdown-box-css-anim'
 import DropdownSearch from './dropdown-search'
 import styled from 'styled-components'
 import {
@@ -12,8 +12,7 @@ import {
 } from './dropdown-focus-helpers'
 import { googlish } from '@di-internal/leapfrog-util'
 
-type OptionsType = {
-  value: string,
+type OptionType = {
   label: string,
 }
 
@@ -25,24 +24,32 @@ const getLi = ({ hidden }) => hidden ? `
   overflow: 'hidden';
 ` : ''
 
+const Ellipsis = styled.div`
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+  overflow: hidden;
+`
+
 const Li = styled.li`
   margin: 0;
   padding: 0 20px;
-  height: 60px;
+  minHeight: 60px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: flex;
   flex-direction: vertical;
   vertical-align: middle;
   align-items: center;
   ${getLi}
   list-style: none;
-  ${({ nowrap }) => nowrap ? 'white-space: nowrap;' : ''}
   cursor: default;
   box-sizing: border-box;
   ${({ selected }) => selected ? 'background: #ccc;' : ''}
   &:focus {
     outline: none;
     border: 1px rgba(0,0,0,0.2) dashed;
-    padding: 0 19px;
+    padding: 9px 19px;
   }
   &:hover {
     background: ${({ selected }) => selected ? '#ccc' : '#f5f5f5'};
@@ -75,9 +82,8 @@ export default class SelectDropdown extends Component {
   state = {
     isOpen: false,
     filter: '',
-    selectedIndex: undefined,
-    selected: undefined,
-    value: this.props.value || this.props.defaultValue,
+    selectedIndex: null,
+    selected: this.props.value || this.props.defaultValue || null,
   };
 
   static defaultProps = {
@@ -152,10 +158,16 @@ export default class SelectDropdown extends Component {
   }
 
   setSelected = item => {
-    if (this.props.value) return
-    this.setState({
-      selected: item,
-    })
+    const { value, onChange } = this.props
+    if (onChange && item !== this.state.selected) {
+      onChange(item)
+    }
+    if (value === undefined && item !== this.state.selected) {
+      this.setState({
+        selected: item,
+      })
+    }
+
     // clearTimeout(this.timeout)
     // this.timeout = setTimeout(
     //   () => {
@@ -193,6 +205,12 @@ export default class SelectDropdown extends Component {
     clearTimeout(this.timeout)
   }
 
+  componentWillReceiveProps({ value }) {
+    if (value !== undefined && value !== this.state.selected) {
+      this.setState({ selected: value })
+    }
+  }
+
   render () {
     const {
       filter,
@@ -204,7 +222,7 @@ export default class SelectDropdown extends Component {
       options,
       title,
       filterFn,
-      nowrap,
+      noWrap,
       width,
       button: Button,
     } = this.props
@@ -218,7 +236,7 @@ export default class SelectDropdown extends Component {
           innerRef={(button: HTMLElement) => { if (button) this.button = button }}
         >
           {
-            selected === undefined ?
+            selected === null ?
               title :
               selected.label
           }
@@ -245,16 +263,19 @@ export default class SelectDropdown extends Component {
               {
                 options
                 .filter(filterFn(filter))
-                .map(({ value, label }, i) => (
+                .map(({ label }, i) => (
                   <Li
-                    nowrap={nowrap}
                     key={i}
                     tabIndex={0}
                     selected={selected === options[i]}
                     onKeyDown={this.onKeyDown2(options[i])}
                     onClick={() => this.setSelected(options[i])}
                   >
-                    {label}
+                    {
+                      noWrap ?
+                        <Ellipsis>{label}</Ellipsis> :
+                        label
+                    }
                   </Li>
                 ))
               }

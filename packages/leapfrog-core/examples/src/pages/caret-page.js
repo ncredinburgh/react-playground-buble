@@ -3,6 +3,7 @@ import Title from '../components/title'
 import { Caret } from '../../../src'
 
 import Playground from '../components/themed-playground'
+import DocPage from '../components/doc-page'
 
 const compass =
 `<div>
@@ -47,7 +48,7 @@ const rotate =
 <Rotate />`
 
 const CaretPage = () => (
-  <div>
+  <DocPage>
     <Title>Caret</Title>
     <p>Default caret:</p>
     <Playground
@@ -96,7 +97,7 @@ const CaretPage = () => (
       defaultValue={rotate}
       scope={{ Caret }}
     />
-  </div>
+  </DocPage>
 )
 
 export default CaretPage

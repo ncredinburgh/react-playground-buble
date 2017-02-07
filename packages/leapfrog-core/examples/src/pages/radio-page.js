@@ -3,9 +3,10 @@ import Title from '../components/title'
 import { PageHeader, Spacer, Radio } from '../../../src'
 
 import Playground from '../components/themed-playground'
+import DocPage from '../components/doc-page'
 
 const RadioPage = () => (
-  <div>
+  <DocPage>
     <Title>Radio</Title>
     <p>Default:</p>
     <Playground
@@ -112,7 +113,7 @@ const RadioPage = () => (
       }
       scope={{ Radio }}
     />
-  </div>
+  </DocPage>
 )
 
 export default RadioPage

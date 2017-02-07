@@ -3,9 +3,10 @@ import Title from '../components/title'
 import { Loader, PageHeader, Button, Spacer } from '../../../src'
 
 import Playground from '../components/themed-playground'
+import DocPage from '../components/doc-page'
 
 const LoaderPage = () => (
-  <div>
+  <DocPage>
     <Title>Loader</Title>
     <p>Default:</p>
     <Playground
@@ -55,7 +56,7 @@ const LoaderPage = () => (
       }
       scope={{ Loader, Button, Spacer }}
     />
-  </div>
+  </DocPage>
 )
 
 export default LoaderPage

@@ -12,11 +12,8 @@ export withToasts from './components/toasts/with-toasts-hoc'
 export TextInput from './components/text-input'
 export DropdownButton from './components/dropdowns/dropdown-button'
 export DropdownButtonSplit from './components/dropdowns/dropdown-button-split'
-export MultiselectDropdown from './components/dropdowns/multiselect-dropdown'
-export {
-  Dropdown,
-  DropdownSplit,
-} from './components/dropdowns/dropdown'
+export Dropdown from './components/dropdowns/dropdown'
+export DropdownSplit from './components/dropdowns/dropdown-split'
 // export MultiselectDropdown from './components/dropdowns/multiselect-dropdown'
 // export SelectDropdown from './components/dropdowns/select-dropdown'
 export Loader from './components/loader'

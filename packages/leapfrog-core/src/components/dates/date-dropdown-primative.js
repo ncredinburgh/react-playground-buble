@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react'
-import DropdownBox from '../dropdowns/dropdown-box'
+import DropdownBox from '../dropdowns/dropdown-box-css-anim'
 import TextInput from '../text-input'
 import DatePicker from './date-picker'
 import styled from 'styled-components'
@@ -84,9 +84,23 @@ export default class DateDropdown extends Component {
 
   onSelect = (value) => {
     const { onChange, range } = this.props
-    this.setState({ value })
+    let nextValue
+    if (!range) {
+      nextValue = value.firstSelected
+    } else {
+      if (!value.lastSelected || (value.firstSelected <= value.lastSelected)) {
+        nextValue = value
+      } else {
+        nextValue = {
+          firstSelected: value.lastSelected,
+          lastSelected: value.firstSelected,
+        }
+      }
+    }
+
+    this.setState({ value: nextValue })
     if (onChange) {
-      onChange(range ? value : value.firstSelected )
+      onChange(nextValue)
     }
     if (
       (!range && value.firstSelected) ||

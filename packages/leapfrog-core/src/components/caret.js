@@ -13,8 +13,8 @@ const Caret = ({ north, south, east, west, width = 15, height = 11, style = {}, 
       viewBox={`0 0 ${width} ${height}`}
       xmlns="http://www.w3.org/2000/svg"
       style={{
-        '-webkit-transform': `rotate3d(0,0,1,${rotate}deg)`,
-        '-webkit-transition': `-webkit-transform ${transitionSpeed}s`,
+        WebkitTransform: `rotate3d(0,0,1,${rotate}deg)`,
+        WebkitTransition: `-webkit-transform ${transitionSpeed}s`,
         transform: `rotate3d(0,0,1,${rotate}deg)`,
         transition: `transform ${transitionSpeed}s`,
         ...style
