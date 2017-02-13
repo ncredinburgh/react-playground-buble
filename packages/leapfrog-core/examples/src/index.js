@@ -6,7 +6,7 @@ import {
   forceViewerUpdate,
 } from '@di-internal/react-playground-lite'
 import { diTheme } from '../../src/themes'
-import { ThemeBroadcast } from '@di-internal/leapfrog-util'
+import { ThemeBroadcast } from '../../src'
 import { initThemedPlayground } from './components/themed-playground'
 import FastClick from 'fastclick'
 export const themeBroadcast = new ThemeBroadcast(diTheme)

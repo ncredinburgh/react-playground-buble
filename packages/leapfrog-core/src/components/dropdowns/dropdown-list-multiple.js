@@ -6,7 +6,7 @@ import Checkbox from '../checkbox'
 import DropdownSearch from './dropdown-search'
 import Spacer from '../spacer'
 import styled from 'styled-components'
-import { googlish } from '@di-internal/leapfrog-util'
+import googlish from '../../utils/googlish'
 import {
   focusFirst,
   focusLast,

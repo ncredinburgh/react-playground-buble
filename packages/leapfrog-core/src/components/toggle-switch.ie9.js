@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { firstDefined } from '@di-internal/leapfrog-util'
+import { firstDefined } from '../utils/first-defined'
 
 import {
   fromCss,

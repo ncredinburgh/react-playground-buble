@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Forward, Back } from '@di-internal/leapfrog-icons'
-import { fromTheme } from '@di-internal/leapfrog-util'
+import { fromTheme } from '../../utils/theme-util'
 import { monthAdd, getLocalDate } from './date-math'
 
 const Wrapper = styled.div`

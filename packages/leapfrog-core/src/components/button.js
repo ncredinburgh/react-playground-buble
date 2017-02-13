@@ -5,7 +5,7 @@ import {
   lightenCssColor,
   darkenCssColor,
   opacityCssColor,
-} from '@di-internal/leapfrog-util'
+} from '../utils/theme-util'
 
 const hoverGradient = ({
   useLightAccent,

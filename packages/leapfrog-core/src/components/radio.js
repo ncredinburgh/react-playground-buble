@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Checkmark } from '@di-internal/leapfrog-icons'
-import { getSectionCColor } from '@di-internal/leapfrog-util'
+import { getSectionCColor } from '../utils/theme-util'
 
 const getGutter = ({ gutter, hasChildren, before, small }) => {
   if (hasChildren) {

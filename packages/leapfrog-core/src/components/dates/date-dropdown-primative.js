@@ -7,7 +7,7 @@ import DatePicker from './date-picker'
 import styled from 'styled-components'
 import { formatUsDate, getMonth, getDay } from './date-math'
 import { Calendar, Close } from '@di-internal/leapfrog-icons'
-import { fromTheme } from '@di-internal/leapfrog-util'
+import { fromTheme } from '../../utils/theme-util'
 
 const Wrapper = styled.div`
   width: 280px;

@@ -10,7 +10,7 @@ import {
   focusNext,
   focusPrev,
 } from './dropdown-focus-helpers'
-import { googlish } from '@di-internal/leapfrog-util'
+import googlish from '../../utils/googlish'
 
 type OptionType = {
   label: string,

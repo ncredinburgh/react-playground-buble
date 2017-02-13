@@ -3,7 +3,7 @@ import {
   Link,
 } from 'react-router'
 import styled from 'styled-components'
-import { fromTheme } from '@di-internal/leapfrog-util'
+import { fromTheme } from '../../../src'
 
 const Ul = styled.ul`
   color: ${fromTheme('sectionATextColor')};
