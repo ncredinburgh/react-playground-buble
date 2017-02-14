@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import {
   HashRouter,
-  Match,
-  Link,
-  Miss,
-} from 'react-router'
+  Route,
+  Redirect,
+} from 'react-router-dom'
+
+window.React = React
 
 import { diTheme } from '../../src/themes'
 import ThemeChooserProvider from '../../src/components/theme-chooser-provider'
@@ -52,22 +53,22 @@ const App = () => (
       <Wrapper>
         <Menu />
         <Page themeBroadcast={themeBroadcast}>
-          <Match exactly pattern="/examples/intro" component={StatusPage} />
-          <Match exactly pattern="/examples/caret" component={CaretPage} />
-          <Match exactly pattern="/examples/page-header" component={PageHeaderPage} />
-          <Match exactly pattern="/examples/button" component={ButtonPage} />
-          <Match exactly pattern="/examples/toast" component={ToastPage} />
-          <Match exactly pattern="/examples/text-input" component={TextInputPage} />
-          <Match exactly pattern="/examples/dropdown" component={DropdownPage} />
-          <Match exactly pattern="/examples/date-picker" component={DatePickerPage} />
-          <Match exactly pattern="/examples/leapfrog-icons" component={LeapfrogIconsPage} />
-          <Match exactly pattern="/examples/loader" component={LoaderPage} />
-          <Match exactly pattern="/examples/checkbox" component={CheckboxPage} />
-          <Match exactly pattern="/examples/radio" component={RadioPage} />
-          <Match exactly pattern="/examples/modal" component={ModalPage} />
-          <Match exactly pattern="/examples/toggle-switch" component={ToggleSwitchPage} />
-          <Match exactly pattern="/examples/ie9" component={Ie9Page} />
-          <Miss render={() => <ButtonPage />} />
+          <Route exact path="/examples/intro" component={StatusPage} />
+          <Route exact path="/examples/caret" component={CaretPage} />
+          <Route exact path="/examples/page-header" component={PageHeaderPage} />
+          <Route exact path="/examples/button" component={ButtonPage} />
+          <Route exact path="/examples/toast" component={ToastPage} />
+          <Route exact path="/examples/text-input" component={TextInputPage} />
+          <Route exact path="/examples/dropdown" component={DropdownPage} />
+          <Route exact path="/examples/date-picker" component={DatePickerPage} />
+          <Route exact path="/examples/di-ui-icon-elements" component={LeapfrogIconsPage} />
+          <Route exact path="/examples/loader" component={LoaderPage} />
+          <Route exact path="/examples/checkbox" component={CheckboxPage} />
+          <Route exact path="/examples/radio" component={RadioPage} />
+          <Route exact path="/examples/modal" component={ModalPage} />
+          <Route exact path="/examples/toggle-switch" component={ToggleSwitchPage} />
+          <Route exact path="/examples/ie9" component={Ie9Page} />
+          <Route exact path="/" render={() => <Redirect to="/examples/button" />} />
         </Page>
       </Wrapper>
     </ThemeChooserProvider>

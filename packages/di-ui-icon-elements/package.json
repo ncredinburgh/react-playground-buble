@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
-  "name": "@di-internal/leapfrog-icons",
+  "name": "@di-internal/di-ui-icon-elements",
   "description": "React playground using Buble",
   "main": "lib/index.js",
   "module": "lib-es/index.js",
@@ -17,23 +17,24 @@
     "start": "cd ../.. && PACKAGE=$npm_package_config_package node ./dev-server.js",
     "test": "cd ../.. && PACKAGE=$npm_package_config_package npm test",
     "build:babel": "cd ../.. && PACKAGE=$npm_package_config_package npm run build:babel && PACKAGE=$npm_package_config_package npm run build:es",
-    "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs"
+    "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs",
+    "prepublish": "npm run build:babel"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/omysoul/omysoul.git"
   },
-  "homepage": "https://github.com/omysoul/omysoul/packages/leapfrog-icons",
+  "homepage": "https://github.com/omysoul/omysoul/packages/di-ui-icon-elements",
   "dependencies": {},
   "peerDependencies": {
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "devDependencies": {
     "svgo": "^0.7.1"
   },
   "config": {
-    "package": "leapfrog-icons",
+    "package": "di-ui-icon-elements",
     "port": 3000
   },
   "publishConfig": {

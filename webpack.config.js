@@ -98,7 +98,7 @@ module.exports = env => {
             join(packageRoot, 'example'),
             // ...ifDev(
             //   join(packageRoot, 'node_modules', '@di', 'react-playground-lite', 'src'),
-            //   join(packageRoot, 'node_modules', '@di', 'leapfrog-icons'),
+            //   join(packageRoot, 'node_modules', '@di', 'di-ui-icon-elements'),
             //   join(packageRoot, 'node_modules', '@di', 'leapfrog-util')
             // ),
           ],

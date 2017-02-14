@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
-  "name": "@di-internal/leapfrog-core",
+  "name": "@di-internal/di-ui-styled",
   "description": "React playground using Buble",
   "main": "lib/index.js",
   "browser:ie9": "lib/index-ie9.js",
@@ -16,10 +16,11 @@
     "test": "cd ../.. && PACKAGE=$npm_package_config_package npm test",
     "build:babel": "cd ../.. && PACKAGE=$npm_package_config_package npm run build:babel",
     "build:webpack": "npm run clean && NODE_ENV=production webpack --config webpack.config.local.js --env.prod && cp examples/index.html dist",
-    "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs"
+    "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs",
+    "prepublish": "npm run build:babel"
   },
   "dependencies": {
-    "@di-internal/leapfrog-icons": "^0.0.1",
+    "@di-internal/di-ui-icon-elements": "^0.0.1",
     "color-array": "0.0.8",
     "react-addons-transition-group": "^15.4.1",
     "react-docgen": "^2.13.0",
@@ -32,14 +33,14 @@
     "@di-internal/react-playground-lite": "^0.0.3",
     "@di-internal/react-playground-styled": "^0.0.3",
     "fastclick": "^1.0.6",
-    "react-router": "^4.0.0-alpha.5"
+    "react-router-dom": "^4.0.0-beta.5"
   },
   "peerDependencies": {
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "config": {
-    "package": "leapfrog-core",
+    "package": "di-ui-styled",
     "port": 3000
   }
 }

@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "publish:internal": "lerna publish --yes --skip-git",
+    "publish:internal": "node publish-updated react-playground-bare --new",
+    "publish:internalold": "lerna publish --yes --skip-git",
     "clean": "rimraf lib dist lib-es",
     "build:webpack-var": "npm run clean && NODE_ENV=production webpack --config webpack.config.js --env.var",
     "build:webpack": "npm run clean && NODE_ENV=production webpack --config packages/$PACKAGE/webpack.config.local.js --env.prod",
@@ -79,7 +80,6 @@
     "react-docgen": "^2.10.0",
     "react-dom": "^15.4.2",
     "react-hot-loader": "^3.0.0-beta.2",
-    "react-router": "^4.0.0-alpha.5",
     "recompose": "^0.20.2",
     "rimraf": "^2.4.3",
     "semantic-release": "^4.3.5",

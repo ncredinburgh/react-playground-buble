@@ -6,7 +6,7 @@ import TextInput from '../text-input'
 import DatePicker from './date-picker'
 import styled from 'styled-components'
 import { formatUsDate, getMonth, getDay } from './date-math'
-import { Calendar, Close } from '@di-internal/leapfrog-icons'
+import { Calendar, Close } from '@di-internal/di-ui-icon-elements'
 import { fromTheme } from '../../utils/theme-util'
 
 const Wrapper = styled.div`

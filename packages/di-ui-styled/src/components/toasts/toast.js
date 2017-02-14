@@ -7,7 +7,7 @@ import {
   Success,
   AlertFill,
   Info,
-} from '@di-internal/leapfrog-icons'
+} from '@di-internal/di-ui-icon-elements'
 
 const colors = {
   success: 'background: #e0ead9',

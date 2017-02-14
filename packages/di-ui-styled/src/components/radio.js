@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Checkmark } from '@di-internal/leapfrog-icons'
+import { Checkmark } from '@di-internal/di-ui-icon-elements'
 import { getSectionCColor } from '../utils/theme-util'
 
 const getGutter = ({ gutter, hasChildren, before, small }) => {

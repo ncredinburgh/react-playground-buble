@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Forward, Back } from '@di-internal/leapfrog-icons'
+import { Forward, Back } from '@di-internal/di-ui-icon-elements'
 import { fromTheme } from '../../utils/theme-util'
 import { monthAdd, getLocalDate } from './date-math'
 

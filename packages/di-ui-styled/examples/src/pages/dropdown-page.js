@@ -9,7 +9,7 @@ import {
   H2,
   H3,
 } from '../../../src'
-import * as Icons from '@di-internal/leapfrog-icons'
+import * as Icons from '@di-internal/di-ui-icon-elements'
 
 import Playground from '../components/themed-playground'
 import PropsDocs from '../components/props-docs'

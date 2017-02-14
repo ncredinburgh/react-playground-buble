@@ -1,5 +1,5 @@
 import React from 'react'
-import { PageLoader, SmallLoader } from '@di-internal/leapfrog-icons'
+import { PageLoader, SmallLoader } from '@di-internal/di-ui-icon-elements'
 import styled, { keyframes } from 'styled-components'
 
 const rotate360 = keyframes`
