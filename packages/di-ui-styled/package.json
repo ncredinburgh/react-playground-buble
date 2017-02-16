@@ -42,5 +42,6 @@
   "config": {
     "package": "di-ui-styled",
     "port": 3000
-  }
+  },
+  "files": ["package.json", "lib", "readme.md", "lib-es"]
 }

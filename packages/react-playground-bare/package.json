@@ -33,7 +33,5 @@
     "package": "react-playground-bare",
     "port": 3000
   },
-  "publishConfig": {
-    "registry": "http://anprd10d2dge140.dca.diginsite.net:8080/repository/npm-internal"
-  }
+  "files": ["package.json", "lib", "readme.md", "lib-es"]
 }
