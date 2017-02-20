@@ -7,6 +7,7 @@ const fs = require('fs')
 const path = require('path')
 const bodyParser = require('body-parser')
 const { transform } = require('buble')
+const stream = require('stream')
 
 
 const port = process.env.npm_package_config_port || 3000
@@ -61,11 +62,37 @@ app.use((req, res, next) => {
 })
 
 app.post('/form', (req, res) => {
-  console.log(req.body)
   res.header('Content-Type', 'text/csv')
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Content-Disposition', 'attachment; filename=out.csv')
-  res.send('hello')
+  setTimeout(
+    () => {
+      res.send('hello')
+    },
+    5000
+  )
+})
+
+app.post('/form2', (req, res) => {
+  res.header('Content-Type', 'text/csv')
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Content-Disposition', 'attachment; filename=out.csv')
+  const s = new stream.Readable()
+  s._read = function noop() {}
+  res.write('')
+  s.on('data', (data) => {
+    res.write(data)
+  })
+  s.on('end', () => {
+    res.end()
+  })
+  setTimeout(
+    () => {
+      s.push('hello')
+      s.push(null)
+    },
+    5000
+  )
 })
 
 app.post('/eval', (req, res) => {

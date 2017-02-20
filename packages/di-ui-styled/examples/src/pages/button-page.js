@@ -1,6 +1,6 @@
 import React from 'react'
 import Title from '../components/title'
-import { Button, PageHeader } from '../../../src'
+import { Button, PageHeader, DownloadForm } from '../../../src'
 import styled from 'styled-components'
 
 import Playground from '../components/themed-playground'
@@ -8,6 +8,12 @@ import DocPage from '../components/doc-page'
 
 const ButtonPage = () => (
   <DocPage>
+  <Playground
+    defaultValue={
+`<DownloadForm url="/form2"><Button primary>Download</Button></DownloadForm>`
+    }
+    scope={{ Button, styled, DownloadForm }}
+  />
     <Title>Button</Title>
     <p>`secondary` by default:</p>
     <Playground

@@ -54,8 +54,13 @@ const hoverGradient = ({
     background-color: ${hoverColor};
     transition: box-shadow ${length}s;`
 
-  const hover = `&:hover:before {
+  const hover = `&:active:before {
     opacity: 0;
+  }
+  @media (hover: hover) {
+    &:hover:before {
+      opacity: 0;
+    }
   }`
   return { init, hover }
 }
@@ -111,12 +116,19 @@ height: 35px;
 background: #fff;
 font-size: 13px;
 transition: background-color 0.3s;
+
 ${
   disabled ? '' :
-  `&:hover {
+`&:active {
+  border: 1px solid #ccc;
+  background: #ccc;
+}
+@media (hover: hover) {
+  &:hover {
     border: 1px solid #ccc;
     background: #ccc;
-  }`
+  }
+}`
 }`
 
 const disabledStyles = ({ disabled }) =>
