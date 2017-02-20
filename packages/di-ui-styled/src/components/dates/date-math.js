@@ -67,5 +67,5 @@ export const getLocalDate = () => {
   const month = `0${now.getMonth()}`.substr(-2)
   const year = now.getFullYear()
   const date = `0${now.getDate()}`.substr(-2)
-  return new Date(`${year}-${month + 1}-${date}`)
+  return new Date(`${year}-${month * 1 + 1}-${date}`)
 }
