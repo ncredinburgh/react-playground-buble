@@ -1,5 +1,5 @@
 {
-  "version": "0.0.1",
+  "version": "0.0.2",
   "name": "@di-internal/di-ui-styled",
   "description": "React playground using Buble",
   "main": "lib/index.js",
@@ -43,5 +43,10 @@
     "package": "di-ui-styled",
     "port": 3000
   },
-  "files": ["package.json", "lib", "readme.md", "lib-es"]
+  "files": [
+    "package.json",
+    "lib",
+    "readme.md",
+    "lib-es"
+  ]
 }
