@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Caret = ({ north, south, east, west, width = 15, height = 11, style = {}, rotate = 0, transitionSpeed = 0 }) => {
+const Caret = ({ north, south, east, west, width = 15, height = 11, style = {}, rotate = 90, transitionSpeed = 0 }) => {
   if (north) rotate = 180
   if (east) rotate = 270
   if (west) rotate = 90

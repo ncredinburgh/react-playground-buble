@@ -62,28 +62,31 @@ function publishUpdated(packageName) {
 
   npmView.on('close', code => {
     clearTimeout(timeout)
-    const notFound = errMessage.indexOf('npm ERR! 404') !== -1
-    if (notFound) {
-      if (!isNew) {
-        console.log(
-`Package ${packageName} may not have been published.
-When adding a new package use '--new' on first publish:
+    const packageNotFound = errMessage.indexOf('npm ERR! 404') !== -1
 
-node publish-updated some-package --new`
-        )
-        console.log(`child process exited with code ${1}`)
-        process.exit(1)
-      } else {
-        npmPublish(packageName, version)
-      }
+    if (packageNotFound) {
+//       if (!isNew) {
+//         console.log(
+// `Package ${packageName} may not have been published.
+// When adding a new package use '--new' on first publish:
+//
+// node publish-updated some-package --new`
+//         )
+//         console.log(`child process exited with code ${1}`)
+//         process.exit(1)
+//       } else {
+      console.log(`first publish ${packageName}@${version}`)
+      npmPublish(packageName, version)
+      // }
     } else {
       if (message === 'undefined') {
         console.log('publishing because version not found')
         npmPublish(packageName, version)
       } else {
-        console.log('VERSION May exist')
-        console.log(`child process exited with code ${1}`)
-        process.exit(1)
+        console.log('VERSION May exist so skiping publish')
+        console.log(`message: ${message}`)
+        console.log(`errMessage: ${errMessage}`)
+        process.exit(0)
       }
     }
   })

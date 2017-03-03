@@ -130,27 +130,29 @@ class Month extends React.Component {
     } = this
 
     const rows = getWeeksInMonth(showMonth)
-    const item = (date, i) => (
-      <Day
-        key={date.getTime()} type={dateToType(date)}
-        onMouseEnter={onMouseEnterDate(date)}
-        onMouseLeave={onMouseLeaveDate(date)}
-        onClick={onSelect(date)}
-        hoopColor={getHoopColor(date)}
-      >
-        {date.getDate()}
-      </Day>
-    )
+//    const usedDates = {}
+
+    const item = (date) => {
+      const dateStr = date.getUTCDate()
+  //    const key = usedDates[dateStr] ? dateStr + 'b' : dateStr
+      return (
+        <Day
+          key={date.getTime()} type={dateToType(date)}
+          onMouseEnter={onMouseEnterDate(date)}
+          onMouseLeave={onMouseLeaveDate(date)}
+          onClick={onSelect(date)}
+          hoopColor={getHoopColor(date)}
+        >
+          {dateStr}
+        </Day>
+      )
+    }
 
     return (
-      <div>
+      <div style={{display: 'flex', flexWrap: 'wrap'}}>
         {
           rows.map((row, i) => (
-            <Row key={i}>
-              {
-                row.map(item)
-              }
-            </Row>
+            row.map(item)
           ))
         }
       </div>

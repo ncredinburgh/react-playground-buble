@@ -1,6 +1,5 @@
 // @flow
 
-
 import fallback from './utils/fallback'
 export Caret from './components/caret'
 export PageHeader from './components/page-header'
@@ -43,3 +42,6 @@ export * from './utils/first-defined'
 export ThemeBroadcast from './utils/theme-broadcast'
 export * from './utils/theme-util'
 export googlish from './utils/googlish'
+
+export Container from './components/layouts/container'
+export Margin from './components/layouts/margin'

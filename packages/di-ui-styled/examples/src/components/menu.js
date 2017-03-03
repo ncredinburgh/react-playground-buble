@@ -85,6 +85,7 @@ class Menu extends React.Component {
           <MenuItem pathname="/examples/loader" label="Loader" setPath={setPath} />
           <MenuItem pathname="/examples/toggle-switch" label="ToggleSwitch" setPath={setPath} />
           <MenuItem pathname="/examples/page-header" label="PageHeader" setPath={setPath} />
+          <MenuItem pathname="/examples/layout" label="Layout" setPath={setPath} />
           <MenuItem pathname="/examples/caret" label="Caret" setPath={setPath} />
         </Ul>
       </Wrapper>

@@ -41,13 +41,12 @@ const DayCanvas = ({
   showCircle,
   hoopColor,
 }) => {
-  const [fillR, fillG, fillB, fillA] = fromCss(fill).map(spring)
-  const [colorR, colorG, colorB, colorA] = fromCss(color).map(spring)
+  const [fillR, fillG, fillB, fillA] = fromCss(fill).map(x => spring(x, springConf))
+  const [colorR, colorG, colorB, colorA] = fromCss(color).map(x => spring(x, springConf))
 
   const fillRgba = fromCss(fill).map(spring)
 
   return (
-    <Wrapper>
       <Motion style={{
         radius: spring(showCircle ? 18 : 8, springConf),
         fillR, fillG, fillB, fillA,
@@ -71,6 +70,10 @@ const DayCanvas = ({
                   //ctx.fillColor = toCssRgba([colorR, colorG, colorB, colorA])
                   ctx.arc(r, r, radius, 0, 2 * Math.PI, false)
                   ctx.fill()
+                  ctx.textAlign = 'center'
+                  ctx.font = '16px Arial'
+                  ctx.fillStyle = toCssRgba([colorR, colorG, colorB, colorA])
+                  ctx.fillText(children, 20, 25)
                   if (hoopColor) {
                     ctx.beginPath()
                     ctx.strokeStyle = hoopColor
@@ -84,8 +87,6 @@ const DayCanvas = ({
           )
         }
       </Motion>
-      <Text color={color}>{children}</Text>
-    </Wrapper>
   )
 }
 

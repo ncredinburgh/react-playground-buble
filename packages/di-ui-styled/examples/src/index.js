@@ -27,8 +27,9 @@ function rerender(App2) {
 }
 
 if (module.hot) {
-  module.hot.accept('./app', () => {
-//    const App2 = require('./components/app').default
+  module.hot.accept(['./app', '../../src'], () => {
+    console.log('change')
+//    const App2 = require('./app').default
     System.import('./app').then(({ default: App2 }) => {
       unmountComponentAtNode(document.getElementById('root'))
       rerender(App2)

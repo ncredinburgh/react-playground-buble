@@ -22,6 +22,7 @@ import CheckboxPage from './pages/checkbox-page'
 import RadioPage from './pages/radio-page'
 import ModalPage from './pages/modal-page'
 import ToggleSwitchPage from './pages/toggle-switch-page'
+import LayoutsPage from './pages/layouts-page'
 import Ie9Page from './pages/ie9-page'
 import StatusPage from './pages/status-page'
 import Menu from './components/menu'
@@ -67,6 +68,7 @@ const App = () => (
           <Route exact path="/examples/radio" component={RadioPage} />
           <Route exact path="/examples/modal" component={ModalPage} />
           <Route exact path="/examples/toggle-switch" component={ToggleSwitchPage} />
+          <Route exact path="/examples/layout" component={LayoutsPage} />
           <Route exact path="/examples/ie9" component={Ie9Page} />
           <Route exact path="/" render={() => <Redirect to="/examples/button" />} />
         </Page>
