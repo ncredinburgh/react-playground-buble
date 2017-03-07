@@ -1,9 +1,8 @@
 {
   "version": "0.0.1",
   "name": "@di-internal/di-ui-icon-elements",
-  "description": "React playground using Buble",
+  "description": "DI UI Icons",
   "main": "lib/index.js",
-  "module": "lib-es/index.js",
   "author": "Phil Holden (http://github.com/philholden)",
   "license": "MIT",
   "publishConfig": {
@@ -16,7 +15,8 @@
     "all": "npm run currentColor && npm run fixedColor && npm run loaders && node convert-svg && npm run build:babel",
     "start": "cd ../.. && PACKAGE=$npm_package_config_package node ./dev-server.js",
     "test": "cd ../.. && PACKAGE=$npm_package_config_package npm test",
-    "build:babel": "cd ../.. && PACKAGE=$npm_package_config_package npm run build:babel && PACKAGE=$npm_package_config_package npm run build:es",
+    "build:babel2": "cd ../.. && PACKAGE=$npm_package_config_package npm run build:babel && PACKAGE=$npm_package_config_package npm run build:es",
+    "build:babel": "cd ../.. && PACKAGE=$npm_package_config_package npm run build:babel",
     "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs",
     "prepublish": "npm run build:babel"
   },
