@@ -17,13 +17,13 @@ cd packages/${packageName} && npm publish`)
     cwd: path.resolve(__dirname, 'packages', packageName),
   })
 
-  const timeout = setTimeout(() => {
-    npmPub.stdout.pause()
-    npmPub.stderr.pause()
-    npmPub.kill()
-    console.log(`Error: timeout connecting to internal npm to publish ${packageName}`)
-    process.exit(1)
-  }, 5000)
+  // const timeout = setTimeout(() => {
+  //   npmPub.stdout.pause()
+  //   npmPub.stderr.pause()
+  //   npmPub.kill()
+  //   console.log(`Error: timeout connecting to internal npm to publish ${packageName}`)
+  //   process.exit(1)
+  // }, 5000)
 
   npmPub.on('close', code => {
     clearTimeout(timeout)
@@ -58,7 +58,7 @@ function publishUpdated(packageName) {
     npmView.kill()
     console.log(`Error: timeout connecting to internal npm to publish ${packageName}`)
     process.exit(1)
-  }, 5000)
+  }, 10000)
 
   npmView.on('close', code => {
     clearTimeout(timeout)
