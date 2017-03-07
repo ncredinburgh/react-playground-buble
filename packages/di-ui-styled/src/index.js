@@ -31,7 +31,7 @@ export const ToggleSwitch = fallback(ToggleSwitchMain, ToggleSwitchIe9)
 export Day from './components/dates/day-anim'
 export Month from './components/dates/month'
 export MonthChooser from './components/dates/month-chooser'
-export DatePicker from './components/dates/date-picker'
+// export DatePicker from './components/dates/date-picker'
 export DateDropdownPrimative from './components/dates/date-dropdown-primative'
 export DateDropdown from './components/dates/date-dropdown'
 

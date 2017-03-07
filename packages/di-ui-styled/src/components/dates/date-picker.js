@@ -13,7 +13,7 @@ export default class DatePicker extends React.Component {
   state = {
     displayedMonth: this.props.firstSelected || new Date(),
     firstSelected: this.props.firstSelected || null,
-    lastSelected: this.props.lastSelected ||null,
+    lastSelected: this.props.lastSelected || null,
   }
 
   setDisplayedMonth = displayedMonth => {
@@ -42,16 +42,24 @@ export default class DatePicker extends React.Component {
         }
       }
     }
+    let min = firstSelected
+    let max = lastSelected
+    if (lastSelected && firstSelected && firstSelected > lastSelected) {
+      min = lastSelected
+      max = firstSelected
+    }
     this.setState({
-      firstSelected,
-      lastSelected,
+      firstSelected: min,
+      lastSelected: max,
     })
     if (!onChange) return
     onChange({
-      firstSelected,
-      lastSelected,
+      firstSelected: min,
+      lastSelected: max,
     })
   }
+
+
 
   render() {
     const {
@@ -67,6 +75,12 @@ export default class DatePicker extends React.Component {
       onChange,
     } = this.props
     const { setDisplayedMonth, onSelect } = this
+    // let min = firstSelected
+    // let max = lastSelected
+    // if (lastSelected && firstSelected && firstSelected > lastSelected) {
+    //   min = lastSelected
+    //   max = firstSelected
+    // }
     return (
       <Wrapper>
         <MonthChooser

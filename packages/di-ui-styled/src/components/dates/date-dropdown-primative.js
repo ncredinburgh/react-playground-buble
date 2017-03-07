@@ -84,32 +84,18 @@ export default class DateDropdown extends Component {
 
   onSelect = (value) => {
     const { onChange, range } = this.props
-    let nextValue
-    if (!range) {
-      nextValue = value.firstSelected
-    } else {
-      if (!value.lastSelected || (value.firstSelected <= value.lastSelected)) {
-        nextValue = value
-      } else {
-        nextValue = {
-          firstSelected: value.lastSelected,
-          lastSelected: value.firstSelected,
-        }
-      }
-    }
-
-    this.setState({ value: nextValue })
+    this.setState({ value })
     if (onChange) {
-      onChange(nextValue)
+      onChange(value)
     }
-    if (
-      (!range && value.firstSelected) ||
-      (range && value.lastSelected)
-    ) {
-      //this.closing = true
-      //clearTimeout(this.delayClose)
-      //this.delayClose = setTimeout(this.closePicker, 1500)
-    }
+    // if (
+    //   (!range && value.firstSelected) ||
+    //   (range && value.lastSelected)
+    // ) {
+    //   this.closing = true
+    //   clearTimeout(this.delayClose)
+    //   this.delayClose = setTimeout(this.closePicker, 1500)
+    // }
   }
 
   getText = (firstSelected, lastSelected) => {
