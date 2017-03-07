@@ -26,7 +26,7 @@ cd packages/${packageName} && npm publish`)
   // }, 5000)
 
   npmPub.on('close', code => {
-    clearTimeout(timeout)
+//    clearTimeout(timeout)
     console.log(message)
     console.log(errMessage)
     console.log(`child process exited with code ${code}`)
