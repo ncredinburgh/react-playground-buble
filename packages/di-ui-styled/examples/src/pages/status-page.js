@@ -1,6 +1,6 @@
 import React from 'react'
 import Title from '../components/title'
-import { Caret, PageHeader } from '../../../src'
+import { Caret, PageHeader, H2 } from '../../../src'
 import styled from 'styled-components'
 
 import Playground from '../components/themed-playground'
@@ -10,7 +10,18 @@ import DocPage from '../components/doc-page'
 const PageHeaderPage = () => (
   <DocPage>
     <Title>Intoduction</Title>
-    <p>PoC for responsive UI and UI documentation with the following aims:</p>
+    <p>PoC responsive UI and UI documentation</p>
+    <H2>Installation</H2>
+    <p>In an npm project create a file called <code>.npmrc</code> with the following contents:</p>
+    <pre>
+      @di-internal:registry = http://anprd10d2dge140.dca.diginsite.net:8080/repository/npm-internal
+    </pre>
+    <p>To install connect to the VPN and type:</p>
+    <pre>
+      npm install --save @di-internal/di-ui-styled @di-internal/di-ui-icon-elements
+    </pre>
+    <p>The <a href="http://apdev10cmage001.dca.diginsite.net/philholden/leapfrog-ui/">repository</a> may be cloned from GitLab</p>
+    <H2>Aims</H2>
     <ul>
       <li>Isolate styles in the components that use them:
         <ul>
