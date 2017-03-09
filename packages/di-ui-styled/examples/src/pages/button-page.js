@@ -6,14 +6,17 @@ import styled from 'styled-components'
 import Playground from '../components/themed-playground'
 import DocPage from '../components/doc-page'
 
+// <Playground
+//  defaultValue={
+// `<DownloadForm url="/form2"><Button primary>Download</Button></DownloadForm>`
+//  }
+//  scope={{ Button, styled, DownloadForm }}
+// />
+
+
 const ButtonPage = () => (
   <DocPage>
-  <Playground
-    defaultValue={
-`<DownloadForm url="/form2"><Button primary>Download</Button></DownloadForm>`
-    }
-    scope={{ Button, styled, DownloadForm }}
-  />
+
     <Title>Button</Title>
     <p>`secondary` by default:</p>
     <Playground

@@ -2,9 +2,9 @@ import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import App from './app'
 import { AppContainer } from 'react-hot-loader'
-import {
-  forceViewerUpdate,
-} from '@di-internal/react-playground-lite'
+// import {
+//   forceViewerUpdate,
+// } from '@di-internal/react-playground-lite'
 import { diTheme } from '../../src/themes'
 import { ThemeBroadcast } from '../../src'
 import { initThemedPlayground } from './components/themed-playground'
