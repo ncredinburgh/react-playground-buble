@@ -20,7 +20,7 @@ You may also need to run `npm install` if this did not happen with bootstrap:
 
 ```bash
 cd packages/di-ui-styled
-npm style
+npm install
 ```
 
 You should now be able to see the style guide by visiting:
