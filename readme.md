@@ -8,6 +8,10 @@ This repo explores packaging Leapfrog so that it can easily be adopted into new 
 * Tree shaking friendly a packages for fast loading apps
 * Optimized SVG icons
 
+You can normally see a recent version of the style guide here:
+
+https://poc-responsive-ui.now.sh
+
 ## Installation
 
 ```bash
