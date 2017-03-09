@@ -27,6 +27,10 @@ export WithModal from './components/modal/with-modal-fac'
 import ToggleSwitchMain from './components/toggle-switch'
 import ToggleSwitchIe9 from './components/toggle-switch.ie9'
 export const ToggleSwitch = fallback(ToggleSwitchMain, ToggleSwitchIe9)
+export ThemeChooserProvider from './components/theme-chooser-provider'
+export ThemedPortal from './components/themed-portal'
+export ThemeChooser from './components/theme-chooser'
+
 
 export Day from './components/dates/day-anim'
 export Month from './components/dates/month'

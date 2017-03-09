@@ -17,9 +17,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/omysoul/omysoul.git"
+    "url": "http://gitlab.dev1.diginsite.net/philholden/leapfrog-ui.git"
   },
-  "homepage": "https://github.com/omysoul/omysoul/packages/react-playground-styled",
+  "homepage": "http://apdev10cmage001.dca.diginsite.net/philholden/leapfrog-ui/",
   "dependencies": {
     "@di-internal/react-playground-bare": "0.0.3",
     "buble": "^0.14.2",
