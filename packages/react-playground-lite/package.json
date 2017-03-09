@@ -1,5 +1,5 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.4",
   "name": "@di-internal/react-playground-lite",
   "description": "React playground using Buble",
   "main": "lib/index.js",
@@ -35,5 +35,10 @@
     "package": "react-playground-lite",
     "port": 3000
   },
-  "files": ["package.json", "lib", "readme.md", "lib-es"]
+  "files": [
+    "package.json",
+    "lib",
+    "readme.md",
+    "lib-es"
+  ]
 }
