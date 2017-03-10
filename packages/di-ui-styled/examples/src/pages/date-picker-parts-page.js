@@ -20,18 +20,18 @@ const minHeight = height => children => (
   </div>
 )
 
+// <Playground
+//  defaultValue={
+// `<DownloadForm url="/form" value={{a: 111}}>
+// <button>download</button>
+// </DownloadForm>`
+// }
+//  scope={{ DownloadForm }}
+//  top left fullWidth
+// />
+
 const DayPage = () => (
   <div>
-  <Playground
-    defaultValue={
-`<DownloadForm url="/form" value={{a: 111}}>
-  <button>download</button>
-</DownloadForm>`
-}
-    scope={{ DownloadForm }}
-    top left fullWidth
-  />
-
     <p>DateDropdown</p>
     <Playground
       defaultValue={`<DateDropdown/>`}

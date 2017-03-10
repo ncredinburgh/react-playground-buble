@@ -4,6 +4,7 @@ import {
   PageHeader,
   Dropdown,
   DropdownSplit,
+  DropdownLink,
   DropdownButton,
   DropdownButtonSplit,
   H2,
@@ -29,14 +30,14 @@ const PageHeaderPage = () => (
   { label: 'Registration Date' },
 ];
 
-<Dropdown
+<DropdownLink
   title="Select"
   defaultValue={options[1]}
   options={options}
   onChange={console.log}
 />`
   }
-  scope={{ Dropdown, DropdownSplit }}
+  scope={{ Dropdown, DropdownSplit, DropdownLink }}
   minHeightViewer={380}
   top
 />
@@ -58,7 +59,7 @@ options={options}
 onChange={console.log}
 />`
   }
-  scope={{ Dropdown, DropdownSplit }}
+  scope={{ Dropdown, DropdownSplit, DropdownLink }}
   minHeightViewer={380}
   top
 />
@@ -78,7 +79,7 @@ onChange={console.log}
   options={options}
 />`
   }
-  scope={{ Dropdown, DropdownSplit }}
+  scope={{ Dropdown, DropdownSplit, DropdownLink }}
   minHeightViewer={380}
   top
 />
@@ -119,7 +120,7 @@ const filterFn = str => option =>
 />
 `
   }
-  scope={{ Dropdown, DropdownSplit }}
+  scope={{ Dropdown, DropdownSplit, DropdownLink }}
   minHeightViewer={380}
   top
 />
@@ -151,7 +152,7 @@ const filterFn = str => option =>
   />
 </div>`
   }
-  scope={{ Dropdown, DropdownSplit }}
+  scope={{ Dropdown, DropdownSplit, DropdownLink }}
   minHeightViewer={420}
   top
 />
@@ -165,7 +166,7 @@ const filterFn = str => option =>
   options={[{ label: 'Customer ID' }]}
 />`
   }
-  scope={{ Dropdown, DropdownSplit }}
+  scope={{ Dropdown, DropdownSplit, DropdownLink }}
   minHeightViewer={120}
   top
 />
@@ -178,10 +179,25 @@ const filterFn = str => option =>
   options={[{ label: 'Customer ID' }]}
 />`
   }
-  scope={{ Dropdown, DropdownSplit }}
+  scope={{ Dropdown, DropdownSplit, DropdownLink }}
   minHeightViewer={120}
   top
 />
+
+<p>Link style</p>
+<Playground
+  defaultValue={
+`<DropdownLink
+  multiple
+  title="Select"
+  options={[{ label: 'Customer ID' }]}
+/>`
+  }
+  scope={{ Dropdown, DropdownSplit, DropdownLink }}
+  minHeightViewer={120}
+  top
+/>
+
 <p>Controlled Dropdown</p>
 <Playground
   defaultValue={
@@ -219,7 +235,7 @@ class CtrlDropdown extends Component {
 
 <CtrlDropdown />`
   }
-  scope={{ Dropdown, DropdownSplit }}
+  scope={{ Dropdown, DropdownSplit, DropdownLink }}
   minHeightViewer={380}
   top
 />
@@ -264,7 +280,7 @@ class CtrlDropdown extends Component {
 
 <CtrlDropdown />`
   }
-  scope={{ Dropdown, DropdownSplit }}
+  scope={{ Dropdown, DropdownSplit, DropdownLink }}
   minHeightViewer={420}
   top
 />

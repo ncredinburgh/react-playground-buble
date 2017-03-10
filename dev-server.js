@@ -77,19 +77,21 @@ app.post('/form2', (req, res) => {
   res.header('Content-Type', 'text/csv')
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Content-Disposition', 'attachment; filename=out.csv')
-  const s = new stream.Readable()
-  s._read = function noop() {}
-  res.write('')
-  s.on('data', (data) => {
-    res.write(data)
-  })
-  s.on('end', () => {
-    res.end()
-  })
+//  const s = new stream.Readable()
+//  s._read = function noop() {}
+//  res.write('')
+//  s.on('data', (data) => {
+//    res.write(data)
+//  })
+//  s.on('end', () => {
+//    res.end()
+//  })
   setTimeout(
     () => {
-      s.push('hello')
-      s.push(null)
+      //s.push('hello')
+      //s.push(null)
+      res.write('hello')
+      res.end()
     },
     5000
   )

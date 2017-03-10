@@ -12,6 +12,7 @@ const Box = styled.div`
   user-select: none;
   cursor: default;
   white-space: nowrap;
+  box-sizing: content-box;
   width: calc(100% - 40px);
 `
 
