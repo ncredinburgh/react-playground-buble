@@ -221,6 +221,7 @@ export default class SelectDropdown extends Component {
       onGray,
       options,
       title,
+      lockTitle,
       filterFn,
       noWrap,
       width,
@@ -236,7 +237,7 @@ export default class SelectDropdown extends Component {
           innerRef={(button: HTMLElement) => { if (button) this.button = button }}
         >
           {
-            selected === null ?
+            (selected === null) || lockTitle ?
               title :
               selected.label
           }

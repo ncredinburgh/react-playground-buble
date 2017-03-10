@@ -24,6 +24,8 @@ type DropdownPropsType = {
    * multiselect dropdown
    */
   multiple: boolean,
+  title: string,
+  lockTitle: boolean,
   width: number,
   noWrap: boolean,
   /*

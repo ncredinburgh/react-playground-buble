@@ -30,7 +30,7 @@ const PageHeaderPage = () => (
   { label: 'Registration Date' },
 ];
 
-<DropdownLink
+<Dropdown
   title="Select"
   defaultValue={options[1]}
   options={options}
