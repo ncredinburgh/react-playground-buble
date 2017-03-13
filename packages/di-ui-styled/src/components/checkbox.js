@@ -91,7 +91,6 @@ const Checkbox = ({
     <Input
       {...props}
       type="checkbox"
-      innerRef={el => { if (el) this.el = el }}
     />
     <Box
       {

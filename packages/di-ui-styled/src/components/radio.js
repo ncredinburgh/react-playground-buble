@@ -92,7 +92,6 @@ const Radio = ({
     <Input
       {...props}
       type="radio"
-      innerRef={el => { if (el) this.el = el }}
     />
     <Box
       {
