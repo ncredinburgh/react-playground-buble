@@ -1,5 +1,5 @@
 {
-  "version": "0.2.12",
+  "version": "0.2.13",
   "scripts": {
     "publish:internal": "node publish-updated react-playground-bare && node publish-updated react-playground-lite --new && node publish-updated react-playground-styled --new && node publish-updated di-ui-icon-elements --new && node publish-updated di-ui-styled --new",
     "publish:pre-npm": "lerna publish --skip-npm",
