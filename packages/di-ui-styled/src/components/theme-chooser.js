@@ -1,5 +1,5 @@
 import React from 'react'
-import * as themes from '../../src/themes'
+import * as themes from '../themes'
 import { getContext } from 'recompose'
 
 const ThemeChooser = ({
