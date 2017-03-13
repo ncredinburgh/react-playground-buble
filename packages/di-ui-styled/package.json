@@ -1,5 +1,5 @@
 {
-  "version": "0.0.10",
+  "version": "0.0.11",
   "name": "@di-internal/di-ui-styled",
   "description": "React playground using Buble",
   "main": "lib/index.js",
