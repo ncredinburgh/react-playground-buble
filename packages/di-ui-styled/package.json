@@ -1,5 +1,5 @@
 {
-  "version": "0.0.9",
+  "version": "0.0.10",
   "name": "@di-internal/di-ui-styled",
   "description": "React playground using Buble",
   "main": "lib/index.js",
@@ -20,7 +20,7 @@
     "prepublish": "npm run build:babel"
   },
   "dependencies": {
-    "@di-internal/di-ui-icon-elements": "^0.0.2",
+    "@di-internal/di-ui-icon-elements": "^0.0.3",
     "color-array": "0.0.8",
     "react-addons-transition-group": "^15.4.1",
     "react-docgen": "^2.13.0",
@@ -30,8 +30,8 @@
     "styled-components": "^1.4.0"
   },
   "devDependencies": {
-    "@di-internal/react-playground-lite": "^0.0.4",
-    "@di-internal/react-playground-styled": "^0.0.4",
+    "@di-internal/react-playground-lite": "^0.0.5",
+    "@di-internal/react-playground-styled": "^0.0.5",
     "fastclick": "^1.0.6",
     "react-router-dom": "^4.0.0-beta.5",
     "rimraf": "^2.6.1",

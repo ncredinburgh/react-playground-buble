@@ -1,5 +1,5 @@
 {
-  "version": "0.0.4",
+  "version": "0.0.5",
   "name": "@di-internal/react-playground-styled",
   "description": "React playground using Buble",
   "main": "lib/index.js",
@@ -21,7 +21,7 @@
   },
   "homepage": "http://apdev10cmage001.dca.diginsite.net/philholden/leapfrog-ui/",
   "dependencies": {
-    "@di-internal/react-playground-bare": "^0.0.4",
+    "@di-internal/react-playground-bare": "^0.0.5",
     "buble": "^0.14.2",
     "codemirror": "^5.19.0",
     "react-codemirror": "^0.2.6",
