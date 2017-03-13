@@ -4,7 +4,7 @@
   "description": "React playground using Buble",
   "main": "lib/index.js",
   "author": "Phil Holden (http://github.com/philholden)",
-  "license": "MIT",
+  "license": "NCR",
   "publishConfig": {
     "access": "public"
   },

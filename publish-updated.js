@@ -49,6 +49,7 @@ function publishUpdated(packageName) {
   let errMessage = ''
   let message = ''
   const version = getVersion(packageName)
+  console.log(`From package.json: ${packageName}@${version}`)
   const npmView = spawn('npm', ['view', `@di-internal/${packageName}@${version}`])
   let err = false
   let canPublish = false
@@ -79,7 +80,9 @@ function publishUpdated(packageName) {
       npmPublish(packageName, version)
       // }
     } else {
-      if (message === 'undefined') {
+      console.log(`checking if version exists: ${packageName}@${version}`)
+      console.log(`is message undefined? ${message} : ${message === undefined} : ${message === 'undefined'} : ${message === ''}`)
+      if (message === 'undefined\n') {
         console.log('publishing because version not found')
         npmPublish(packageName, version)
       } else {
