@@ -6,7 +6,8 @@ const Box = styled.div`
   border: 1px solid #ABABAB;
   display: flex;
   background: #fff;
-  height: 34px;
+  height: ${({ small }) => small ? 35 : 42}px;
+  font-size: ${({ small }) => small ? 14 : 16}px;
   box-sizing: border-box;
   align-items: center;
   user-select: none;
@@ -32,7 +33,7 @@ const CaretWrapper = styled.div`
   background: #ededed;
   height: 100%;
   display: flex;
-  width: 37px;
+  width: ${({ small }) => small ? 37 : 45}px;
   border-left: 1px solid #ABABAB;
   flex-shrink: 0;
   justify-content: center;
@@ -45,7 +46,7 @@ const DropdownButtonSplit = ({ children, ...props }) => (
     {children}
     </Ellipsis>
 
-    <CaretWrapper>
+    <CaretWrapper small={props.small}>
       <Caret style={{ display: 'block' }} />
     </CaretWrapper>
   </Box>

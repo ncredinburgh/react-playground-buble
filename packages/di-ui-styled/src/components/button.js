@@ -140,10 +140,10 @@ const style = css`
   -webkit-font-smoothing: antialiased;
   padding: 0 20px;
   border: 1px solid #acacac;
-  line-height: 42px;
-  height: 42px;
+  line-height: ${({ small }) => small ? 35 : 42}px;
+  height: ${({ small }) => small ? 35 : 42}px;
   display: inline-block;
-  font-size: 18px;
+  font-size: ${({ small }) => small ? 16 : 18}px;
   margin-bottom: 0;
   font-weight: normal;
   text-align: center;

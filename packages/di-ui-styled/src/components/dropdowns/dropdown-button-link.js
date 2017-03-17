@@ -29,12 +29,12 @@ const CaretWrapper = styled.div`
 const Link = styled.span`
   color: ${fromTheme('sectionCColor')};
   text-decoration: underline;
-  font-size: 14px;
+  font-size: ${({ small }) => small ? 14 : 16}px;
 `
 
 const DropdownButtonLink = ({ children, ...props }) => (
   <Wrapper {...props} tabIndex="0">
-    <Link>{children}</Link>
+    <Link small={props.small}>{children}</Link>
     <Spacer />
     <Caret />
   </Wrapper>

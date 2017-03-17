@@ -23,6 +23,7 @@ type DropdownPropsType = {
   lockTitle: boolean,
   width: number,
   noWrap: boolean,
+  small: boolean,
   /**
    * show filter
    */

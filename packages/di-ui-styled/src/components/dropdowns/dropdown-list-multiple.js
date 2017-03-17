@@ -93,7 +93,8 @@ export default class MultiselectDropdown extends Component {
   onDown = (e) => {
     if (e.keyCode !== 40) return
     this.setState({ isOpen: true })
-    this.focusFirst()
+    clearTimeout(this.focusTimeout)
+    this.focusTimeout = setTimeout(this.focusFirst, 16)
     e.preventDefault()
   }
 
@@ -178,6 +179,16 @@ export default class MultiselectDropdown extends Component {
     }
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.focusTimeout)
+  }
+
+  componentDidMount() {
+    if (this.button && this.props.autoFocus) {
+      this.button.focus()
+    }
+  }
+
   matchesFilter = ({ label }) =>
     label.substr(0, this.state.filter.length).toLowerCase() ===
       this.state.filter.toLowerCase()
@@ -194,6 +205,7 @@ export default class MultiselectDropdown extends Component {
       filterFn,
       noWrap,
       width,
+      small,
       button: Button,
     } = this.props
 
@@ -206,6 +218,7 @@ export default class MultiselectDropdown extends Component {
     return (
       <Wrapper width={width}>
         <Button
+          small={small}
           id="dLabel2"
           type="button"
           data-toggle="dropdown"
@@ -215,6 +228,7 @@ export default class MultiselectDropdown extends Component {
           onClick={this.onButtonClick}
           onGray={onGray}
           onKeyDown={this.onDown}
+          innerRef={(button: HTMLElement) => { if (button) this.button = button }}
         >
           {title}
         </Button>

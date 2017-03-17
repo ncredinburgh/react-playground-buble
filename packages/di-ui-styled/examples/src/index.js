@@ -5,6 +5,9 @@ import { AppContainer } from 'react-hot-loader'
 // import {
 //   forceViewerUpdate,
 // } from '@di-internal/react-playground-lite'
+// import {
+//   ReactPlaygroundStyled,
+// } from '@di-internal/react-playground-styled'
 import { diTheme } from '../../src/themes'
 import { ThemeBroadcast } from '../../src'
 import { initThemedPlayground } from './components/themed-playground'
@@ -33,7 +36,8 @@ if (module.hot) {
     System.import('./app').then(({ default: App2 }) => {
       unmountComponentAtNode(document.getElementById('root'))
       rerender(App2)
-      //forceViewerUpdate()
+//      console.log(ReactPlaygroundStyled)
+//      forceViewerUpdate()
     })
   })
 }

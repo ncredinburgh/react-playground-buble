@@ -25,29 +25,27 @@ const DayPage = () => (
     <Title>Date Pickers</Title>
     <p>DateDropdown</p>
     <Playground
-      defaultValue={`<DateDropdown />`}
+      defaultValue={
+`<DateDropdown
+  defaultValue="2017-03-20"
+  onChange={console.log}
+/>`}
       scope={{ DateDropdown, DateRangeDropdown }}
       minHeightViewer={470}
       top
     />
     <p>DateRangeDropdown</p>
     <Playground
-      defaultValue={`<DateRangeDropdown/>`}
+      defaultValue={
+`<DateRangeDropdown
+  defaultValue={{
+    start: '2017-03-20',
+    end: '2017-03-29',
+  }}
+  onChange={console.log}
+/>`}
       minHeightViewer={470}
       scope={{ DateRangeDropdown, DateRangeDropdown }}
-      top
-    />
-
-    <p>onChange and defaultValue</p>
-    <Playground
-      defaultValue={
-`<DateDropdown
-  defaultValue={new Date()}
-  onChange={value => console.log}
-/>`
-}
-      minHeightViewer={470}
-      scope={{ DateDropdown, DateRangeDropdown }}
       top
     />
 

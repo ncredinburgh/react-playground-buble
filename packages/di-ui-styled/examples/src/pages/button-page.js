@@ -40,6 +40,14 @@ const ButtonPage = () => (
       scope={{ Button, styled }}
     />
 
+    <p>`primary` and `secondary` can be `small`:</p>
+    <Playground
+      defaultValue={
+`<Button primary small>Click</Button>`
+      }
+      scope={{ Button, styled }}
+    />
+
     <p>`secondary` button should be white `onGray` backgroud:</p>
     <Playground
       defaultValue={

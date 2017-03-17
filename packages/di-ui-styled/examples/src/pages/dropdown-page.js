@@ -198,6 +198,45 @@ const filterFn = str => option =>
   top
 />
 
+<p>`small` versions available</p>
+<Playground
+  defaultValue={
+`<div style={{
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  height: 350
+ }}>
+  <DropdownLink
+    small
+    title="Select"
+    options={[{ label: 'Customer ID' }]}
+  />
+  <Dropdown
+    small
+    title="Select"
+    options={[{ label: 'Customer ID' }]}
+  />
+
+  <Dropdown
+    onGray
+    small
+    title="Select"
+    options={[{ label: 'Customer ID' }]}
+  />
+
+  <DropdownSplit
+    small
+    title="Select"
+    options={[{ label: 'Customer ID' }]}
+  />
+</div>`
+  }
+  scope={{ Dropdown, DropdownSplit, DropdownLink }}
+  minHeightViewer={120}
+  top
+/>
+
 <p>Controlled Dropdown</p>
 <Playground
   defaultValue={

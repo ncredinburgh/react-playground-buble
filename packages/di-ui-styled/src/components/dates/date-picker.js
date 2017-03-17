@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Month from './month'
 import DayNames from './day-names'
 import MonthChooser from './month-chooser'
+import { isoFormat, fromIso } from './date-math'
 
 const Wrapper = styled.div`
   width: 280px;
@@ -53,10 +54,15 @@ export default class DatePicker extends React.Component {
       lastSelected: max,
     })
     if (!onChange) return
-    onChange({
-      firstSelected: min,
-      lastSelected: max,
-    })
+    if (range) {
+      onChange({
+        firstSelected: isoFormat(min),
+        lastSelected: isoFormat(max),
+      })
+    } else {
+      onChange(isoFormat(firstSelected))
+    }
+
   }
 
 
@@ -81,6 +87,8 @@ export default class DatePicker extends React.Component {
     //   min = lastSelected
     //   max = firstSelected
     // }
+    // const start = fromIso(firstSelected)
+    // const end = fromIso(lastSelected)
     return (
       <Wrapper>
         <MonthChooser

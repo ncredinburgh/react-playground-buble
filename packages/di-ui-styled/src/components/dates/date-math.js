@@ -1,6 +1,10 @@
 export const DAY = 1000 * 60 * 60 * 24
 
 export const getDay = date => {
+  if (typeof date === 'string') {
+    if (!/^\d\d\d\d-\d\d-\d\d/.test(date)) return null
+    date = new Date(date)
+  }
   if (!date) return null
   const result = new Date(0)
   result.setUTCFullYear(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate())
@@ -32,6 +36,21 @@ export const isWeekend = date =>
 export const isMonthEqual = (date1, date2) =>
   date1.getUTCMonth() === date2.getUTCMonth &&
   date1.getUTCFullYear() === date2.getUTCFullYear()
+
+export const isoFormat = date => date instanceof Date ?
+  `${
+    date.getUTCFullYear()
+  }-${
+    `0${date.getUTCMonth() + 1}`.substr(-2)
+  }-${
+    `0${date.getUTCDate()}`.substr(-2)
+  }` : null
+
+export const fromIso = str => {
+  if (typeof str !== 'string') return null
+  return /^\d\d\d\d-\d\d-\d\d/.test(str) ? new Date(str) : null
+}
+
 
 export const getWeeksInMonth = monthDate => {
   const month = monthDate.getUTCMonth()

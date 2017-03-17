@@ -5,7 +5,8 @@ import Caret from '../caret'
 const Box = styled.div`
   display: flex;
   background: ${({ onGray }) => onGray ? '#fff' : '#ededed'};
-  height: 42px;
+  height: ${({ small }) => small ? 35 : 42}px;
+  font-size: ${({ small }) => small ? 14 : 16}px;
   align-items: center;
   box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.45);
   padding: 0 20px;

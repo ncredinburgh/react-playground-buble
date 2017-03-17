@@ -5,8 +5,14 @@ import DateDropdownPrimative from './date-dropdown-primative'
 
 
 type DateRangeType = {
-  firstSelected: Date,
-  lastSelected: Date,
+  /**
+  * yyyy-mm-dd
+  */
+  firstSelected: string,
+  /**
+  * yyyy-mm-dd
+  */
+  lastSelected: string,
 }
 
 type DateRangeDropdownPropsType = {
@@ -15,6 +21,8 @@ type DateRangeDropdownPropsType = {
   * Dates before disabled
   */
   minStartDate?: Date,
+  small: boolean,
+  autoFocus: boolean,
   /**
     * Dates after disabled
     */
@@ -45,6 +53,8 @@ function DateRangeDropdown({
   defaultValue,
   value,
   onChange,
+  small,
+  autoFocus,
 }: DateRangeDropdownPropsType) {
   const useProps = {
     disableWeekends,
@@ -55,6 +65,8 @@ function DateRangeDropdown({
     range: true,
     defaultValue,
     onChange,
+    small,
+    autoFocus,
   }
 
   return (

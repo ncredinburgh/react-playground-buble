@@ -94,7 +94,8 @@ export default class SelectDropdown extends Component {
   onDown = (e) => {
     if (e.keyCode === 40 || e.keyCode === 32) {
       this.setState({ isOpen: true })
-      this.focusFirst()
+      clearTimeout(this.focusTimeout)
+      this.focusTimeout = setTimeout(this.focusFirst, 16)
       e.preventDefault()
     }
   }
@@ -203,11 +204,18 @@ export default class SelectDropdown extends Component {
 
   componentWillUnmount() {
     clearTimeout(this.timeout)
+    clearTimeout(this.focusTimeout)
   }
 
   componentWillReceiveProps({ value }) {
     if (value !== undefined && value !== this.state.selected) {
       this.setState({ selected: value })
+    }
+  }
+
+  componentDidMount() {
+    if (this.button && this.props.autoFocus) {
+      this.button.focus()
     }
   }
 
@@ -225,12 +233,14 @@ export default class SelectDropdown extends Component {
       filterFn,
       noWrap,
       width,
+      small,
       button: Button,
     } = this.props
 
     return (
       <Wrapper width={width}>
         <Button
+          small={small}
           onGray={onGray}
           onKeyDown={this.onDown}
           onClick={this.onButtonClick}
