@@ -23,13 +23,13 @@
     "@di-internal/di-ui-icon-elements": "^0.0.3",
     "color-array": "0.0.8",
     "react-addons-transition-group": "^15.4.1",
-    "react-docgen": "^2.13.0",
     "react-motion": "^0.4.7",
     "react-pure-render": "^1.0.2",
     "recompose": "^0.20.2",
     "styled-components": "^1.4.0"
   },
   "devDependencies": {
+    "react-docgen": "^2.13.0",
     "@di-internal/react-playground-lite": "^0.0.5",
     "@di-internal/react-playground-styled": "^0.0.5",
     "fastclick": "^1.0.6",

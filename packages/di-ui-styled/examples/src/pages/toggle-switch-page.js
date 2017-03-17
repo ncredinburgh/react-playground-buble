@@ -7,7 +7,7 @@ import DocPage from '../components/doc-page'
 
 const ToggleSwitchPage = () => (
   <DocPage>
-    <Title>Loader</Title>
+    <Title>Toggle Switch</Title>
     <p>Default:</p>
     <Playground
       defaultValue={

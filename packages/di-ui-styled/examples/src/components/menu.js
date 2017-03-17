@@ -73,6 +73,7 @@ class Menu extends React.Component {
         <div></div>
         <Ul>
           <MenuItem pathname="/examples/intro" label="Introduction" setPath={setPath} />
+          <MenuItem pathname="/examples/video" label="Videos" setPath={setPath} />
           <MenuItem pathname="/examples/button" label="Button" setPath={setPath} />
           <MenuItem pathname="/examples/text-input" label="TextInput" setPath={setPath} />
           <MenuItem pathname="/examples/checkbox" label="Checkbox" setPath={setPath} />
