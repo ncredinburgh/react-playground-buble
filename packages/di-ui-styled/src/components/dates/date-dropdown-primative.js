@@ -6,7 +6,7 @@ import TextInput from '../text-input'
 import DatePicker from './date-picker'
 import styled from 'styled-components'
 import { formatUsDate, getDay } from './date-math'
-import { Calendar, Close } from '@di-internal/di-ui-icon-elements'
+import { Calendar, Close, Delete } from '@di-internal/di-ui-icon-elements'
 import { fromTheme } from '../../utils/theme-util'
 import { fromIso } from './date-math'
 
@@ -49,23 +49,34 @@ const IconWrapper = styled.div`
   ${({ disabled }) => `opacity: ${disabled ? 0.4 : 2};`}
 `
 
+const ClearWrapper = styled.div`
+  position: absolute;
+  right: 37px;
+  top: ${({ small }) => small ? 8 : 12}px;
+  width: 18px;
+  text-align: right;
+  color: ${fromTheme('sectionCColor')};
+  ${({ disabled }) => `opacity: ${disabled ? 0.4 : 2};`}
+`
+
 export default class DateDropdown extends Component {
 
   getStart = () => getDay(
     (typeof this.props.value === 'string' && this.props.value) ||
     (this.props.value && this.props.value.start) ||
     (this.state && this.state.value && this.state.value.start) ||
-    (typeof this.props.defaultValue === 'string' && this.props.defaultValue) ||
-    (this.props.defaultValue && this.props.defaultValue.start) ||
+    (this.prestine && typeof this.props.defaultValue === 'string' && this.props.defaultValue) ||
+    (this.prestine && this.props.defaultValue && this.props.defaultValue.start) ||
     null,
   )
 
   getEnd = () => getDay(
     (this.props.value && this.props.value.end) ||
     (this.state && this.state.value && this.state.value.end) ||
-    (this.props.defaultValue && this.props.defaultValue.end) ||
+    (this.prestine && this.props.defaultValue && this.props.defaultValue.end) ||
     null,
   )
+  prestine = true
 
   state = {
     open: false,
@@ -85,9 +96,17 @@ export default class DateDropdown extends Component {
     this.setState({ open: false })
   }
 
-  onSelect = (value) => {
-    const { onChange, range } = this.props
+  onClear = () => {
+    const { range } = this.props
+    this.onSelect(range ? {
+      firstSelected: null,
+      lastSelected: null,
+    } : null)
+  }
 
+  onSelect = (value) => {
+    const { onChange, range, autoClose } = this.props
+    this.prestine = false
     this.setState(
       range ?
         {
@@ -109,6 +128,15 @@ export default class DateDropdown extends Component {
       } else {
         onChange(value)
       }
+    }
+
+    if (
+      autoClose && (
+        !range ||
+        (range && value.firstSelected && value.lastSelected)
+      )
+    ) {
+      this.delayClose = setTimeout(this.closePicker, 200)
     }
   }
 
@@ -137,12 +165,13 @@ export default class DateDropdown extends Component {
     const start = getStart()
     const end = getEnd()
     const { disableWeekends, maxEndDate, minStartDate, range, disabled } = this.props
+    const text = getText(start, end)
     return (
       <Wrapper>
         <TextInput
           innerRef={(el) => {if (el !== null) this.input = el}}
           onClick={openPicker}
-          value={getText(start, end)}
+          value={text}
           paddingRight={37}
           readOnly
           disabled={disabled}
@@ -155,6 +184,16 @@ export default class DateDropdown extends Component {
         >
           <Calendar onClick={open ? closePicker : openPicker} />
         </IconWrapper>
+        {
+          text ? (
+            <ClearWrapper
+              disabled={disabled}
+              small={this.props.small}
+            >
+              <Delete onClick={this.onClear} />
+            </ClearWrapper>
+          ) : null
+        }
         <DropdownBox
           open={this.state.open}
           onClickOutside={closePicker}

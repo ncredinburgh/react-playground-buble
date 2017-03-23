@@ -15,6 +15,7 @@ type DateDropdownPropsType = {
   disableWeekends: boolean,
   small: boolean,
   autoFocus: boolean,
+  autoClose: boolean,
   /**
     * Dates after disabled
     */
@@ -51,6 +52,7 @@ function DateDropdown({
   onChange,
   small,
   autoFocus,
+  autoClose,
 }: DateDropdownPropsType) {
   const useProps = {
     disableWeekends,
@@ -62,6 +64,7 @@ function DateDropdown({
     onChange,
     small,
     autoFocus,
+    autoClose,
   }
 
   return (

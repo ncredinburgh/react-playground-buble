@@ -23,6 +23,7 @@ type DateRangeDropdownPropsType = {
   minStartDate?: Date,
   small: boolean,
   autoFocus: boolean,
+  autoClose: boolean,
   /**
     * Dates after disabled
     */
@@ -55,6 +56,7 @@ function DateRangeDropdown({
   onChange,
   small,
   autoFocus,
+  autoClose,
 }: DateRangeDropdownPropsType) {
   const useProps = {
     disableWeekends,
@@ -67,6 +69,7 @@ function DateRangeDropdown({
     onChange,
     small,
     autoFocus,
+    autoClose,
   }
 
   return (

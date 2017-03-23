@@ -16,6 +16,15 @@ type OptionType = {
   label: string,
 }
 
+const find = (arr, fn) => {
+  if (!arr || !fn) return null
+  for (let i = 0; i < arr.length; i++) {
+    const item = arr[i]
+    if (fn(item)) return item
+  }
+  return null
+}
+
 const visibleItemsQuery = 'li:not([hidden])'
 
 const getLi = ({ hidden }) => hidden ? `
@@ -78,12 +87,21 @@ const Wrapper = styled.div`
   position: relative;
 `
 
+const getValue = (value, options) => {
+  if (typeof value === 'function') {
+    return find(options, value)
+  }
+  return value
+}
+
 export default class SelectDropdown extends Component {
   state = {
     isOpen: false,
     filter: '',
     selectedIndex: null,
-    selected: this.props.value || this.props.defaultValue || null,
+    selected: getValue(this.props.value, this.props.options) ||
+      getValue(this.props.defaultValue, this.props.options) ||
+      null,
   };
 
   static defaultProps = {
@@ -209,7 +227,7 @@ export default class SelectDropdown extends Component {
 
   componentWillReceiveProps({ value }) {
     if (value !== undefined && value !== this.state.selected) {
-      this.setState({ selected: value })
+      this.setState({ selected: getValue(value, this.props.options) })
     }
   }
 
