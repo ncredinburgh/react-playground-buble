@@ -41,6 +41,7 @@ const PageHeaderPage = () => (
   minHeightViewer={380}
   top
 />
+
 <p>Multiselect Dropdown:</p>
 <Playground
   defaultValue={
@@ -53,7 +54,7 @@ const PageHeaderPage = () => (
 
 <Dropdown
 multiple
-defaultValue={['Customer ID']}
+defaultValue={[options[1]]}
 title="Select Columns"
 options={options}
 onChange={console.log}
@@ -63,6 +64,68 @@ onChange={console.log}
   minHeightViewer={380}
   top
 />
+
+<p>`getOptionValue` is a mapping functions telling the
+dropdown how to recognise items represented by `value` and `defaultValue`.
+Think of it as function to specify a primary key.
+`option[i]` is selected if `value === getOptionValue(option[i])` or for multiselect
+if `value.includes(getOptionValue(option[i]))`
+By default `getOptionValue` is `x => x` that is to say string options would be
+recognised by value equality, but objects by reference equality
+(often not what you want). If you want to recognise options by a property
+specify the property e.g. `getOptionValue = x => x.animal`.</p>
+
+<p>`getLableValue` maps an option to its label. By default `getLableValue` will
+map an object to its `label` property `x => x.label` and a non-object (e.g. a string or number) as
+itself `x => x`.</p>
+
+<p>Note that `onChange` always returns the full
+option item. Use destructuring if you only need a single property.</p>
+
+<Playground
+  defaultValue={
+`const options = [
+{ animal: 'dog' },
+{ animal: 'cat' },
+];
+
+<Dropdown
+multiple
+defaultValue={['cat']}
+getOptionValue={x => x.animal}
+getOptionLabel={x => \`* \${x.animal.toUpperCase()\} *\`}
+title="Select Columns"
+options={options}
+onChange={({ animal }) => console.log(animal)}
+/>`
+  }
+  scope={{ Dropdown, DropdownSplit, DropdownLink }}
+  minHeightViewer={380}
+  top
+/>
+
+<p>
+This means for simple cases you can do have options as array of strings and the
+value of each item will be mapped to both the label and the value.
+</p>
+
+<Playground
+  defaultValue={
+`const options = ['cat', 'dog'];
+
+<Dropdown
+multiple
+defaultValue={['cat']}
+title="Select Columns"
+options={options}
+onChange={console.log}
+/>`
+  }
+  scope={{ Dropdown, DropdownSplit, DropdownLink }}
+  minHeightViewer={380}
+  top
+/>
+
 <p>Dropdown can be filtered. Use space for 'and' and quotes for 'exact' match:</p>
 <Playground
   defaultValue={

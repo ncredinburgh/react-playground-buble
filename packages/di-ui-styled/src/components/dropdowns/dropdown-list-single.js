@@ -12,9 +12,9 @@ import {
 } from './dropdown-focus-helpers'
 import googlish from '../../utils/googlish'
 
-type OptionType = {
-  label: string,
-}
+// type OptionType = {
+//   label: string,
+// }
 
 const find = (arr, fn) => {
   if (!arr || !fn) return null
@@ -87,26 +87,25 @@ const Wrapper = styled.div`
   position: relative;
 `
 
-const getValue = (value, options) => {
-  if (typeof value === 'function') {
-    return find(options, value)
-  }
-  return value
-}
+const getValue = (value, options, getOptionValue) => find(
+  options,
+  option => value === getOptionValue(option)
+)
 
 export default class SelectDropdown extends Component {
   state = {
     isOpen: false,
     filter: '',
     selectedIndex: null,
-    selected: getValue(this.props.value, this.props.options) ||
-      getValue(this.props.defaultValue, this.props.options) ||
+    selected: getValue(this.props.value, this.props.options, this.props.getOptionValue) ||
+      getValue(this.props.defaultValue, this.props.options, this.props.getOptionValue) ||
       null,
   };
 
   static defaultProps = {
     width: 200,
-    filterFn: filterText => ({ label }) => googlish(filterText)(label),
+    getOptionValue: value => value,
+    getOptionLabel: option => typeof option === 'object' ? option.label : option,
   }
 
   onDown = (e) => {
@@ -227,7 +226,13 @@ export default class SelectDropdown extends Component {
 
   componentWillReceiveProps({ value }) {
     if (value !== undefined && value !== this.state.selected) {
-      this.setState({ selected: getValue(value, this.props.options) })
+      this.setState({
+        selected: getValue(
+          value,
+          this.props.options,
+          this.props.getOptionValue
+        )
+      })
     }
   }
 
@@ -248,12 +253,17 @@ export default class SelectDropdown extends Component {
       options,
       title,
       lockTitle,
-      filterFn,
       noWrap,
       width,
       small,
+      getOptionLabel,
       button: Button,
     } = this.props
+
+    const filterFn = this.props.filterFn ? this.props.filterFn :
+      (filterText) =>
+        (option) =>
+          googlish(filterText)(this.props.getOptionLabel(option))
 
     return (
       <Wrapper width={width}>
@@ -267,7 +277,7 @@ export default class SelectDropdown extends Component {
           {
             (selected === null) || lockTitle ?
               title :
-              selected.label
+              getOptionLabel(selected)
           }
         </Button>
         <DropdownBox
@@ -292,18 +302,18 @@ export default class SelectDropdown extends Component {
               {
                 options
                 .filter(filterFn(filter))
-                .map(({ label }, i) => (
+                .map((option, i) => (
                   <Li
                     key={i}
                     tabIndex={0}
-                    selected={selected === options[i]}
-                    onKeyDown={this.onKeyDown2(options[i])}
-                    onClick={() => this.setSelected(options[i])}
+                    selected={selected === option}
+                    onKeyDown={this.onKeyDown2(option)}
+                    onClick={() => this.setSelected(option)}
                   >
                     {
                       noWrap ?
-                        <Ellipsis>{label}</Ellipsis> :
-                        label
+                        <Ellipsis>{getOptionLabel(option)}</Ellipsis> :
+                        getOptionLabel(option)
                     }
                   </Li>
                 ))

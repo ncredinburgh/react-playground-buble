@@ -19,6 +19,8 @@ type DropdownPropsType = {
    * multiselect dropdown
    */
   multiple: boolean,
+  getOptionValue: (option: any) => any,
+  getOptionLabel: (option: any) => string,
   title: string,
   lockTitle: boolean,
   width: number,
