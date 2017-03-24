@@ -16,6 +16,15 @@ import {
 
 const visibleItemsQuery = 'li:not([hidden]) input'
 
+const find = (arr, fn) => {
+  if (!arr || !fn) return null
+  for (let i = 0; i < arr.length; i++) {
+    const item = arr[i]
+    if (fn(item)) return item
+  }
+  return null
+}
+
 const getLi = ({ hidden }) => hidden ? `
   height: 0;
   padding: 0 8px;
@@ -70,11 +79,24 @@ type MultiselectDropdownPropsType = {
   onGray?: boolean,
 }
 
+const getValue = (value, options, getOptionValue) => {
+  if (!value) return []
+  return value.map(x => find(
+    options,
+    option => x === getOptionValue(option)
+  ))
+}
+
+
 export default class MultiselectDropdown extends Component {
   state = {
     isOpen: false,
     filter: '',
-    selected: this.props.defaultValue || [],
+    selected: getValue(
+      this.props.defaultValue,
+      this.props.options,
+      this.props.getOptionValue
+    ),
   };
   ul: Element | null = null
 
@@ -82,7 +104,8 @@ export default class MultiselectDropdown extends Component {
 
   static defaultProps = {
     width: 200,
-    filterFn: filterText => ({ label }) => googlish(filterText)(label),
+    getOptionValue: value => value,
+    getOptionLabel: option => typeof option === 'object' ? option.label : option,
   }
 
   onButtonClick = (e) => {
@@ -189,25 +212,27 @@ export default class MultiselectDropdown extends Component {
     }
   }
 
-  matchesFilter = ({ label }) =>
-    label.substr(0, this.state.filter.length).toLowerCase() ===
-      this.state.filter.toLowerCase()
-
   render() {
     const {
       options,
-      value,
       defaultValue,
+      value,
       name,
       title,
       onGray,
       right,
-      filterFn,
       noWrap,
       width,
       small,
       button: Button,
+      getOptionLabel,
+      getOptionValue,
     } = this.props
+
+    const filterFn = this.props.filterFn ? this.props.filterFn :
+      (filterText) =>
+        (option) =>
+          googlish(filterText)(this.props.getOptionLabel(option))
 
     const {
       filter,
@@ -266,8 +291,15 @@ export default class MultiselectDropdown extends Component {
                     }
 
                     if (value instanceof Array) {
-                      inputProps.checked =
-                        value.indexOf(option) !== -1
+                      inputProps.checked = getValue(
+                        value,
+                        this.props.options,
+                        this.props.getOptionValue
+                      ).indexOf(option) !== -1
+
+
+
+                    //    value.indexOf(option) !== -1
                     } else if (defaultValue instanceof Array) {
                       inputProps.defaultChecked =
                         this.state.selected.indexOf(option) !== -1
@@ -285,8 +317,8 @@ export default class MultiselectDropdown extends Component {
                         >
                         {
                           noWrap ?
-                            <Ellipsis>{option.label}</Ellipsis> :
-                            option.label
+                            <Ellipsis>{getOptionLabel(option)}</Ellipsis> :
+                            getOptionLabel(option)
                         }
                         </Checkbox>
                       </Li>
