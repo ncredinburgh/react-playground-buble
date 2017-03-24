@@ -1,34 +1,22 @@
-# Leapfrog UI
+# React Buble Playgrounds
 
-This repo explores packaging Leapfrog so that it can easily be adopted into new projects incrementally. With no dependency on CSS and as few JS dependencies as possible. It features:
+This Lerna repo contains npm packages used to render live evaluation code
+playgrounds that use buble to transpile JSX and ES2015. It is lighter weight
+than playgrounds that use Babel for transpilation.
 
-* Documentation with live code evaluation and hot loading
-* Themable CSS in JS
-* Lerna mono repo to allow easy development of related packages
-* Tree shaking friendly a packages for fast loading apps
-* Optimized SVG icons
+* `react-playground-bare`: Helper tool for making playgrounds does not contains
+a code editor
+* `react-playground-lite`: Playground styled with inline styles and CSS it uses
+CodeMirror as a code editor
+* `react-playground-styled`: Playground styled using `styled-components` with
+CodeMirror as a code editor
 
-You can normally see a recent version of the style guide here:
+For more details see individual projects in the packages folder.
 
-https://poc-responsive-ui.now.sh
+## Thanks
 
-## Installation
+This component was developed at [NCR Edinburgh](http://ncrediburgh.com).
 
-```bash
-git clone git@gitlab.dev1.diginsite.net:philholden/leapfrog-ui.git
-npm install -g lerna@2.0.0-beta.32
-lerna bootstrap
-```
+## License
 
-You may also need to run `npm install` if this did not happen with bootstrap:
-
-```bash
-cd packages/di-ui-styled
-npm install
-```
-
-You should now be able to see the style guide by visiting:
-
-http://localhost:3000/examples
-
-You should also be able to test on your phone on the local network using your IP in place of `localhost`
+MIT

@@ -4,7 +4,7 @@
   "description": "React playground using Buble",
   "main": "lib/index.js",
   "author": "Phil Holden (http://github.com/philholden)",
-  "license": "NCR",
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
@@ -17,9 +17,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://gitlab.dev1.diginsite.net/philholden/leapfrog-ui.git"
+    "url": "TBD"
   },
-  "homepage": "http://apdev10cmage001.dca.diginsite.net/philholden/leapfrog-ui/",
+  "homepage": "TBD",
   "dependencies": {
     "buble": "^0.14.2",
     "codemirror": "^5.19.0"
