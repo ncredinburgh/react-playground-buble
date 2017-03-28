@@ -60,34 +60,6 @@ export default class PlaygroundEditor extends React.Component {
     clearTimeout(this.forceRemount)
   }
 
-  // componentDidMount() {
-  //   const cm = this.cm.getCodeMirror()
-  //   const Maximum = 16
-  //   cm.addOverlay({
-  //     name: 'invisibles',
-  //     token: stream => {
-  //       let ret
-  //       let spaces = 0
-  //       let peek = stream.peek() === ' '
-  //
-  //       if (peek) {
-  //         while (peek && spaces < Maximum) {
-  //           ++spaces
-  //           stream.next()
-  //           peek = stream.peek() === ' '
-  //         }
-  //         ret = `whitespace whitespace-${spaces}`
-  //       } else {
-  //         while (!stream.eol() && !peek) {
-  //           stream.next()
-  //           peek = stream.peek() === ' '
-  //         }
-  //         ret = 'cm-eol'
-  //       }
-  //       return ret
-  //     },
-  //   })
-  // }
   render() {
     const { value, blank, key } = this.state
     const { props } = this
@@ -97,10 +69,8 @@ export default class PlaygroundEditor extends React.Component {
       theme,
       loadTheme,
     } = props
-    //console.log(theme || loadTheme || 'default')
     return (
         <Codemirror
-          // ref={cm => this.cm = cm}
           key={key}
           value={value}
           onChange={this.onChange}

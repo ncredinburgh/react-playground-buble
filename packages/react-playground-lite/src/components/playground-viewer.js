@@ -75,38 +75,11 @@ export default class PlaygroundViewer extends React.Component {
         errorMessage: message,
       })
     }
-    
+
     this.remoteCompile(source)
       .then(this.renderDom(scope))
       .then(after)
       .catch(after)
-
-    // try {
-    //   const answer = evalInContext(transpiled, {
-    //     React,
-    //     ReactDOM,
-    //     render: ReactDOM.render,
-    //     Component: React.Component,
-    //     mountNode: this.el,
-    //     ...scope
-    //   })
-    //
-    //   if (React.isValidElement(answer)) {
-    //     ReactDOM.unmountComponentAtNode(this.el)
-    //     const wrapOutput = this.props.wrapOutput || (x => x)
-    //     ReactDOM.render(
-    //       wrapOutput(answer),
-    //       this.el
-    //     )
-    //   }
-    // } catch (e) {
-    //   errorMessage = e.message
-    // }
-    // if (!onChange) return
-    // onChange({
-    //   source,
-    //   errorMessage,
-    // })
   }
 
   componentWillReceiveProps(nextProps) {

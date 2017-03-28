@@ -43,34 +43,6 @@ export default class PlaygroundEditor extends React.Component {
     if (onChange) onChange(value)
   }
 
-  // componentDidMount() {
-  //   const cm = this.cm.getCodeMirror()
-  //   const Maximum = 16
-  //   cm.addOverlay({
-  //     name: 'invisibles',
-  //     token: stream => {
-  //       let ret
-  //       let spaces = 0
-  //       let peek = stream.peek() === ' '
-  //
-  //       if (peek) {
-  //         while (peek && spaces < Maximum) {
-  //           ++spaces
-  //           stream.next()
-  //           peek = stream.peek() === ' '
-  //         }
-  //         ret = `whitespace whitespace-${spaces}`
-  //       } else {
-  //         while (!stream.eol() && !peek) {
-  //           stream.next()
-  //           peek = stream.peek() === ' '
-  //         }
-  //         ret = 'cm-eol'
-  //       }
-  //       return ret
-  //     },
-  //   })
-  // }
   render() {
     const { value } = this.state
     const { code } = value
