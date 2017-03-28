@@ -22,6 +22,7 @@ npm install -g lerna@2.0.0-beta.32
 Clone the repo and cd into the project folder then run:
 
 ```bash
+npm install
 lerna bootstrap
 ```
 
