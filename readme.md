@@ -13,6 +13,27 @@ CodeMirror as a code editor
 
 For more details see individual projects in the packages folder.
 
+## Install
+
+```bash
+npm install -g lerna@2.0.0-beta.32
+```
+
+Clone the repo and cd into the project folder then run:
+
+```bash
+lerna bootstrap
+```
+
+You can then see examples:
+
+```bash
+cd packages/react-playground-lite
+npm start
+```
+
+Then visit http://localhost:3000/examples
+
 ## Thanks
 
 This component was developed at [NCR Edinburgh](http://ncrediburgh.com).

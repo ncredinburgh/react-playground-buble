@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactPlaygroundBare from '@di-internal/react-playground-bare'
+import ReactPlaygroundBare from 'react-playground-bare'
 import PlaygroundEditor from './playground-editor'
 import styled from 'styled-components'
 
