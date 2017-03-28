@@ -12,17 +12,8 @@
     "start": "node packages/$PACKAGE/devServer.js",
     "lint": "eslint src",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "commit": "git-cz",
-    "open-coverage": "open ./coverage/lcov-report/index.html",
-    "check-coverage": "nyc check-coverage --statements 0 --branches 0 --functions 0 --lines 0",
-    "report-coverage": "nyc report --reporter=text-lcov | codecov",
     "test": "echo test",
-    "test:old": "BABEL_ENV=test ava ./src/**/__tests__/**/*.js",
-    "test:watch": "npm t -- -w --verbose",
-    "test:cover": "BABEL_ENV=test nyc --reporter=lcov --reporter=text npm t",
     "deploy": "echo NOOP",
-    "semantic-release:npm": "semantic-release pre && npm publish --access public && semantic-release post",
-    "semantic-release:deploy": "NPM_TOKEN=fake semantic-release pre && npm run deploy && semantic-release post"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
