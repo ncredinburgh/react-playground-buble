@@ -1,6 +1,6 @@
 {
   "version": "0.0.5",
-  "name": "@di-internal/react-playground-lite",
+  "name": "react-playground-lite",
   "description": "React playground using Buble",
   "main": "lib/index.js",
   "author": "Phil Holden (http://github.com/philholden)",
@@ -17,9 +17,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "TBD"
+    "url": "git@github.com:NCR-CoDE/react-playground-buble.git"
   },
-  "homepage": "TBD",
+  "homepage": "https://github.com/NCR-CoDE/react-playground-buble",
   "dependencies": {
     "buble": "^0.14.2",
     "codemirror": "^5.19.0",
