@@ -23,4 +23,4 @@ and a DOM button will appear on the left.
 
 ## Thanks
 
-This component was developed at [NCR Edinburgh](http://ncrediburgh.com).
+This component was developed at [NCR Edinburgh](http://ncredinburgh.com).

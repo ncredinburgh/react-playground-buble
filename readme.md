@@ -37,7 +37,7 @@ Then visit http://localhost:3000/examples
 
 ## Thanks
 
-This component was developed at [NCR Edinburgh](http://ncrediburgh.com).
+This component was developed at [NCR Edinburgh](http://ncredinburgh.com).
 
 ## License
 
