@@ -13,7 +13,7 @@
     "lint": "eslint src",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "test": "echo test",
-    "deploy": "echo NOOP",
+    "deploy": "echo NOOP"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
