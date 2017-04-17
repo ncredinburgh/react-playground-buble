@@ -23,7 +23,7 @@ WebFont.load({
 
 export default class PlaygroundEditor extends React.Component {
   state = {
-    value: this.props.defaultValue || ''
+    value: this.props.defaultValue || '',
   }
   hash = `hash-${(Math.random().toString(10).substr(2) * 1).toString(36)}`
   static defaultProps = {
@@ -39,7 +39,7 @@ export default class PlaygroundEditor extends React.Component {
 
   onChange = value => {
     const { onChange } = this.props
-    this.setState({value})
+    this.setState({ value })
     if (onChange) onChange(value)
   }
 
@@ -66,7 +66,7 @@ export default class PlaygroundEditor extends React.Component {
             theme: 'default',
             invisibles: true,
             extraKeys: {
-              Tab: (cm) => {
+              Tab: cm => {
                 const spaces = Array(cm.getOption('indentUnit') + 1).join(' ')
                 cm.replaceSelection(spaces)
               },

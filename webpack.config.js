@@ -49,7 +49,6 @@ module.exports = env => {
       ),
       ...ifProd(
         new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.optimize.DedupePlugin(),
         new webpack.LoaderOptionsPlugin({
           minimize: true,
           debug: false,

@@ -3,9 +3,9 @@
   "scripts": {
     "publish:internal": "node publish-updated react-playground-bare && node publish-updated react-playground-lite --new && node publish-updated react-playground-styled --new && node publish-updated di-ui-icon-elements --new && node publish-updated di-ui-styled --new",
     "publish:pre-npm": "lerna publish --skip-npm",
-    "clean": "rimraf lib dist lib-es",
-    "build:webpack-var": "npm run clean && NODE_ENV=production webpack --config webpack.config.js --env.var",
-    "build:webpack": "npm run clean && NODE_ENV=production webpack --config packages/$PACKAGE/webpack.config.local.js --env.prod",
+    "clean": "rimraf packages/$PACKAGE/lib packages/$PACKAGE/dist packages/$PACKAGE/lib-es",
+    "build:webpack-var": "npm run clean && NODE_ENV=production webpack --config packages/$PACKAGE/webpack.config.js --env.var",
+    "build:webpack": "npm run clean && cd packages/$PACKAGE && NODE_ENV=production ../../node_modules/webpack --config ../../webpack.config.js --env.prod --context packages/$PACKAGE/src && cp packages/$PACKAGE/examples/index.html packages/$PACKAGE/dist",
     "build:babel": "npm run clean && NODE_ENV=lib babel -D packages/$PACKAGE/src -d packages/$PACKAGE/lib",
     "build:es": "NODE_ENV=es babel -D packages/$PACKAGE/src -d packages/$PACKAGE/lib-es",
     "build": "npm run clean && npm run build:webpack",

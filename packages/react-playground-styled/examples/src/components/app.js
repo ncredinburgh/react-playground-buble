@@ -7,8 +7,7 @@ const defaultJsx = `<div className="Edit">
   <button>Hello</button>
 </div>`
 
-const defaultClass =
-`class MyComponent extends React.Component {
+const defaultClass = `class MyComponent extends React.Component {
   render() {
     return (
       <div className="Edit">
@@ -20,8 +19,7 @@ const defaultClass =
 
 ReactDOM.render(<MyComponent />, mountNode)`
 
-const evalToJsx =
-`class MyComponent extends Component {
+const evalToJsx = `class MyComponent extends Component {
   render() {
     return (
       <div className="Edit">
@@ -55,7 +53,8 @@ const App = () => (
     <ReactPlaygroundStyled
       defaultValue={defaultJsx}
       backgroundColor={'hotpink'}
-      top left
+      top
+      left
     />
     <p>top:</p>
     <ReactPlaygroundStyled
@@ -81,7 +80,8 @@ const App = () => (
       defaultValue={defaultJsx}
       backgroundColor={'green'}
       padding={35}
-      top left
+      top
+      left
       editorFlex={'1 0 0'}
       viewerFlex={'1 0 0'}
     />

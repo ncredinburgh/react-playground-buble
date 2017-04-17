@@ -7,19 +7,18 @@ function rerender(App2) {
   render(
     <AppContainer>
       <App2 />
-    </AppContainer>
-    ,
+    </AppContainer>,
     document.getElementById('root')
   )
 }
 
 if (module.hot) {
   module.hot.accept('./components/app', () => {
-//    const App2 = require('./components/app').default
+    // const App2 = require('./components/app').default
     System.import('./components/app').then(({ default: App2 }) => {
-      //unmountComponentAtNode(document.getElementById('root'))
+      // unmountComponentAtNode(document.getElementById('root'))
       rerender(App2)
-      if(window._playgroundForceUpdateCallbacks) {
+      if (window._playgroundForceUpdateCallbacks) {
         console.log(window._playgroundForceUpdateCallbacks)
         window._playgroundForceUpdateCallbacks.forEach(fn => fn())
       }

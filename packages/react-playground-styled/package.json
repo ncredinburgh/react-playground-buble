@@ -12,6 +12,7 @@
     "start": "cd ../.. && PACKAGE=$npm_package_config_package node ./dev-server.js",
     "test": "cd ../.. && PACKAGE=$npm_package_config_package npm test",
     "build:babel": "cd ../.. && PACKAGE=$npm_package_config_package npm run build:babel",
+    "build:webpack": "npm run clean && NODE_ENV=production ../../node_modules/.bin/webpack --config webpack.config.local.js --env.prod && cp examples/index.html dist",
     "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs",
     "prepublish": "npm run build:babel"
   },

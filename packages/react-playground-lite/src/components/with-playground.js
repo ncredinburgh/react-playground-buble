@@ -33,10 +33,12 @@ export default class WithPlayground extends React.Component {
     remoteCompile(source)
       .then(evalReact(scope))
       .then(this.onComponent)
-      .catch(error => this.onError({
-        source,
-        error,
-      }))
+      .catch(error =>
+        this.onError({
+          source,
+          error,
+        })
+      )
   }
 
   onComponent = evalChild => {
@@ -49,7 +51,7 @@ export default class WithPlayground extends React.Component {
   onError = ({ error, source }) => {
     const errorMessage = error.message
     this.setState({
-      errorMessage: formatErrorMessage({ errorMessage, source })
+      errorMessage: formatErrorMessage({ errorMessage, source }),
     })
   }
 

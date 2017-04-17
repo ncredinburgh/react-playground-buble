@@ -77,18 +77,9 @@ export default class ReactPlaygroundLite extends React.Component {
     editorFlex: '1',
   }
   render() {
-    const {
-      defaultValue,
-      source,
-      errorMessage,
-    } = this.state
+    const { defaultValue, source, errorMessage } = this.state
 
-    const {
-      borderRadius,
-      fontFamily,
-      padding,
-      wrapOutput,
-    } = this.props
+    const { borderRadius, fontFamily, padding, wrapOutput } = this.props
 
     let { editorPadding } = this.props
     if (editorPadding === undefined) editorPadding = padding - 4
@@ -101,9 +92,7 @@ export default class ReactPlaygroundLite extends React.Component {
               source={source}
               scope={this.props.scope}
               style={this.props.viewerStyle}
-              onChange={
-                val => this.setState(val)
-              }
+              onChange={val => this.setState(val)}
               wrapOutput={wrapOutput}
             />
           </div>
@@ -115,11 +104,10 @@ export default class ReactPlaygroundLite extends React.Component {
         </div>
         <PlaygroundEditor
           defaultValue={defaultValue}
-          onChange={
-            val => this.setState({
+          onChange={val =>
+            this.setState({
               source: val,
-            })
-          }
+            })}
           style={styles.editor}
           borderRadius={borderRadius}
           fontFamily={fontFamily}

@@ -15,7 +15,7 @@ type ReactPlaygroundBareType = {
   defaultValue: string,
   scope: { [key: string]: any },
   remoteEvalUrl?: string,
-  useRemoteEval?: boolean | () => boolean;
+  useRemoteEval?: boolean | (() => boolean),
   children: () => React.Element<*>,
 }
 
@@ -32,24 +32,21 @@ export default class ReactPlaygroundBare extends React.Component {
   }
 
   onUpdateSource = source => {
-    const {
-      scope,
-      EvalWrapper,
-      useRemoteEval,
-      remoteEvalUrl,
-    } = this.props
+    const { scope, EvalWrapper, useRemoteEval, remoteEvalUrl } = this.props
     const { mountNode } = this
-    const useRemote = typeof useRemoteEval === 'function' ?
-      useRemoteEval() :
-      useRemoteEval
+    const useRemote = typeof useRemoteEval === 'function'
+      ? useRemoteEval()
+      : useRemoteEval
     const compile = useRemote ? remoteCompile : localCompile
     compile(source, remoteEvalUrl)
       .then(evalReact(scope, mountNode, EvalWrapper))
       .then(this.onComponent)
-      .catch(error => this.onError({
-        source,
-        error,
-      }))
+      .catch(error =>
+        this.onError({
+          source,
+          error,
+        })
+      )
   }
 
   onComponent = evalChild => {
@@ -58,11 +55,11 @@ export default class ReactPlaygroundBare extends React.Component {
     if (evalChild) {
       ReactDOM.unmountComponentAtNode(mountNode)
       ReactDOM.render(
-        EvalWrapper ? (
-          <EvalWrapper>
-            {evalChild}
-          </EvalWrapper>
-        ) : evalChild,
+        EvalWrapper
+          ? <EvalWrapper>
+              {evalChild}
+            </EvalWrapper>
+          : evalChild,
         mountNode
       )
     }
@@ -76,7 +73,7 @@ export default class ReactPlaygroundBare extends React.Component {
   onError = ({ error, source }) => {
     const errorMessage = error.message
     this.setState({
-      errorMessage: formatErrorMessage({ errorMessage, source })
+      errorMessage: formatErrorMessage({ errorMessage, source }),
     })
   }
 
