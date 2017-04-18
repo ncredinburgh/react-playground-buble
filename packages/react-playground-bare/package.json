@@ -1,5 +1,5 @@
 {
-  "version": "0.0.5",
+  "version": "0.0.6",
   "name": "react-playground-bare",
   "description": "React playground using Buble",
   "main": "lib/index.js",
