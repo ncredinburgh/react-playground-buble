@@ -1,5 +1,5 @@
 {
-  "version": "0.0.6",
+  "version": "0.0.7",
   "name": "react-playground-styled",
   "description": "React playground using Buble",
   "main": "lib/index.js",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/NCR-CoDE/react-playground-buble",
   "dependencies": {
-    "react-playground-bare": "^0.0.6",
+    "react-playground-bare": "^0.0.7",
     "buble": "^0.14.2",
     "codemirror": "^5.19.0",
     "react-codemirror": "^0.2.6",
