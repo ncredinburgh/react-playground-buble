@@ -1,5 +1,5 @@
 {
-  "version": "0.0.7",
+  "version": "0.0.8",
   "name": "react-playground-styled",
   "description": "React playground using Buble",
   "main": "lib/index.js",
@@ -28,7 +28,7 @@
   "peerDependencies": {
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "styled-components": "^1.4.5",
+    "styled-components": "^1.4.5"
   },
   "devDependencies": {},
   "config": {
