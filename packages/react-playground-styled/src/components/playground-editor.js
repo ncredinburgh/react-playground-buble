@@ -19,15 +19,19 @@ export default class PlaygroundEditor extends React.Component {
   constructor(props, ctx) {
     super(props, ctx)
     this.loadCss()
-    this.loadFont()
+    //this.loadFont()
   }
 
   loadCss = () => {
-    injectCss('//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/codemirror.min.css')
+    injectCss(
+      '//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/codemirror.min.css'
+    )
 
     const { loadTheme } = this.props
     if (!loadTheme) return
-    injectCss(`//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/theme/${loadTheme}.min.css`)
+    injectCss(
+      `//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/theme/${loadTheme}.min.css`
+    )
   }
 
   loadFont = () => {
@@ -52,7 +56,7 @@ export default class PlaygroundEditor extends React.Component {
 
   onChange = value => {
     const { onChange } = this.props
-    this.setState({value})
+    this.setState({ value })
     if (onChange) onChange(value)
   }
 
@@ -63,37 +67,31 @@ export default class PlaygroundEditor extends React.Component {
   render() {
     const { value, blank, key } = this.state
     const { props } = this
-    const {
-      onChange,
-      codeMirrorOptions,
-      theme,
-      loadTheme,
-    } = props
+    const { onChange, codeMirrorOptions, theme, loadTheme } = props
     return (
-        <Codemirror
-          key={key}
-          value={value}
-          onChange={this.onChange}
-          options={{
-            mode: 'jsx',
-            indentWithTabs: false,
-            lineNumbers: false,
-            lineWrapping: true,
-            smartIndent: false,
-            matchBrackets: true,
-            theme: theme || loadTheme || 'default',
-            invisibles: true,
-            extraKeys: {
-              Tab: cm => {
-                const spaces = Array(cm.getOption('indentUnit') + 1).join(' ')
-                cm.replaceSelection(spaces)
-              },
+      <Codemirror
+        key={key}
+        value={value}
+        onChange={this.onChange}
+        options={{
+          mode: 'jsx',
+          indentWithTabs: false,
+          lineNumbers: false,
+          lineWrapping: true,
+          smartIndent: false,
+          matchBrackets: true,
+          theme: theme || loadTheme || 'default',
+          invisibles: true,
+          extraKeys: {
+            Tab: cm => {
+              const spaces = Array(cm.getOption('indentUnit') + 1).join(' ')
+              cm.replaceSelection(spaces)
             },
-            codeMirrorInstance,
-            ...(codeMirrorOptions || {})
-          }}
-        />
-
+          },
+          codeMirrorInstance,
+          ...(codeMirrorOptions || {}),
+        }}
+      />
     )
   }
 }

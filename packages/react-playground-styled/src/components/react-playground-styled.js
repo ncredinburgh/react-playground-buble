@@ -16,13 +16,14 @@ const getAlignment = ({ top, bottom, left, right }) => {
     align-items: ${alignItems};`
 }
 
-const getFullWidth = ({ fullWidth }) => fullWidth ?
-  `display: block;
-  width: 100%;` :
-  'display: flex;'
+const getFullWidth = ({ fullWidth }) =>
+  (fullWidth
+    ? `display: block;
+  width: 100%;`
+    : 'display: flex;')
 
 export const PlaygroundWrapper = styled.div`
-  margin: -${fromTheme('gutter')}px;
+  margin: ${fromTheme('margin')}px;
   display: flex;
   flex-wrap: wrap-reverse;
   line-height: 1.3;`
@@ -35,7 +36,7 @@ export const EditorWrapper = styled.div`
   margin: ${fromTheme('gutter')}px;
   border: 1px solid #eee;
   min-width: ${fromTheme('minWidthEditor')}px;
-  ${/Trident\/7/.test(navigator.userAgent) ? 'min-height: 200px;' : '' }
+  ${/Trident\/7/.test(navigator.userAgent) ? 'min-height: 200px;' : ''}
   & .ReactCodeMirror {
     flex: 1;
     display: flex;
@@ -62,7 +63,7 @@ export const ViewerWrapper = styled.div`
   box-sizing: border-box;
   min-width: ${fromTheme('minWidthViewer')}px;
   min-height: ${fromTheme('minHeightViewer')}px;
-  ${({ errorMessage }) => errorMessage ? 'min-height: 100px;' : ''}`
+  ${({ errorMessage }) => (errorMessage ? 'min-height: 100px;' : '')}`
 
 export const ViewerAlign = styled.div`
   ${getFullWidth}
@@ -79,6 +80,8 @@ export const ErrorWrapper = styled.pre`
   margin: 0;
   padding: 5px;
 `
+
+const customizeWrapper = (prop, defaultValue) => prop(defaultValue)
 
 export const ReactPlaygroundStyled = ({
   top,
@@ -99,24 +102,28 @@ export const ReactPlaygroundStyled = ({
   minWidthViewer,
   minHeightViewer,
   minWidthEditor,
+  margin,
   codeMirrorOptions,
-  PlaygroundWrapper,
-  EditorWrapper,
-  ViewerWrapper,
-  ViewerAlign,
-  EvalWrapper,
-  ErrorWrapper,
+  playgroundWrapper,
+  editorWrapper,
+  viewerWrapper,
+  viewerAlign,
+  evalWrapper,
+  errorWrapper,
   defaultValue,
   scope,
   useRemoteEval,
   remoteEvalUrl,
 }) => {
-  const Inner = ({
-    defaultValue,
-    onChange,
-    errorMessage,
-    onViewerMount,
-  }) => {
+  const x = {
+    PlaygroundWrapper: customizeWrapper(playgroundWrapper, PlaygroundWrapper),
+    EditorWrapper: customizeWrapper(editorWrapper, EditorWrapper),
+    ViewerWrapper: customizeWrapper(viewerWrapper, ViewerWrapper),
+    ViewerAlign: customizeWrapper(viewerAlign, ViewerAlign),
+    EvalWrapper: customizeWrapper(evalWrapper, EvalWrapper),
+    ErrorWrapper: customizeWrapper(errorWrapper, ErrorWrapper),
+  }
+  const Inner = ({ defaultValue, onChange, errorMessage, onViewerMount }) => {
     const themeVars = {
       top,
       bottom,
@@ -133,24 +140,24 @@ export const ReactPlaygroundStyled = ({
       minWidthViewer,
       minHeightViewer,
       minWidthEditor,
+      margin,
       errorMessage,
     }
     return (
-      <PlaygroundWrapper {...themeVars}>
-        <ViewerWrapper {...themeVars}>
-          <ViewerAlign
+      <x.PlaygroundWrapper {...themeVars}>
+        <x.ViewerWrapper {...themeVars}>
+          <x.ViewerAlign
             {...themeVars}
             ref={onViewerMount}
             innerRef={onViewerMount}
           />
-          {
-            !errorMessage ? null :
-              <ErrorWrapper {...themeVars}>
+          {!errorMessage
+            ? null
+            : <x.ErrorWrapper {...themeVars}>
                 {errorMessage}
-              </ErrorWrapper>
-          }
-        </ViewerWrapper>
-        <EditorWrapper {...themeVars}>
+              </x.ErrorWrapper>}
+        </x.ViewerWrapper>
+        <x.EditorWrapper {...themeVars}>
           <PlaygroundEditor
             onChange={onChange}
             defaultValue={defaultValue}
@@ -159,8 +166,8 @@ export const ReactPlaygroundStyled = ({
             theme={theme}
             loadTheme={loadTheme}
           />
-        </EditorWrapper>
-      </PlaygroundWrapper>
+        </x.EditorWrapper>
+      </x.PlaygroundWrapper>
     )
   }
 
@@ -180,21 +187,23 @@ export const ReactPlaygroundStyled = ({
 }
 
 ReactPlaygroundStyled.defaultProps = {
-  PlaygroundWrapper,
-  EditorWrapper,
-  ViewerWrapper,
-  ViewerAlign,
-  ErrorWrapper,
+  playgroundWrapper: x => x,
+  editorWrapper: x => x,
+  viewerWrapper: x => x,
+  evalWrapper: x => x,
+  viewerAlign: x => x,
+  errorWrapper: x => x,
   defaultValue: '',
   borderRadius: 0,
   loadFont: `'Source Sans Pro', sans-serif`,
   font: `'Source Sans Pro'`,
   padding: 12,
-  gutter: 4,
+  gutter: 0,
   backgroundColor: '#fcfcfc',
   viewerFlex: 1,
   editorFlex: 1,
   minWidthEditor: 240,
   minWidthViewer: 240,
   minHeightViewer: 25,
+  margin: 0,
 }
