@@ -19,7 +19,7 @@ export default class PlaygroundEditor extends React.Component {
   constructor(props, ctx) {
     super(props, ctx)
     this.loadCss()
-    //this.loadFont()
+    this.loadFont()
   }
 
   loadCss = () => {

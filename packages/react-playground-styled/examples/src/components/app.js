@@ -267,7 +267,11 @@ let b = [1,2,3];
       scope={{ ReactPlaygroundStyled }}
     />
 
-    <p>padding:</p>
+    <Text>
+      <p>
+        <em>padding</em> affects both the editor and viewer:
+      </p>
+    </Text>
     <OuterPlayground
       defaultValue={`<ReactPlaygroundStyled
   defaultValue={'<button>Hello</button>'}
@@ -275,8 +279,14 @@ let b = [1,2,3];
 />`}
       scope={{ ReactPlaygroundStyled }}
     />
+    <Text>
+      <p>
+        <em>minHeightViewer, minWidthViewer, minWidthEditor</em>. For components
+        such as dropdown list it might be important to force a certain minimum height
+        for the viewer:
+      </p>
+    </Text>
 
-    <p>minHeightViewer, minWidthViewer, minWidthEditor:</p>
     <OuterPlayground
       defaultValue={`<ReactPlaygroundStyled
   defaultValue={'<button>Hello</button>'}
@@ -284,8 +294,16 @@ let b = [1,2,3];
 />`}
       scope={{ ReactPlaygroundStyled }}
     />
+    <Text>
+      <p>
+        Many compents use <em>flex-box</em> for styling this means they may
+        expect to be rendered into a parent with display set to <em>flex</em>.
+        So it is important to be able to control the context compnents are
+        rendered into. Below some alignment props:
+      </p>
+      <p><em>left</em>:</p>
+    </Text>
 
-    <p>left:</p>
     <OuterPlayground
       defaultValue={`<ReactPlaygroundStyled
   defaultValue={'<button>Hello</button>'}
@@ -295,7 +313,9 @@ let b = [1,2,3];
       scope={{ ReactPlaygroundStyled }}
     />
 
-    <p>right:</p>
+    <Text>
+      <p><em>right</em>:</p>
+    </Text>
     <OuterPlayground
       defaultValue={`<ReactPlaygroundStyled
   defaultValue={'<button>Hello</button>'}
@@ -305,7 +325,9 @@ let b = [1,2,3];
       scope={{ ReactPlaygroundStyled }}
     />
 
-    <p>top:</p>
+    <Text>
+      <p><em>top</em>:</p>
+    </Text>
     <OuterPlayground
       defaultValue={`<ReactPlaygroundStyled
   defaultValue={'<button>Hello</button>'}
@@ -315,7 +337,9 @@ let b = [1,2,3];
       scope={{ ReactPlaygroundStyled }}
     />
 
-    <p>bottom:</p>
+    <Text>
+      <p><em>bottom</em>:</p>
+    </Text>
     <OuterPlayground
       defaultValue={`<ReactPlaygroundStyled
   defaultValue={'<button>Hello</button>'}
@@ -324,8 +348,10 @@ let b = [1,2,3];
 />`}
       scope={{ ReactPlaygroundStyled }}
     />
-
-    <p>bottom right:</p>
+    <Text>
+      <p>Horizontal and vertical alignment can be used together.</p>
+      <p><em>bottom right</em>:</p>
+    </Text>
     <OuterPlayground
       defaultValue={`<ReactPlaygroundStyled
   defaultValue={'<button>Hello</button>'}
@@ -334,27 +360,33 @@ let b = [1,2,3];
 />`}
       scope={{ ReactPlaygroundStyled }}
     />
-    <h2>Wrappers</h2>
-    <p>
-      There are wrappers around the editor, the viewer and the whole playground.
-      This allow you to set arbitrary or add additional wrappers. Wrapper props
-      are callbacks which accept the default wrapper component as an argument.
-      We provide the following wrappers:
-    </p>
-    <ul>
-      <li>playgroundWrapper</li>
-      <li>editorWrapper</li>
-      <li>viewerWrapper</li>
-      <li>viewerAlign</li>
-      <li>evalWrapper</li>
-      <li>errorWrapper</li>
-    </ul>
+    <Text>
+      <h2>Wrappers</h2>
+      <p>
+        There are wrappers around the editor, the viewer and the whole playground.
+        This allows you to set arbitrary styles, replace the default wrapper or add additional wrappers. Wrapper props
+        are callbacks which accept the default wrapper component as an argument.
+        We provide the following wrappers:
+      </p>
+      <ul>
+        <li>playgroundWrapper</li>
+        <li>editorWrapper</li>
+        <li>viewerWrapper</li>
+        <li>viewerAlign</li>
+        <li>evalWrapper</li>
+        <li>errorWrapper</li>
+      </ul>
+
+      <p>
+        E.g. provide addition styles to a wrapper, forcing column layout and adding a border:
+      </p>
+    </Text>
 
     <OuterPlayground
       defaultValue={`<ReactPlaygroundStyled
   defaultValue={'<button>Hello</button>'}
   playgroundWrapper={
-    Comp => styled(Comp)\`
+    Wrapper => styled(Wrapper)\`
       border: 10px solid #555;
       flex-direction: column-reverse;\`
   }
@@ -362,6 +394,26 @@ let b = [1,2,3];
 />`}
       scope={{ ReactPlaygroundStyled }}
     />
+
+    <Text>
+      <p>Replace a wrapper by providing a new component:</p>
+    </Text>
+
+    <OuterPlayground
+      defaultValue={`<ReactPlaygroundStyled
+  defaultValue={'<button>Hello</button>'}
+  viewerWrapper={
+    Wrapper => props => (
+      <div {...props} style={{
+        border: '1px solid black'
+      }}/>
+    )
+  }
+  scope={{styled}}
+/>`}
+      scope={{ ReactPlaygroundStyled }}
+    />
+
   </div>
 )
 
