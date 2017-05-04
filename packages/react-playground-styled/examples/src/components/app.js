@@ -1,31 +1,36 @@
 // @flow
-
+// setTimeout(() => document.body.scrollTop = 0, 2000)
 import React from 'react'
-import { ReactPlaygroundStyled as Playground } from '../../../src'
-import styled from 'styled-components'
+import {
+  ReactPlaygroundStyled as Playground,
+  ThemeBroadcast,
+  ThemeChooserProvider,
+} from '../../../src'
+import styled, { withTheme, ThemeProvider } from 'styled-components'
+
 const themeNames = [
   '3024-day',
   '3024-night',
-  'abcdef',
+  //  'abcdef',
   'ambiance',
   'base16-dark',
   'base16-light',
-  'bespin',
+  //  'bespin',
   'blackboard',
   'cobalt',
   'colorforth',
-  'dracula',
-  'duotone-dark',
+  //  'dracula',
+  //  'duotone-dark',
   'duotone-light',
   'eclipse',
   'elegant',
   'erlang-dark',
-  'hopscotch',
-  'icecoder',
-  'isotope',
+  //  'hopscotch',
+  //  'icecoder',
+  //  'isotope',
   'lesser-dark',
-  'liquibyte',
-  'material',
+  //  'liquibyte',
+  //  'material',
   'mbo',
   'mdn-like',
   'midnight',
@@ -33,24 +38,24 @@ const themeNames = [
   'neat',
   'neo',
   'night',
-  'panda-syntax',
+  //  'panda-syntax',
   'paraiso-dark',
   'paraiso-light',
   'pastel-on-dark',
-  'railscasts',
+  //  'railscasts',
   'rubyblue',
-  'seti',
-  'solarized dark',
-  'solarized light',
+  //  'seti',
+  //  'solarized dark',
+  //  'solarized light',
   'the-matrix',
   'tomorrow-night-bright',
   'tomorrow-night-eighties',
-  'ttcn',
+  //  'ttcn',
   'twilight',
   'vibrant-ink',
   'xq-dark',
   'xq-light',
-  'yeti',
+  //  'yeti',
   'zenburn',
 ]
 const Text = styled.div`
@@ -70,7 +75,12 @@ const OuterPlayground = ({ scope, ...props }) => (
 )
 
 const ReactPlaygroundStyled = ({ scope, ...props }) => (
-  <Playground backgroundColor="#bbb" scope={{ ...scope }} {...props} />
+  <Playground
+    editorBorder="none"
+    backgroundColor="#bbb"
+    scope={{ ...scope }}
+    {...props}
+  />
 )
 
 const defaultJsx = `<div className="Edit">
@@ -110,8 +120,7 @@ const App = () => (
         {' '}
         <em>styled-components</em>
         {' '}
-        it allows
-        binding themes from the outer page. It was made to enable the creation
+        it allows binding themes from the outer page. It was made to enable the creation
         of themable living component guides. The editor will evalute the last expression and if it is a React element
         it will be rendered in the viewer:
       </p>
@@ -170,7 +179,7 @@ const HelloWorld = () => (
 
     <Text>
       <p>
-        One of the goals of this playgrond is to be light weight for this reason we use
+        One of the goals of this playground is to be light weight for this reason we use
         {' '}
         <a href="https://gitlab.com/Rich-Harris/buble">Bublé</a>
         {' '}
@@ -184,7 +193,7 @@ const HelloWorld = () => (
         Another goal is to use minimal screen space to document a component.
         Because horizontal space is at such a high premium I have taken the
         unusual decision to use a proportional font. I found this to be less
-        evil than all line wrapping I encountered with monospace fonts. You
+        evil than all the line wrapping I encountered with monospace fonts. You
         can change the font with the <em>font</em> property:
       </p>
     </Text>
@@ -212,12 +221,13 @@ const HelloWorld = () => (
       scope={{ ReactPlaygroundStyled, themeNames }}
       defaultValue={`<ReactPlaygroundStyled
   scope={{ themeNames }}
-  loadTheme={'monokai'}
+  loadTheme="monokai"
   defaultValue={
 \`const a = 1;
 let b = [1,2,3];
 
 <textarea
+  readOnly
   value={themeNames.join(\'\\\\n\')}
   rows={15}
 />\`}
@@ -228,12 +238,12 @@ let b = [1,2,3];
         The final aim of this library is to deliver complete customisation of
         each component within the playground. This is done by:
       </p>
-      <ul>
+      <ol>
         <li>
           Props for common requirements e.g. alignment, padding, gutters
         </li>
         <li>Injecting or modifing wrappers for unlimited flexibility</li>
-      </ul>
+      </ol>
       <h3>Props</h3>
       <p>
         <em>gutter</em> puts a margin around both the viewer and the editor
@@ -361,6 +371,80 @@ let b = [1,2,3];
       scope={{ ReactPlaygroundStyled }}
     />
     <Text>
+      <p>
+        Use
+        {' '}
+        <em>fullWidth</em>
+        {' '}
+        if you want a component to fill the width of the viewer rather than being centered.
+      </p>
+    </Text>
+    <OuterPlayground
+      defaultValue={`<ReactPlaygroundStyled
+  defaultValue={\`<h3
+  style={{borderBottom: '1px solid'}}
+>
+  Full Width
+</h3>\`}
+  minHeightViewer={110}
+  fullWidth
+/>`}
+      scope={{ ReactPlaygroundStyled }}
+    />
+    <Text>
+      <h2>Themes</h2>
+      <p>
+        The <em>ThemeBroadcast</em> class
+        {' '}
+        can be used to pass
+        {' '}
+        <em>styled-components</em>
+        {' '}
+        themes to new React roots e.g.
+        modals, portals or playgrounds. Setting the <em>themeBroadcast</em> prop
+        to an instance of <em>ThemeBroadcast</em> will provide the
+        theme on the context to the React root in the viewer:
+      </p>
+    </Text>
+    <OuterPlayground
+      defaultValue={`// import {ThemeBroadcast} from 'react-playground-styled'
+
+const themeBroadcast = new ThemeBroadcast({
+  color: 'green'
+})
+
+const setColor = color => () => themeBroadcast.broadcast({
+  color: color
+});
+
+const H3 = styled.h3\`color: \${({theme}) => theme.color};\`;
+const Button = styled.button\`color: \${({theme}) => theme.color};\`;
+
+<div>
+  <p>Click link to change theme:</p>
+  <button onClick={setColor('green')}>green</button>{' '}
+  <button onClick={setColor('pink')}>pink</button><p/>
+  <ReactPlaygroundStyled
+    defaultValue={\`<Button>hello</Button>\`}
+    scope={{Button}}
+    themeBroadcast ={themeBroadcast}
+  />
+  <p />
+  <ReactPlaygroundStyled
+    defaultValue={\`<H3>hello</H3>\`}
+    scope={{H3}}
+    themeBroadcast ={themeBroadcast}
+  />
+</div>`}
+      scope={{
+        ReactPlaygroundStyled,
+        withTheme,
+        ThemeBroadcast,
+        styled,
+        ThemeChooserProvider,
+      }}
+    />
+    <Text>
       <h2>Wrappers</h2>
       <p>
         There are wrappers around the editor, the viewer and the whole playground.
@@ -373,7 +457,7 @@ let b = [1,2,3];
         <li>editorWrapper</li>
         <li>viewerWrapper</li>
         <li>viewerAlign</li>
-        <li>evalWrapper</li>
+        <li>EvalWrapper</li>
         <li>errorWrapper</li>
       </ul>
 
@@ -396,24 +480,184 @@ let b = [1,2,3];
     />
 
     <Text>
-      <p>Replace a wrapper by providing a new component:</p>
+      <p>
+        Provide alternative wrapper:
+      </p>
     </Text>
 
     <OuterPlayground
       defaultValue={`<ReactPlaygroundStyled
   defaultValue={'<button>Hello</button>'}
-  viewerWrapper={
-    Wrapper => props => (
-      <div {...props} style={{
-        border: '1px solid black'
-      }}/>
-    )
+  playgroundWrapper={
+    () => ({children}) => <div children={children}/>
   }
   scope={{styled}}
 />`}
       scope={{ ReactPlaygroundStyled }}
     />
+    <Text>
+      <p>
+        The
+        {' '}
+        <em>EvalWrapper</em>
+        {' '}
+        is different to the other wrappers. It should be
+        a component or
+        {' '}
+        <em>null</em>
+        {' '}
+        rather than a function that returns a component.
+        If
+        {' '}
+        <em>null</em>
+        {' '}
+        the content will be evaluated without a wrapper otherwise
+        evaluated content will be passed as
+        {' '}
+        <em>children</em>
+        {' '}
+        to the
+        {' '}
+        <em>EvalWrapper</em>
+        {' '}
+        component. The
+        {' '}
+        <em>EvalWrapper</em>
+        {' '}
+        sits inside the new React root in the viewer.
+        So it can be used for binding
+        {' '}
+        <em>context</em>
+        {' '}
+        to the outer root e.g. this is the long version of how to bind themes to the inner React root.
+        :
+      </p>
+    </Text>
 
+    <OuterPlayground
+      defaultValue={`const themeBroadcast = new ThemeBroadcast({
+  color: 'green'
+})
+const EvalWrapper = ({ children }) => (
+  <ThemeChooserProvider
+    themeBroadcast={themeBroadcast}
+  >
+    {children}
+  </ThemeChooserProvider>
+)
+const ThemedPlayground = props => (
+  <ReactPlaygroundStyled
+    {...props}
+    EvalWrapper={EvalWrapper}
+  />
+);
+
+const setColor = color => () => themeBroadcast.broadcast({
+  color: color
+});
+
+const H3 = styled.h3\`color: \${({theme}) => theme.color};\`;
+const Button = styled.button\`color: \${({theme}) => theme.color};\`;
+
+<div>
+  <p>Click link to change theme:</p>
+  <button onClick={setColor('green')}>green</button>{' '}
+  <button onClick={setColor('pink')}>pink</button><p/>
+  <ThemedPlayground
+    defaultValue={\`<Button>hello</Button>\`}
+    scope={{Button}}
+  />
+  <p />
+  <ThemedPlayground
+    defaultValue={\`<H3>hello</H3>\`}
+    scope={{H3}}
+  />
+</div>`}
+      scope={{
+        ReactPlaygroundStyled,
+        withTheme,
+        ThemeBroadcast,
+        styled,
+        ThemeChooserProvider,
+      }}
+    />
+    <Text>
+      <h2>Creating your own custom playground</h2>
+      <p>
+        There are many props for configuring a playground
+        so in a style guide with lots of playgrounds
+        you do not want to manually configure each one. You should
+        create your own custom playground with presets that suit you e.g.
+      </p>
+      <ul>
+        <li>borders</li>
+        <li>padding</li>
+        <li>wrappers</li>
+        <li>themes</li>
+        <li>background colors</li>
+        <li>put things you will need on the <em>scope</em></li>
+      </ul>
+      <p>
+
+        Export it from a module import it where needed and use it repeatedly:
+
+      </p>
+    </Text>
+    <OuterPlayground
+      defaultValue={`
+// export this to control themes
+const themeBroadcast = new ThemeBroadcast({
+  color: 'brown'
+})
+
+// import * from lib
+const lib = {
+  add: (a, b) => a + b,
+  minus: (a, b) => a - b,
+  H3: styled.h3\`color: \${({theme}) => theme.color};\`,
+  Button: styled.button\`color: \${({theme}) => theme.color};\`
+}
+
+// export default
+const MyPlayground = props => {
+  const rest = {...props}
+  const { scope } = props
+  delete(rest.scope)
+  return (
+    <ReactPlaygroundStyled
+      scope={{...lib, ...scope}}
+      themeBroadcast={themeBroadcast}
+      loadTheme="cobalt"
+      font="consolas, monospace"
+      backgroundColor="orange"
+      playgroundWrapper={
+        Wrapper => styled(Wrapper)\`
+          flex-direction: row-reverse;
+          margin-bottom: 20px;
+          border-radius: 5px;
+          overflow: hidden;\`
+      }
+      {...rest}
+    />
+  )
+};
+
+// import MyPlayground from 'my-playground'
+
+<div>
+  <MyPlayground defaultValue={\`<Button>hello</Button>\`}/>
+  <MyPlayground defaultValue={\`<H3>hello</H3>\`}/>
+  <MyPlayground defaultValue={\`<em>{add(2,2)}</em>\`}/>
+  <MyPlayground defaultValue={\`<em>{minus(5,2)}</em>\`}/>
+</div>`}
+      scope={{
+        ReactPlaygroundStyled,
+        withTheme,
+        ThemeBroadcast,
+        styled,
+        ThemeChooserProvider,
+      }}
+    />
   </div>
 )
 

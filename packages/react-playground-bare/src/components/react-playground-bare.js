@@ -64,6 +64,7 @@ export default class ReactPlaygroundBare extends React.Component {
       )
     }
 
+    if (this.mounted === false) return
     this.setState({
       evalChild,
       errorMessage: '',
@@ -72,16 +73,19 @@ export default class ReactPlaygroundBare extends React.Component {
 
   onError = ({ error, source }) => {
     const errorMessage = error.message
+    if (this.mounted === false) return
     this.setState({
       errorMessage: formatErrorMessage({ errorMessage, source }),
     })
   }
 
   componentWillMount() {
+    this.mounted = true
     this.onUpdateSource(this.props.defaultValue)
   }
 
   componentWillUnmount() {
+    this.mounted = false
     ReactDOM.unmountComponentAtNode(this.mountNode)
   }
 

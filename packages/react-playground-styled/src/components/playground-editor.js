@@ -19,7 +19,7 @@ export default class PlaygroundEditor extends React.Component {
   constructor(props, ctx) {
     super(props, ctx)
     this.loadCss()
-    this.loadFont()
+    //    this.loadFont()
   }
 
   loadCss = () => {
@@ -42,14 +42,18 @@ export default class PlaygroundEditor extends React.Component {
       fontsLoaded[loadFont] = new Promise((resolve, reject) => {
         fontLoaded = resolve
       })
-      WebFont.load({
-        google: {
-          families: ['Source Sans Pro'],
-        },
-        active: fontLoaded,
-      })
+      setTimeout(() => {
+        WebFont.load({
+          google: {
+            families: ['Source Sans Pro'],
+          },
+          active: fontLoaded,
+        })
+      }, 5000)
     }
     fontsLoaded[loadFont].then(() => {
+      console.log('force remount')
+      if (this.mounted === false) return
       this.forceRemount = setTimeout(this.setState({ key: 1 }))
     })
   }
@@ -61,6 +65,7 @@ export default class PlaygroundEditor extends React.Component {
   }
 
   componentWillUnmount() {
+    this.mounted = false
     clearTimeout(this.forceRemount)
   }
 

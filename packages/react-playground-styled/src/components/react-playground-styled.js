@@ -2,6 +2,7 @@ import React from 'react'
 import ReactPlaygroundBare from 'react-playground-bare'
 import PlaygroundEditor from './playground-editor'
 import styled from 'styled-components'
+import ThemeChooserProvider from './theme-chooser-provider'
 
 const fromTheme = key => props => props[key]
 const getAlignment = ({ top, bottom, left, right }) => {
@@ -24,6 +25,7 @@ const getFullWidth = ({ fullWidth }) =>
 
 export const PlaygroundWrapper = styled.div`
   margin: ${fromTheme('margin')}px;
+  border: ${fromTheme('playgroundBorder')};
   display: flex;
   flex-wrap: wrap-reverse;
   line-height: 1.3;`
@@ -34,7 +36,7 @@ export const EditorWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: ${fromTheme('gutter')}px;
-  border: 1px solid #eee;
+  border: ${fromTheme('editorBorder')};
   min-width: ${fromTheme('minWidthEditor')}px;
   ${/Trident\/7/.test(navigator.userAgent) ? 'min-height: 200px;' : ''}
   & .ReactCodeMirror {
@@ -56,6 +58,7 @@ export const ViewerWrapper = styled.div`
   display: flex;
   position: relative;
   flex: ${fromTheme('viewerFlex')};
+  border: ${fromTheme('viewerBorder')};
   overflow: auto;
   border-radius: ${fromTheme('borderRadius')}px;
   margin: ${fromTheme('gutter')}px;
@@ -69,7 +72,7 @@ export const ViewerAlign = styled.div`
   ${getFullWidth}
   margin: ${fromTheme('padding')}px;`
 
-export const EvalWrapper = styled.div``
+// export const EvalWrapper = styled.div``
 
 export const ErrorWrapper = styled.pre`
   min-width: calc(100% - ${fromTheme('padding')}px);
@@ -92,6 +95,7 @@ export const ReactPlaygroundStyled = ({
   padding,
   borderRadius,
   backgroundColor,
+  themeBroadcast,
   viewerFlex,
   editorFlex,
   fullWidth,
@@ -102,13 +106,16 @@ export const ReactPlaygroundStyled = ({
   minWidthViewer,
   minHeightViewer,
   minWidthEditor,
+  editorBorder,
+  viewerBorder,
+  playgroundBorder,
   margin,
   codeMirrorOptions,
   playgroundWrapper,
   editorWrapper,
   viewerWrapper,
   viewerAlign,
-  evalWrapper,
+  EvalWrapper,
   errorWrapper,
   defaultValue,
   scope,
@@ -120,9 +127,20 @@ export const ReactPlaygroundStyled = ({
     EditorWrapper: customizeWrapper(editorWrapper, EditorWrapper),
     ViewerWrapper: customizeWrapper(viewerWrapper, ViewerWrapper),
     ViewerAlign: customizeWrapper(viewerAlign, ViewerAlign),
-    EvalWrapper: customizeWrapper(evalWrapper, EvalWrapper),
+    //    EvalWrapper: customizeWrapper(evalWrapper, EvalWrapper),
     ErrorWrapper: customizeWrapper(errorWrapper, ErrorWrapper),
   }
+
+  const EvalThemeWrapper = themeBroadcast
+    ? props => {
+        return (
+          <ThemeChooserProvider themeBroadcast={themeBroadcast}>
+            {EvalWrapper ? <EvalWrapper {...props} /> : props.children}
+          </ThemeChooserProvider>
+        )
+      }
+    : EvalWrapper
+
   const Inner = ({ defaultValue, onChange, errorMessage, onViewerMount }) => {
     const themeVars = {
       top,
@@ -137,6 +155,9 @@ export const ReactPlaygroundStyled = ({
       backgroundColor,
       viewerFlex,
       editorFlex,
+      editorBorder,
+      viewerBorder,
+      playgroundBorder,
       minWidthViewer,
       minHeightViewer,
       minWidthEditor,
@@ -176,7 +197,7 @@ export const ReactPlaygroundStyled = ({
       {...{
         defaultValue,
         scope,
-        EvalWrapper,
+        EvalWrapper: EvalThemeWrapper,
         useRemoteEval,
         remoteEvalUrl,
       }}
@@ -190,7 +211,6 @@ ReactPlaygroundStyled.defaultProps = {
   playgroundWrapper: x => x,
   editorWrapper: x => x,
   viewerWrapper: x => x,
-  evalWrapper: x => x,
   viewerAlign: x => x,
   errorWrapper: x => x,
   defaultValue: '',
@@ -202,6 +222,9 @@ ReactPlaygroundStyled.defaultProps = {
   backgroundColor: '#fcfcfc',
   viewerFlex: 1,
   editorFlex: 1,
+  editorBorder: '1px solid #eee',
+  viewerBorder: 'none',
+  playgroundBorder: 'none',
   minWidthEditor: 240,
   minWidthViewer: 240,
   minHeightViewer: 25,
