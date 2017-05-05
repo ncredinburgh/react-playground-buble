@@ -1,5 +1,7 @@
 # React Buble Playgrounds
 
+Docs: https://ncredinburgh.github.io/react-playground-buble/
+
 This [Lerna](https://lernajs.io/) repo contains npm packages used to render live evaluation code
 playgrounds that use buble to transpile JSX and ES2015. It is lighter weight
 than playgrounds that use Babel for transpilation.
