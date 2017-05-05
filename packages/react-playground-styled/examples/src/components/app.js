@@ -803,7 +803,10 @@ const MyPlayground = props => {
           <p>
             <em>react-playground-styled</em>
             {' '}
-            created at <a href="http://www.ncredinburgh.com" target="_blank">
+            was created at <a
+              href="http://www.ncredinburgh.com"
+              target="_blank"
+            >
               NCR Edinburgh
             </a>
             {' '}
@@ -831,6 +834,9 @@ const MyPlayground = props => {
             |
             {' '}
             <a href="https://medium.com/@phil_m_holden">medium</a>
+            |
+            {' '}
+            <a href="https://egghead.io/instructors/phil-holden">egghead</a>
             )
           </p>
         </div>
