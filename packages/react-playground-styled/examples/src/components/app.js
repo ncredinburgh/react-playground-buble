@@ -799,36 +799,48 @@ const MyPlayground = props => {
 
       <h2>Thanks</h2>
       <div style={{ display: 'flex' }}>
-
-        <p>
-          <em>react-playground-styled</em>
-          {' '}
-          was written at
-          {' '}
-          <a href="http://www.ncredinburgh.com" target="_blank">
-            NCR Edinburgh
-          </a>
-          {' '}
-          thanks for letting me open source it. Inspirtation was taken from
-          {' '}
-          <em>
-            <a href="https://github.com/FormidableLabs/component-playground">
-              component-playground
+        <div>
+          <p>
+            <em>react-playground-styled</em>
+            {' '}
+            created at <a href="http://www.ncredinburgh.com" target="_blank">
+              NCR Edinburgh
             </a>
-          </em>
-          {' '}
-          from
-          {' '}
-          <a href="https://formidable.com/" target="_blank">
-            Formidable Labs
-          </a>
-          .
-        </p>
+            {' '}
+            thanks for letting me open source it. Inspirtation was taken from
+            {' '}
+            <em>
+              <a href="https://github.com/FormidableLabs/component-playground">
+                component-playground
+              </a>
+            </em>
+            {' '}
+            from
+            {' '}
+            <a href="https://formidable.com/" target="_blank">
+              Formidable Labs
+            </a>
+            .
+
+          </p>
+          <p>
+            Created by Phil Holden (
+            <a href="https://github.com/philholden">github</a>
+            {' '} | <a href="https://twitter.com/phil_m_holden">twitter</a>
+            {' '}
+            |
+            {' '}
+            <a href="https://medium.com/@phil_m_holden">medium</a>
+            )
+          </p>
+        </div>
         <a href="http://www.ncredinburgh.com" target="_blank">
           <img src={ncr} width={128} style={{ marginLeft: 20 }} />
         </a>
+
       </div>
       <p />
+
     </Text>
   </div>
 )

@@ -14,8 +14,7 @@ function rerender(App2) {
   )
   setTimeout(() => {
     document.body.scrollTop = scrollTop
-    console.log(document.body.scrollTop)
-  }, 1000)
+  }, 50)
 }
 
 if (module.hot) {
