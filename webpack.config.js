@@ -4,14 +4,14 @@ const resolve = path.resolve
 const webpack = require('webpack')
 
 const packageName = process.env.npm_package_config_package
-const packageRoot = packageName ?
-  resolve(__dirname, 'packages', packageName) :
-  resolve(__dirname)
+const packageRoot = packageName
+  ? resolve(__dirname, 'packages', packageName)
+  : resolve(__dirname)
 
 module.exports = env => {
-  const ifProd = (...args) => env.prod ? args : []
-  const ifDev = (...args) => env.dev ? args : []
-  const ifIe9 = (...args) => env.dev ? args : []
+  const ifProd = (...args) => (env.prod ? args : [])
+  const ifDev = (...args) => (env.dev ? args : [])
+  const ifIe9 = (...args) => (env.dev ? args : [])
 
   return {
     entry: {
@@ -74,12 +74,12 @@ module.exports = env => {
       alias: {
         react: path.resolve('./node_modules/react'),
         'react-dom': path.resolve('./node_modules/react-dom'),
-//        'styled-components': path.resolve('./node_modules/styled-components'),
+        //        'styled-components': path.resolve('./node_modules/styled-components'),
       },
       mainFields: [
         ...ifIe9('browser:ie9'),
         'browser',
-//        ...ifDev('dev:main'),
+        //        ...ifDev('dev:main'),
         'module',
         'main',
       ],
@@ -104,6 +104,10 @@ module.exports = env => {
         },
         {
           test: /\.png$/,
+          loader: 'url-loader?limit=100000',
+        },
+        {
+          test: /\.jpg$/,
           loader: 'url-loader?limit=100000',
         },
         {

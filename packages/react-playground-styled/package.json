@@ -6,10 +6,11 @@
   "author": "Phil Holden (http://github.com/philholden)",
   "license": "MIT",
   "scripts": {
+    "clean": "rimraf lib dist lib-es ../../docs",
     "start": "cd ../.. && PACKAGE=$npm_package_config_package node ./dev-server.js",
     "test": "cd ../.. && PACKAGE=$npm_package_config_package npm test",
     "build:babel": "cd ../.. && PACKAGE=$npm_package_config_package npm run build:babel",
-    "build:webpack": "npm run clean && NODE_ENV=production ../../node_modules/.bin/webpack --config webpack.config.local.js --env.prod && cp examples/index.html dist",
+    "build:webpack": "npm run clean && NODE_ENV=production ../../node_modules/.bin/webpack --config webpack.config.local.js --env.prod && cp examples/index.html dist && mv dist ../../docs && rm ../../docs/bundle-vendor.js.map",
     "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs",
     "prepublish": "npm run build:babel"
   },
@@ -30,7 +31,9 @@
     "react-dom": "^15.3.2",
     "styled-components": "^1.4.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "rimraf": "^2.6.1"
+  },
   "config": {
     "package": "react-playground-styled",
     "port": 3000

@@ -4,6 +4,8 @@ import WebFont from 'webfontloader'
 import codeMirrorInstance from 'codemirror'
 import { injectCss } from '../util'
 
+window.codeMirrorInstance = codeMirrorInstance
+
 require('codemirror/mode/javascript/javascript')
 require('codemirror/mode/xml/xml')
 require('codemirror/mode/jsx/jsx')
@@ -13,13 +15,11 @@ const fontsLoaded = {}
 export default class PlaygroundEditor extends React.Component {
   state = {
     value: this.props.defaultValue || '',
-    key: 0,
   }
 
   constructor(props, ctx) {
     super(props, ctx)
     this.loadCss()
-    //    this.loadFont()
   }
 
   loadCss = () => {
@@ -35,26 +35,23 @@ export default class PlaygroundEditor extends React.Component {
   }
 
   loadFont = () => {
-    const { loadFont } = this.props
-    if (!loadFont) return
-    if (!fontsLoaded[loadFont]) {
+    const { googleFont } = this.props
+    if (!googleFont) return
+    if (!fontsLoaded[googleFont]) {
       let fontLoaded
-      fontsLoaded[loadFont] = new Promise((resolve, reject) => {
+      fontsLoaded[googleFont] = new Promise((resolve, reject) => {
         fontLoaded = resolve
       })
-      setTimeout(() => {
-        WebFont.load({
-          google: {
-            families: ['Source Sans Pro'],
-          },
-          active: fontLoaded,
-        })
-      }, 5000)
+      WebFont.load({
+        google: {
+          families: [googleFont],
+        },
+        active: fontLoaded,
+      })
     }
-    fontsLoaded[loadFont].then(() => {
-      console.log('force remount')
+    fontsLoaded[googleFont].then(() => {
       if (this.mounted === false) return
-      this.forceRemount = setTimeout(this.setState({ key: 1 }))
+      this.cm.refresh()
     })
   }
 
@@ -69,13 +66,20 @@ export default class PlaygroundEditor extends React.Component {
     clearTimeout(this.forceRemount)
   }
 
+  componentDidMount() {
+    this.loadFont()
+  }
+
   render() {
-    const { value, blank, key } = this.state
+    const { value, blank } = this.state
     const { props } = this
     const { onChange, codeMirrorOptions, theme, loadTheme } = props
     return (
       <Codemirror
-        key={key}
+        ref={el => {
+          if (el === null) return
+          this.cm = el.getCodeMirror()
+        }}
         value={value}
         onChange={this.onChange}
         options={{

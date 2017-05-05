@@ -7,6 +7,8 @@ import {
   ThemeChooserProvider,
 } from '../../../src'
 import styled, { withTheme, ThemeProvider } from 'styled-components'
+import phone from '../../img/phone.png'
+import ncr from '../../img/ncr.jpg'
 
 const themeNames = [
   '3024-day',
@@ -61,8 +63,57 @@ const themeNames = [
 const Text = styled.div`
   max-width: 35em;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 15px;
   line-height: 1.5;
+  color: #333;
+  font-size: 18px;
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+  em {
+    font-family: consolas, monospace;
+    color: #777;
+  }
+  h1, h2, h3 {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+  }
+  h1 {
+    font-size: 32px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+
+
+  @media (min-width: 600px) {
+    padding: 0 20px;
+    font-size: 19px;
+    h1 {
+      font-size: 40px;
+    }
+    h2 {
+      font-size: 32px;
+    }
+  }
+  a {
+    color: #333;
+  }
+`
+
+const PhoneImg = styled.img`
+  max-width: 240px;
+  border-top: 1px solid #d5d5d8;
+  border-left: 1px solid #d5d5d8;
+  border-right: 1px solid #d5d5d8;
+  box-shadow: 0 0 30px rgba(0,0,0,0.1);
+`
+
+const PhoneWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  background: #fafafa;
+  padding-top: 20px;
 `
 
 const OuterPlayground = ({ scope, ...props }) => (
@@ -114,15 +165,60 @@ const evalToJsx = `class MyComponent extends Component {
 const App = () => (
   <div>
     <Text>
+      <div style={{ float: 'right' }}>
+        <a
+          className="github-button"
+          href="https://github.com/ncredinburgh/react-playground-buble"
+          data-icon="octicon-star"
+          data-show-count="true"
+          aria-label="Star ntkme/github-buttons on GitHub"
+        >
+          Star
+        </a>
+      </div>
       <h1>React Playground Styled</h1>
       <p>
         This is a playground styled with
         {' '}
+        <em>
+          <a href="https://styled-components.com/" target="_blank">
+            styled-components
+          </a>
+        </em>.
+        {' '}
+        It enables you to create
+        {' '}
+        <a href="#custom">custom playgrounds</a>
+        {' '}
+        to meet your exact needs. It allows
+        {' '}
+        <em>context</em>
+        {' '}
+        based
+        {' '}
+        <em>theme</em>s
+        {' '}
+        from
+        {' '}
         <em>styled-components</em>
         {' '}
-        it allows binding themes from the outer page. It was made to enable the creation
-        of themable living component guides. The editor will evalute the last expression and if it is a React element
-        it will be rendered in the viewer:
+        to penetrate into playgrounds so you can
+        create <a href="#themable">themable living component guides</a>.
+      </p>
+      <p>
+        It is designed to be as small as possible so it does not break the flow of your docs.
+        It is responsive and supports hot loading so it can be used to test components performance on mobile while you develop:
+      </p>
+      <PhoneWrapper>
+        <PhoneImg src={phone} width="240" />
+      </PhoneWrapper>
+      <h2>Install</h2>
+      <em>npm install --save react-playground-styled</em><br />
+      <em>import ReactPlaygroundStyled from 'react-playground-styled'</em>
+
+      <p>
+        The viewer (left) will evalute the last expression in the editor (right) and if it is a React element
+        it will be rendered into the viewer:
       </p>
     </Text>
     <OuterPlayground defaultValue={defaultJsx} />
@@ -130,37 +226,54 @@ const App = () => (
       <p>
         I appologise if this is a bit
         meta, but I am going to be using the playground to document itself hence you may see a
-        playground within a playground for most examples. You set the code for
-        the playground by putting it in the <em>defaultValue</em> prop:
+        playground within a playground for most examples. You will see the inner playground has a different style to the outer one (I will show you how to achieve this
+        {' '}
+        <a href="#themable">later</a>
+        ). The code for the playground is set by putting it in the
+        {' '}
+        <em>defaultValue</em>
+        {' '}
+        prop:
       </p>
     </Text>
     <OuterPlayground
-      defaultValue={`<ReactPlaygroundStyled
-    defaultValue={'<button>Hello</button>'}
-  />`}
+      defaultValue={`// import ReactPlaygroundStyled from 'react-playground-styled'
+
+<ReactPlaygroundStyled
+  defaultValue={'<button>Hello</button>'}
+/>`}
       scope={{ ReactPlaygroundStyled }}
     />
 
     <Text>
       <p>
-        You pass in components, functions and variables via the
+        You pass in components, functions and variables as an
+        {' '}
+        <em>Object</em> (map)
+        {' '}
+        in the
         {' '}
         <em>scope</em>
         {' '}
-        prop. Often these will be imports. Remember it accepts an
+        prop (often these will be imported from the package you are documenting). Remember it accepts an
         {' '}
         <em>Object</em>
         {' '}
-        and also note the semicolon
+        (not a single component)
+        where each value is a function, value or component.
+      </p>
+
+      <p>
+        <strong>NOTE:</strong> The semicolon
         on the last line before the JSX that is rendered. As a rule of thumb
         make sure the last non-whitespace character before the evaluated JSX
         is either a semicolon
         {' '}
         <em>';'</em>
         {' '}
-        or a closing curly bracket
+        or a closing curly
         {' '}
-        <em>'}'</em>:
+        <em>'}'</em> (this causes most of my errors):
       </p>
     </Text>
 
@@ -179,11 +292,11 @@ const HelloWorld = () => (
 
     <Text>
       <p>
-        One of the goals of this playground is to be light weight for this reason we use
+        One of the goals of this playground is to be light weight, for this reason we use
         {' '}
         <a href="https://gitlab.com/Rich-Harris/buble">Bublé</a>
         {' '}
-        rather than Babel this makes bundle downloads on the browser a few megabytes smaller:
+        rather than Babel. This makes bundle downloads on the browser a few megabytes smaller:
       </p>
     </Text>
 
@@ -192,7 +305,7 @@ const HelloWorld = () => (
       <p>
         Another goal is to use minimal screen space to document a component.
         Because horizontal space is at such a high premium I have taken the
-        unusual decision to use a proportional font. I found this to be less
+        unusual decision to use a proportional font by default. I found this to be less
         evil than all the line wrapping I encountered with monospace fonts. You
         can change the font with the <em>font</em> property:
       </p>
@@ -206,11 +319,30 @@ const HelloWorld = () => (
     />
     <Text>
       <p>
-        You can also use
+        You can load fonts from
         {' '}
+        <a href="https://fonts.google.com">Google Fonts</a>
+        {' '}
+        and change the
+        {' '}
+        <em>editorFontSize</em>
+        :
+      </p>
+    </Text>
+    <OuterPlayground
+      scope={{ ReactPlaygroundStyled }}
+      defaultValue={`<ReactPlaygroundStyled
+  editorFontSize="18px"
+  googleFont="Indie Flower"
+  font={'Indie Flower, monospace'}
+  defaultValue={'<button>Hello</button>'}
+/>`}
+    />
+    <Text>
+      <p>
         <em>loadTheme</em>
         {' '}
-        to load CodeMirror CSS themes from a CDN. There is a list of themes in the
+        to loads CodeMirror CSS themes from a CDN. There is a list of themes in the
         {' '}
         <em>textarea</em>
         {' '}
@@ -260,7 +392,7 @@ let b = [1,2,3];
     />
     <Text>
       <p>
-        If you do not want the outer margin on the non adjcent edges you may want to add negative
+        If you do not want the outer margin on the non-adjcent edges you may want to add negative
         {' '}
         <em>margin</em>
         {' '}
@@ -292,7 +424,7 @@ let b = [1,2,3];
     <Text>
       <p>
         <em>minHeightViewer, minWidthViewer, minWidthEditor</em>. For components
-        such as dropdown list it might be important to force a certain minimum height
+        such as dropdown lists it might be important to force a certain minimum height
         for the viewer:
       </p>
     </Text>
@@ -306,9 +438,9 @@ let b = [1,2,3];
     />
     <Text>
       <p>
-        Many compents use <em>flex-box</em> for styling this means they may
+        Many compents use <em>flex-box</em> for layout this means they may
         expect to be rendered into a parent with display set to <em>flex</em>.
-        So it is important to be able to control the context compnents are
+        So it is important to be able to control the context components are
         rendered into. Below some alignment props:
       </p>
       <p><em>left</em>:</p>
@@ -392,13 +524,13 @@ let b = [1,2,3];
       scope={{ ReactPlaygroundStyled }}
     />
     <Text>
-      <h2>Themes</h2>
+      <h2 id="themable">Themes from Styled-Components</h2>
       <p>
         The <em>ThemeBroadcast</em> class
         {' '}
         can be used to pass
         {' '}
-        <em>styled-components</em>
+        <em>styled-components</em>'
         {' '}
         themes to new React roots e.g.
         modals, portals or playgrounds. Setting the <em>themeBroadcast</em> prop
@@ -447,18 +579,21 @@ const Button = styled.button\`color: \${({theme}) => theme.color};\`;
     <Text>
       <h2>Wrappers</h2>
       <p>
-        There are wrappers around the editor, the viewer and the whole playground.
-        This allows you to set arbitrary styles, replace the default wrapper or add additional wrappers. Wrapper props
-        are callbacks which accept the default wrapper component as an argument.
+        There are wrappers components around the editor, the viewer and the whole playground.
+        This allows you to set augment styles on the wrapper (via
+        {' '}
+        <em>styled-components</em>
+        ), replace the default wrapper or add additional wrappers. Wrapper props
+        are callbacks which accept the default wrapper component as an argument and return a new or changed wrapper.
         We provide the following wrappers:
       </p>
       <ul>
         <li>playgroundWrapper</li>
         <li>editorWrapper</li>
-        <li>viewerWrapper</li>
-        <li>viewerAlign</li>
-        <li>EvalWrapper</li>
+        <li>viewerWrapper (outer)</li>
+        <li>viewerAlign (inner)</li>
         <li>errorWrapper</li>
+        <li>EvalWrapper (NOTE: component not callback)</li>
       </ul>
 
       <p>
@@ -582,10 +717,10 @@ const Button = styled.button\`color: \${({theme}) => theme.color};\`;
       }}
     />
     <Text>
-      <h2>Creating your own custom playground</h2>
+      <h2 id="custom">Creating your own custom playground</h2>
       <p>
-        There are many props for configuring a playground
-        so in a style guide with lots of playgrounds
+        There are many props for configuring appearance
+        so in a style guide with lots of identical playgrounds
         you do not want to manually configure each one. You should
         create your own custom playground with presets that suit you e.g.
       </p>
@@ -620,6 +755,8 @@ const lib = {
 
 // export default
 const MyPlayground = props => {
+  // const { scope, ...rest } = props
+  // no object spread in Buble
   const rest = {...props}
   const { scope } = props
   delete(rest.scope)
@@ -658,6 +795,41 @@ const MyPlayground = props => {
         ThemeChooserProvider,
       }}
     />
+    <Text>
+
+      <h2>Thanks</h2>
+      <div style={{ display: 'flex' }}>
+
+        <p>
+          <em>react-playground-styled</em>
+          {' '}
+          was written at
+          {' '}
+          <a href="http://www.ncredinburgh.com" target="_blank">
+            NCR Edinburgh
+          </a>
+          {' '}
+          thanks for letting me open source it. Inspirtation was taken from
+          {' '}
+          <em>
+            <a href="https://github.com/FormidableLabs/component-playground">
+              component-playground
+            </a>
+          </em>
+          {' '}
+          from
+          {' '}
+          <a href="https://formidable.com/" target="_blank">
+            Formidable Labs
+          </a>
+          .
+        </p>
+        <a href="http://www.ncredinburgh.com" target="_blank">
+          <img src={ncr} width={128} style={{ marginLeft: 20 }} />
+        </a>
+      </div>
+      <p />
+    </Text>
   </div>
 )
 

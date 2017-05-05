@@ -4,13 +4,13 @@ const resolve = path.resolve
 const webpack = require('webpack')
 const packageName = process.env.npm_package_config_package
 
-const packageRoot = packageName ?
-  resolve('.', 'packages', packageName) :
-  resolve(__dirname)
+const packageRoot = packageName
+  ? resolve('.', 'packages', packageName)
+  : resolve(__dirname)
 
 module.exports = env => {
-  const ifProd = (...args) => env.prod ? args : []
-  const ifDev = (...args) => env.dev ? args : []
+  const ifProd = (...args) => (env.prod ? args : [])
+  const ifDev = (...args) => (env.dev ? args : [])
 
   return {
     entry: {
@@ -20,7 +20,7 @@ module.exports = env => {
           'eventsource-polyfill',
           'webpack-hot-middleware/client'
         ),
-//        resolve(packageRoot, 'examples', 'src', 'index'),
+        //        resolve(packageRoot, 'examples', 'src', 'index'),
         './examples/src/index',
       ],
       // dist: [
@@ -73,7 +73,9 @@ module.exports = env => {
       alias: {
         react: path.resolve('../../node_modules/react'),
         'react-dom': path.resolve('../../node_modules/react-dom'),
-        'styled-components': path.resolve('../../node_modules/styled-components'),
+        'styled-components': path.resolve(
+          '../../node_modules/styled-components'
+        ),
       },
     },
     context: __dirname,
@@ -84,13 +86,14 @@ module.exports = env => {
         {
           test: /\.jsx?/,
           loader: 'babel-loader',
-          include: [
-            join(__dirname, 'src'),
-            join(__dirname, 'example'),
-          ],
+          include: [join(__dirname, 'src'), join(__dirname, 'example')],
         },
         {
           test: /\.png$/,
+          loader: 'url-loader?limit=100000',
+        },
+        {
+          test: /\.jpg$/,
           loader: 'url-loader?limit=100000',
         },
         {

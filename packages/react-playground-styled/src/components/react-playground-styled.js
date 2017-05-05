@@ -46,7 +46,7 @@ export const EditorWrapper = styled.div`
   }
   & .CodeMirror {
     font-family: ${fromTheme('font')};
-    font-weight: 400;
+    font-size: ${fromTheme('editorFontSize')};
     height: auto;
     flex: 1;
     padding: ${fromTheme('padding')}px;
@@ -100,7 +100,8 @@ export const ReactPlaygroundStyled = ({
   editorFlex,
   fullWidth,
   font,
-  loadFont,
+  googleFont,
+  editorFontSize,
   theme,
   loadTheme,
   minWidthViewer,
@@ -149,6 +150,7 @@ export const ReactPlaygroundStyled = ({
       right,
       fullWidth,
       font,
+      editorFontSize,
       gutter,
       padding,
       borderRadius,
@@ -182,7 +184,7 @@ export const ReactPlaygroundStyled = ({
           <PlaygroundEditor
             onChange={onChange}
             defaultValue={defaultValue}
-            loadFont={loadFont}
+            googleFont={googleFont}
             codeMirrorOptions={codeMirrorOptions}
             theme={theme}
             loadTheme={loadTheme}
@@ -215,14 +217,15 @@ ReactPlaygroundStyled.defaultProps = {
   errorWrapper: x => x,
   defaultValue: '',
   borderRadius: 0,
-  loadFont: `'Source Sans Pro', sans-serif`,
-  font: `'Source Sans Pro'`,
+  googleFont: 'Source Sans Pro',
+  font: `'Source Sans Pro', 'sans-serif'`,
   padding: 12,
   gutter: 0,
   backgroundColor: '#fcfcfc',
   viewerFlex: 1,
   editorFlex: 1,
   editorBorder: '1px solid #eee',
+  editorFontSize: '1em',
   viewerBorder: 'none',
   playgroundBorder: 'none',
   minWidthEditor: 240,
