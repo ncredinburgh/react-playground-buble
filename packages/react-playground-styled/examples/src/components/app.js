@@ -116,6 +116,14 @@ const PhoneWrapper = styled.div`
   padding-top: 20px;
 `
 
+const Caption = styled.div`
+  font-style: italic;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 90%;
+  color: #777;
+`
+
 const OuterPlayground = ({ scope, ...props }) => (
   <Playground
     backgroundColor="#eee"
@@ -212,13 +220,16 @@ const App = () => (
       <PhoneWrapper>
         <PhoneImg src={phone} width="240" />
       </PhoneWrapper>
+      <Caption>Still editable at 320px wide on an iPhone 5</Caption>
       <h2>Install</h2>
+      <p>Bash:</p>
       <em>npm install --save react-playground-styled</em><br />
+      <p>JavaScript:</p>
       <em>import ReactPlaygroundStyled from 'react-playground-styled'</em>
-
+      <h2>Use</h2>
       <p>
         The viewer (left) will evalute the last expression in the editor (right) and if it is a React element
-        it will be rendered into the viewer:
+        it will be rendered in the viewer:
       </p>
     </Text>
     <OuterPlayground defaultValue={defaultJsx} />
@@ -260,20 +271,7 @@ const App = () => (
         <em>Object</em>
         {' '}
         (not a single component)
-        where each value is a function, value or component.
-      </p>
-
-      <p>
-        <strong>NOTE:</strong> The semicolon
-        on the last line before the JSX that is rendered. As a rule of thumb
-        make sure the last non-whitespace character before the evaluated JSX
-        is either a semicolon
-        {' '}
-        <em>';'</em>
-        {' '}
-        or a closing curly
-        {' '}
-        <em>'}'</em> (this causes most of my errors):
+        where each value is a function, a value or a component.
       </p>
     </Text>
 
@@ -292,7 +290,21 @@ const HelloWorld = () => (
 
     <Text>
       <p>
-        One of the goals of this playground is to be light weight, for this reason we use
+        <strong>NOTE:</strong>
+        {' '}
+        A semicolon is needed on the last line before the JSX to force it to be evaluated. As a rule of thumb
+        make sure the last non-whitespace character before the evaluated JSX
+        is either a semicolon
+        {' '}
+        <em>';'</em>
+        {' '}
+        or a closing curly
+        {' '}
+        <em>'}'</em> (failure to include this semi will give an error):
+      </p>
+
+      <p>
+        One of the goals of this playground is to be lightweight, for this reason we use
         {' '}
         <a href="https://gitlab.com/Rich-Harris/buble">Bublé</a>
         {' '}
@@ -756,7 +768,7 @@ const lib = {
 // export default
 const MyPlayground = props => {
   // const { scope, ...rest } = props
-  // no object spread in Buble
+  // no object spread in Bublé
   const rest = {...props}
   const { scope } = props
   delete(rest.scope)
