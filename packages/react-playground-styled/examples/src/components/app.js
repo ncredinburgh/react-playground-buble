@@ -61,7 +61,7 @@ const themeNames = [
   'zenburn',
 ]
 const Text = styled.div`
-  max-width: 35em;
+  max-width: 37em;
   margin: 0 auto;
   padding: 0 15px;
   line-height: 1.5;
@@ -126,6 +126,10 @@ const Caption = styled.div`
 
 const OuterPlayground = ({ scope, ...props }) => (
   <Playground
+    playgroundWrapper={X => styled(X)`
+      max-width: 940px;
+      margin: 1.7em auto;
+    `}
     backgroundColor="#eee"
     scope={{ styled, ...scope }}
     fullWidth
