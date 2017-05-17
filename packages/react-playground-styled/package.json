@@ -12,7 +12,7 @@
     "build:babel": "cd ../.. && PACKAGE=$npm_package_config_package npm run build:babel",
     "build:webpack": "npm run clean && NODE_ENV=production ../../node_modules/.bin/webpack --config webpack.config.local.js --env.prod && cp examples/index-dist.html dist/index.html && mv dist ../../docs && rm ../../docs/static/bundle-vendor.js.map",
     "npmdocs": "cd ../.. && PACKAGE=$npm_package_config_package npm run npmdocs",
-    "prepublish": "npm run build:babel && npm run build:webpack"
+    "prepublish": "npm run build:webpack && npm run build:babel"
   },
   "repository": {
     "type": "git",
