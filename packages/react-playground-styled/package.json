@@ -32,7 +32,8 @@
     "react-dom": ">=15.5"
   },
   "devDependencies": {
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "styled-components": "^1.4.6"
   },
   "config": {
     "package": "react-playground-styled",
