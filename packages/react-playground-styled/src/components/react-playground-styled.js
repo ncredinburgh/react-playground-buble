@@ -122,6 +122,9 @@ export const ReactPlaygroundStyled = ({
   scope,
   useRemoteEval,
   remoteEvalUrl,
+  matchBrackets,
+  styleActiveLine,
+  matchTags,
 }) => {
   const x = {
     PlaygroundWrapper: customizeWrapper(playgroundWrapper, PlaygroundWrapper),
@@ -182,6 +185,11 @@ export const ReactPlaygroundStyled = ({
         </x.ViewerWrapper>
         <x.EditorWrapper {...themeVars}>
           <PlaygroundEditor
+            {...{
+              matchBrackets,
+              styleActiveLine,
+              matchTags,
+            }}
             onChange={onChange}
             defaultValue={defaultValue}
             googleFont={googleFont}
@@ -232,4 +240,7 @@ ReactPlaygroundStyled.defaultProps = {
   minWidthViewer: 240,
   minHeightViewer: 25,
   margin: 0,
+  matchBrackets: true,
+  styleActiveLine: true,
+  matchTags: 'other',
 }

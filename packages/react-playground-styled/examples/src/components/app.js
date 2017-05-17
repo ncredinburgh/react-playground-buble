@@ -282,7 +282,7 @@ const App = () => (
     <OuterPlayground
       defaultValue={`const onClick = () => alert('hello')
 const HelloWorld = () => (
-  <strong onClick={onClick}>Hello World!!</strong>
+  <strong onClick={onClick}>Hello World!</strong>
 );
 
 <ReactPlaygroundStyled
@@ -379,6 +379,30 @@ let b = [1,2,3];
   value={themeNames.join(\'\\\\n\')}
   rows={15}
 />\`}
+/>`}
+    />
+    <Text>
+      <ul>
+        <li><em>matchBrackets</em> - Boolean</li>
+        <li><em>matchTags</em> - 'other' | 'none' | 'both'</li>
+        <li><em>styleActiveLine</em> - Boolean</li>
+      </ul>
+      <p>
+        to loads CodeMirror CSS themes from a CDN. There is a list of themes in the
+        {' '}
+        <em>textarea</em>
+        {' '}
+        below. Try pasting them into the <em>loadTheme</em> prop on the right:
+      </p>
+    </Text>
+    <OuterPlayground
+      scope={{ ReactPlaygroundStyled, themeNames }}
+      defaultValue={`<ReactPlaygroundStyled
+  matchBrackets={false}
+  matchTags="both"
+  styleActiveLine={false}
+  defaultValue={
+\`<button>hello</button>\`}
 />`}
     />
     <Text>

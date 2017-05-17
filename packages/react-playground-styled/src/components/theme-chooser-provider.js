@@ -1,5 +1,6 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
+import PropTypes from 'prop-types'
 
 export default class ThemeChooserProvider extends React.Component {
   state = {
@@ -9,10 +10,10 @@ export default class ThemeChooserProvider extends React.Component {
   }
 
   static childContextTypes = {
-    themeChooser: React.PropTypes.shape({
-      theme: React.PropTypes.object,
-      onChangeTheme: React.PropTypes.func,
-      themeBroadcast: React.PropTypes.object,
+    themeChooser: PropTypes.shape({
+      theme: PropTypes.object,
+      onChangeTheme: PropTypes.func,
+      themeBroadcast: PropTypes.object,
     }),
   }
 

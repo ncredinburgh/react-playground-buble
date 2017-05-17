@@ -4,17 +4,30 @@ import WebFont from 'webfontloader'
 import codeMirrorInstance from 'codemirror'
 import { injectCss } from '../util'
 
-window.codeMirrorInstance = codeMirrorInstance
+// window.codeMirrorInstance = codeMirrorInstance
+// window.React = React
+import 'codemirror/mode/javascript/javascript'
+// import 'codemirror/mode/xml/xml'
+import 'codemirror/mode/jsx/jsx'
 
-require('codemirror/mode/javascript/javascript')
-require('codemirror/mode/xml/xml')
-require('codemirror/mode/jsx/jsx')
+// import 'codemirror/mode/jsx/jsx'
+import 'codemirror/keymap/sublime'
+import 'codemirror/addon/fold/xml-fold' // Needed to match JSX
+import 'codemirror/addon/edit/matchtags'
+import 'codemirror/addon/edit/closebrackets'
+import 'codemirror/addon/comment/comment'
+import 'codemirror/addon/selection/active-line'
+// import 'codemirror/addon/fold/foldcode'
+// import 'codemirror/addon/fold/foldgutter'
+// import 'codemirror/addon/fold/brace-fold'
 
 const fontsLoaded = {}
 
 export default class PlaygroundEditor extends React.Component {
   state = {
     value: this.props.defaultValue || '',
+    focus: false,
+    key: 0,
   }
 
   constructor(props, ctx) {
@@ -70,25 +83,53 @@ export default class PlaygroundEditor extends React.Component {
     this.loadFont()
   }
 
+  onFocusChange = focus => {
+    this.setState({ focus, key: this.state.key + (focus ? 0 : 1) }, () =>
+      this.cm.refresh()
+    )
+  }
+
   render() {
-    const { value, blank } = this.state
+    const { value, blank, focus, key } = this.state
     const { props } = this
-    const { onChange, codeMirrorOptions, theme, loadTheme } = props
+    const {
+      onChange,
+      codeMirrorOptions,
+      theme,
+      loadTheme,
+      matchBrackets,
+      styleActiveLine,
+      matchTags,
+    } = props
     return (
       <Codemirror
+        key={key}
         ref={el => {
           if (el === null) return
           this.cm = el.getCodeMirror()
         }}
         value={value}
         onChange={this.onChange}
+        onFocusChange={this.onFocusChange}
         options={{
           mode: 'jsx',
           indentWithTabs: false,
           lineNumbers: false,
+          keyMap: 'sublime',
+          autoCloseBrackets: true,
           lineWrapping: true,
           smartIndent: false,
-          matchBrackets: true,
+          ...(focus
+            ? {
+                matchBrackets,
+                styleActiveLine,
+                ...(matchTags === 'none'
+                  ? {}
+                  : {
+                      matchTags: { bothTags: matchTags === 'both' },
+                    }),
+              }
+            : {}),
           theme: theme || loadTheme || 'default',
           invisibles: true,
           extraKeys: {
