@@ -86,7 +86,7 @@ export const ErrorWrapper = styled.pre`
 
 const customizeWrapper = (prop, defaultValue) => prop(defaultValue)
 
-export const ReactPlaygroundStyled = ({
+const ReactPlaygroundStyled = ({
   top,
   bottom,
   left,
@@ -244,3 +244,5 @@ ReactPlaygroundStyled.defaultProps = {
   styleActiveLine: true,
   matchTags: 'other',
 }
+
+export default ReactPlaygroundStyled

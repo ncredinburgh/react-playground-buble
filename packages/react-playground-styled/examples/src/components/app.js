@@ -1,11 +1,7 @@
 // @flow
 // setTimeout(() => document.body.scrollTop = 0, 2000)
 import React from 'react'
-import {
-  ReactPlaygroundStyled as Playground,
-  ThemeBroadcast,
-  ThemeChooserProvider,
-} from '../../../src'
+import Playground, { ThemeBroadcast, ThemeChooserProvider } from '../../../src'
 import styled, { withTheme, ThemeProvider } from 'styled-components'
 import phone from '../../img/phone.png'
 import ncr from '../../img/ncr.jpg'
