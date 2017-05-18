@@ -169,6 +169,7 @@ const ReactPlaygroundStyled = ({
       margin,
       errorMessage,
     }
+
     return (
       <x.PlaygroundWrapper {...themeVars}>
         <x.ViewerWrapper {...themeVars}>
@@ -202,11 +203,14 @@ const ReactPlaygroundStyled = ({
     )
   }
 
+  const cleanScope = { ...scope }
+  delete cleanScope.default
+
   return (
     <ReactPlaygroundBare
       {...{
         defaultValue,
-        scope,
+        scope: cleanScope,
         EvalWrapper: EvalThemeWrapper,
         useRemoteEval,
         remoteEvalUrl,
