@@ -173,6 +173,7 @@ const evalToJsx = `class MyComponent extends Component {
 const App = () => (
   <div>
     <Text>
+
       <div style={{ float: 'right' }}>
         <a
           className="github-button"

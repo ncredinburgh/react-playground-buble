@@ -125,6 +125,7 @@ const ReactPlaygroundStyled = ({
   matchBrackets,
   styleActiveLine,
   matchTags,
+  getCodeMirror,
 }) => {
   const x = {
     PlaygroundWrapper: customizeWrapper(playgroundWrapper, PlaygroundWrapper),
@@ -190,6 +191,7 @@ const ReactPlaygroundStyled = ({
               matchBrackets,
               styleActiveLine,
               matchTags,
+              getCodeMirror,
             }}
             onChange={onChange}
             defaultValue={defaultValue}

@@ -100,6 +100,7 @@ export default class PlaygroundEditor extends React.Component {
       matchBrackets,
       styleActiveLine,
       matchTags,
+      getCodeMirror,
     } = props
     return (
       <Codemirror
@@ -107,6 +108,9 @@ export default class PlaygroundEditor extends React.Component {
         ref={el => {
           if (el === null) return
           this.cm = el.getCodeMirror()
+          if (typeof getCodeMirror === 'function') {
+            getCodeMirror(this.cm)
+          }
         }}
         value={value}
         onChange={this.onChange}
