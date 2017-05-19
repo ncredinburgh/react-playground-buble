@@ -77,11 +77,11 @@ export default class PlaygroundEditor extends React.Component {
   componentWillUnmount() {
     this.mounted = false
     clearTimeout(this.forceRemount)
+    clearTimeout(this.clearRefresh)
   }
 
   componentDidMount() {
     this.loadFont()
-    this.cm.refresh()
   }
 
   onFocusChange = focus => {
@@ -109,6 +109,7 @@ export default class PlaygroundEditor extends React.Component {
         ref={el => {
           if (el === null) return
           this.cm = el.getCodeMirror()
+          this.clearRefresh = setTimeout(this.cm.refresh)
           if (typeof getCodeMirror === 'function') {
             getCodeMirror(this.cm)
           }
