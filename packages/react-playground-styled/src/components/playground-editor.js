@@ -109,7 +109,7 @@ export default class PlaygroundEditor extends React.Component {
         ref={el => {
           if (el === null) return
           this.cm = el.getCodeMirror()
-          this.clearRefresh = setTimeout(this.cm.refresh)
+          this.clearRefresh = setTimeout(this.cm.refresh, 1000)
           if (typeof getCodeMirror === 'function') {
             getCodeMirror(this.cm)
           }
