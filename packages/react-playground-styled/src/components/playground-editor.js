@@ -81,6 +81,7 @@ export default class PlaygroundEditor extends React.Component {
 
   componentDidMount() {
     this.loadFont()
+    this.cm.refresh()
   }
 
   onFocusChange = focus => {
